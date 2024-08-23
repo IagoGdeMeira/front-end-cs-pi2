@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element='' />
-          <Route path='/discipçine-create' element={<DisciplineCreate/>}/>
+          <Route path='/discipline-create' element={<DisciplineCreate/>}/>
         </Routes>
       </BrowserRouter>
     </div>
