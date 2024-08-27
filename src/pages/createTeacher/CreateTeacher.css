@@ -1,9 +1,12 @@
 form {
+    align-items: center;
     background-color: #e7e7e7;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 45px;
+    margin: 2vh auto;
+    max-width: 800px;
     padding: 30px 15px;
 }
 
@@ -14,8 +17,7 @@ span {
 .form-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    width: 90%;
     max-width: 550px;
 }
 
