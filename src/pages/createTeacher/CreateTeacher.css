@@ -1,0 +1,9 @@
+form {
+    border-radius: 10px;
+    background-color: #dfdcdc;
+    padding: 30px 15px;
+}
+
+.label-gap {
+    gap: 45px;
+}
