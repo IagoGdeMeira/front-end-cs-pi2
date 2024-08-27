@@ -1,9 +1,24 @@
 form {
+    background-color: #e7e7e7;
     border-radius: 10px;
-    background-color: #dfdcdc;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
     padding: 30px 15px;
 }
 
-.label-gap {
-    gap: 45px;
+span {
+    width: 100%;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+}
+
+.input-width {
+    width: 100%;
 }
