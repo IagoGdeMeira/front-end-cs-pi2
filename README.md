@@ -1,3 +1,6 @@
+Para acessar a pagina coloque um "/discipline-create" no final do link
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
