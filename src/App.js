@@ -1,7 +1,8 @@
 import './App.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DisciplineCreate from "./pages/DisciplineCreate/DisciplineCreate";
-import Home from './pages/Home/Home';
+import Home from "./pages/Home/Home";
 
 
 function App() {
