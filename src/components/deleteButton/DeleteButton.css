@@ -1,0 +1,7 @@
+.layout-button {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid #cc1313;
+    border-radius: 10px;
+    color: #cc1313;
+}
