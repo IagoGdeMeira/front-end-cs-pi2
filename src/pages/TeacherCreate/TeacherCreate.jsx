@@ -32,7 +32,11 @@ const TeacherCreate = () => {
     };
 
     const handleRGChange = (e) => {
-        setTeacher({ ...teacher, teacherCPF: e.value });
+        setTeacher({ ...teacher, teacherRG: e.value });
+    };
+
+    const handleEmailChange = (e) => {
+        setTeacher({ ...teacher, teacherEmail: e.value });
     };
 
     const handleWorkedHoursChange = (e) => {
@@ -53,7 +57,7 @@ const TeacherCreate = () => {
     return (
         <SimpleLayout>
             <form className="flex flex-column">
-                <div className="form-line">
+                <div className="form-row">
                     {/* Campo para o NOME do professor. */}
                     <div className="form-item flex flex-column align-items-start">
                         <label htmlFor="teacherName">Nome do Professor:</label>
@@ -67,7 +71,7 @@ const TeacherCreate = () => {
                         <small id="teacherName-help">Informe neste campo o nome do professor.</small>
                     </div>
                 </div>
-                <div className="form-line flex justify-content-between">
+                <div className="form-row flex justify-content-between">
                     {/* Campo para o CPF do professor. */}
                     <div className="form-item flex flex-column align-items-start">
                         <label htmlFor="teacherCPF">CPF do Professor:</label>

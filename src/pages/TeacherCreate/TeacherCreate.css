@@ -10,7 +10,7 @@ form {
     border-radius: 10px;
     gap: 25px;
     padding: 20px 10px;
-    max-width: fit-content;
+    width: fit-content;
 }
 
 label {
@@ -30,6 +30,16 @@ label, small {
     gap: 5px;
 }
 
-.form-line {
+.form-row {
     gap: 20px;
+}
+
+@media(max-width: 450px) {
+    form {
+        width: 95vw;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
 }
