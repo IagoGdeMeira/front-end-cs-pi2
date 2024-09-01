@@ -1,8 +1,10 @@
 import './TeacherCreate.css';
 
 import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
+import DropdownCities from '../../components/dropdowns/DropdownCities/DropdownCities';
+import DropdownStates from '../../components/dropdowns/DropdownStates/DropdownStates';
 import { InputMask } from 'primereact/inputmask';
+import { InputText } from 'primereact/inputtext';
 import React, { useState } from "react";
 import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { useNavigate } from "react-router-dom";
@@ -13,9 +15,9 @@ const TeacherCreate = () => {
         teacherName: '',        
         teacherCPF: '',         
         teacherRG: '',          
-        teacherEmail: '',       // PENDENTE
-        teacherPhoneNumber: '', // PENDENTE
-        teacherBirthDate: '',   // PENDENTE
+        teacherEmail: '', 
+        teacherPhoneNumber: '',
+        teacherBirthDate: '',
         teacherBirthCity: '',   // PENDENTE
         teacherBirthState: '',  // PENDENTE
         teacherWorkedHours: ''  // PENDENTE 
@@ -27,6 +29,10 @@ const TeacherCreate = () => {
         setTeacher({ ...teacher, teacherName: e.target.value });
     };
 
+    const handleBirthDateChange = (e) => {
+        setTeacher({ ...teacher, teacherBirthDate: e.target.value });
+    }
+
     const handleCPFChange = (e) => {
         setTeacher({ ...teacher, teacherCPF: e.value });
     };
@@ -35,21 +41,31 @@ const TeacherCreate = () => {
         setTeacher({ ...teacher, teacherRG: e.value });
     };
 
+    const handlePhoneNumberChange = (e) => {
+        setTeacher({ ...teacher, teacherPhoneNumber: e.target.value });
+    };
+
     const handleEmailChange = (e) => {
-        setTeacher({ ...teacher, teacherEmail: e.value });
+        setTeacher({ ...teacher, teacherEmail: e.target.value });
     };
 
     const handleWorkedHoursChange = (e) => {
         const { value } = e.target;
         
-        if (/^\d*$/.test(value))
+        if(/^\d*$/.test(value))
             setTeacher({ ...teacher, teacherTeachingHours: value });
         else
-            throw new Error("ERROR: Only integer numbers are allowed in this input.");
+            console.error("ERROR: Only integer numbers are allowed in this input.");
+    };
+
+    const validateRG = (rg) => {
+        const rgRegex = /^[0-9]{1,2}(\.[0-9]{3}){2}-[0-9X]$|^[A-Za-z]{1,2}-[0-9]{2}(\.[0-9]{3}){2}-[0-9X]$|^[0-9]{1,9}[A-Za-z0-9]*$/;
+        const rgNormalized = rg.replace(/[.\-_\s]/g, '');
+
+        return rgRegex.test(rg) || /^[0-9]+$/.test(rgNormalized);
     };
 
     const navigate = useNavigate();
-
     const navigateHome = () =>{
         navigate('/');
     }
@@ -57,7 +73,7 @@ const TeacherCreate = () => {
     return (
         <SimpleLayout>
             <form className="flex flex-column">
-                <div className="form-row">
+                <div className="form-row flex">
                     {/* Campo para o NOME do professor. */}
                     <div className="form-item flex flex-column align-items-start">
                         <label htmlFor="teacherName">Nome do Professor:</label>
@@ -68,10 +84,24 @@ const TeacherCreate = () => {
                             onChange={handleNameChange}
                             value={teacher.teacherName}
                         />
-                        <small id="teacherName-help">Informe neste campo o nome do professor.</small>
+                        <small id="teacherName-help">Campo do nome do professor.</small>
+                    </div>
+
+                    {/* Campo para a DATA DE NASCIMENTO do professor. */}
+                    <div className="form-item form-item-date flex flex-column align-items-start">
+                        <label htmlFor="teacherBirthDate">Nascido em:</label>
+                        <InputMask
+                            aria-describedby="teacherBirthDate-help"
+                            className="w-full"
+                            id="teacherBirthDate"
+                            mask="99/99/9999"
+                            onChange={handleBirthDateChange}
+                            value={teacher.teacherBirthDate}
+                        />
+                        <small id="teacherName-help">Campo de data de nascimento.</small>
                     </div>
                 </div>
-                <div className="form-row flex justify-content-between">
+                <div className="form-row flex">
                     {/* Campo para o CPF do professor. */}
                     <div className="form-item flex flex-column align-items-start">
                         <label htmlFor="teacherCPF">CPF do Professor:</label>
@@ -83,26 +113,67 @@ const TeacherCreate = () => {
                             onChange={handleCPFChange}
                             value={teacher.teacherCPF}
                         />
-                        <small id="teacherCPF-help">Informe neste campo o CPF do professor.</small>
+                        <small id="teacherCPF-help">Campo do CPF do professor.</small>
                     </div>
 
                     {/* Campo para o RG do professor. */}
                     <div className="form-item flex flex-column align-items-start">
                         <label htmlFor="teacherRG">RG do Professor:</label>
-                        <InputMask
+                        <InputText
                             aria-describedby="teacherRG-help"
                             className="w-full"
                             id="teacherRG"
-                            mask="99.999.999-9"
                             onChange={handleRGChange}
                             value={teacher.teacherRG}
                         />
-                        <small id="teacherRG-help">Informe neste campo o RG do professor.</small>
+                        <small id="teacherRG-help">Campo do RG do professor.</small>
                     </div>
                 </div>
+                <div className="form-row flex">
+                    {/* Campo para o TELEFONE do professor. */}
+                    <div className="form-item flex flex-column align-items-start">
+                        <label htmlFor="teacherPhoneNumber">Telefone do Professor:</label>
+                        <InputMask
+                            aria-describedby="teacherPhoneNumber-help"
+                            className="w-full"
+                            id="teacherPhoneNumber"
+                            mask="(99) 9? 9999-9999"
+                            onChange={handlePhoneNumberChange}
+                            value={teacher.teacherPhoneNumber}
+                        />
+                        <small id="teacherPhoneNumber-help">Campo do número de contato do professor.</small>
+                    </div>
+
+                    {/* Campo para o E-MAIL do professor. */}
+                    <div className="form-item flex flex-column align-items-start">
+                        <label htmlFor="teacherEmail">E-mail do Professor:</label>
+                        <InputText
+                            aria-describedby="teacherEmail-help"
+                            className="w-full"
+                            id="teacherEmail"
+                            onChange={handleEmailChange}
+                            value={teacher.teacherEmail}
+                        />
+                        <small id="teacherEmail-help">Campo do e-mail do professor.</small>
+                    </div>
+                </div>
+                <div className="form-row flex">
+                    <div className="form-item flex flex-column align-items-start">
+                        {/* Campo para o ESTADO NATAL do professor */}
+                        <label htmlFor="teacherBirthState">Estado Natal:</label>
+                        <DropdownStates id="TeacherBirthState"/>
+                        <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
+                    </div>
+                </div>
+                <div className="form-item flex flex-column align-items-start">
+                        {/* Campo para o ESTADO NATAL do professor */}
+                        <label htmlFor="teacherBirthCity">Cidade Natal:</label>
+                        <DropdownCities id="TeacherBirthCity"/>
+                        <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
+                    </div>
                 <div className="form-buttons flex justify-content-center">
-                    <Button className="" onClick={navigateHome} label="Cancelar"/>
-                    <Button className="" label="Salvar"/>
+                    <Button onClick={navigateHome} label="Cancelar"/>
+                    <Button className="yellow-bt" label="Salvar"/>
                 </div>
             </form>
         </SimpleLayout>

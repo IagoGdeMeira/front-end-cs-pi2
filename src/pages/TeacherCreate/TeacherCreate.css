@@ -10,7 +10,7 @@ form {
     border-radius: 10px;
     gap: 25px;
     padding: 20px 10px;
-    width: fit-content;
+    width: 800px;
 }
 
 label {
@@ -27,11 +27,31 @@ label, small {
 }
 
 .form-item {
+    flex: 1;
     gap: 5px;
+}
+
+.form-item-date {
+    max-width: 200px;
+    flex-shrink: 0;
+}
+
+.form-item-full {
+    flex: 1;
 }
 
 .form-row {
     gap: 20px;
+}
+
+.input-date {
+    flex-shrink: 0;
+    max-width: 200px;
+}
+
+.yellow-bt {
+    background-color: var(--yellow-400);
+    border-color: var(--yellow-300);
 }
 
 @media(max-width: 450px) {

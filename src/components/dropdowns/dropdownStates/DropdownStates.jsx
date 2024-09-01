@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import React, { useState, useEffect } from 'react';
 
 
-function DropdownStates({ onStateChange }) {
+const DropdownStates = ({ onStateChange }) => {
     const [states, setStates] = useState([]);
     const [selectedState, setSelectedState] = useState(null);
 
@@ -26,7 +26,6 @@ function DropdownStates({ onStateChange }) {
 
     return (
         <Dropdown
-            className="input-width"
             onChange={handleStateChange}
             options={states}
             placeholder="Selecione um estado"
