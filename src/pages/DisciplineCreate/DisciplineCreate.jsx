@@ -4,17 +4,16 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import ErrorPopup from "../../components/ErrorBox/ErrorBox";
 import { InputText } from 'primereact/inputtext';
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 const DisciplineCreate = () =>{
     const [discipline, setDiscipline] = useState({disciplineName: "", disciplineCode: ""});
-    const navigate = useNavigate();
     const [popupVisible, setPopupVisible] = useState(false); // Estado para controlar a visibilidade do popup
     const [popupMessage, setPopupMessage] = useState(''); // Mensagem do popup
     
+    const navigate = useNavigate();
 
     const handleChange = (input) => {
         setDiscipline({ ...discipline, [input.target.name]: input.target.value });
