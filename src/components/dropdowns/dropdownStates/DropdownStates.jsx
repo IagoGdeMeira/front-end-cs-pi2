@@ -21,6 +21,7 @@ const DropdownStates = ({
                 setStates(statesData);
             })
             .catch(error => console.error('Erro ao buscar estados: ', error));
+            setStates([]);
     }, []);
 
     const handleStateChange = (e) => {
@@ -31,6 +32,7 @@ const DropdownStates = ({
     return (
         <Dropdown
             className={className}
+            emptyMessage="Nenhum estado disponível."
             onChange={handleStateChange}
             options={states}
             value={selectedState}

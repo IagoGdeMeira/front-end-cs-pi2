@@ -21,7 +21,10 @@ const DropdownCities = ({
 
                     setCities(citiesData);
                 })
-                .catch(error => console.error('Erro ao buscar cidades: ', error));
+                .catch(error => {
+                    console.error('Erro ao buscar cidades: ', error);
+                    setCities([]);
+                });
             } else {
                 setCities([]);
             }
@@ -34,6 +37,7 @@ const DropdownCities = ({
     return (
         <Dropdown
             className={className}
+            emptyMessage="Selecione um estado antes."
             onChange={handleCityChange}
             options={cities}
             value={selectedCity}

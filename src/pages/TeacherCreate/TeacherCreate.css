@@ -24,6 +24,7 @@ label, small {
 
 .dropdown {
     text-align: start;
+    text-overflow: ellipsis;
     width: 100%;
 }
 

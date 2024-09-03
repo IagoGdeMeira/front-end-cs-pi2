@@ -18,8 +18,8 @@ const TeacherCreate = () => {
         teacherEmail: '', 
         teacherPhoneNumber: '',
         teacherBirthDate: '',
-        teacherBirthCity: '',   // PENDENTE
-        teacherBirthState: '',  // PENDENTE
+        teacherBirthCity: '',
+        teacherBirthState: '',
         teacherWorkedHours: ''  // PENDENTE 
 
         /* Preciso adicionar os campos das outras entidades. */
