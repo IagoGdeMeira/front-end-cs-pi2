@@ -25,6 +25,8 @@ const TeacherCreate = () => {
         /* Preciso adicionar os campos das outras entidades. */
     });
 
+    const [selectedState, setSelectedState] = useState(null);
+
     const handleNameChange = (e) => {
         setTeacher({ ...teacher, teacherName: e.target.value });
     };
@@ -47,6 +49,15 @@ const TeacherCreate = () => {
 
     const handleEmailChange = (e) => {
         setTeacher({ ...teacher, teacherEmail: e.target.value });
+    };
+
+    const handleBirthCityChange = (value) => {
+        setTeacher({ ...teacher, teacherBirthCity: value });
+    };
+
+    const handleBirthStateChange = (value) => {
+        setSelectedState(value);
+        setTeacher({ ...teacher, teacherStateCity: value });
     };
 
     const handleWorkedHoursChange = (e) => {
@@ -158,19 +169,30 @@ const TeacherCreate = () => {
                     </div>
                 </div>
                 <div className="form-row flex">
+                    {/* Campo para o ESTADO NATAL do professor */}
                     <div className="form-item flex flex-column align-items-start">
-                        {/* Campo para o ESTADO NATAL do professor */}
                         <label htmlFor="teacherBirthState">Estado Natal:</label>
-                        <DropdownStates id="TeacherBirthState"/>
+                        <DropdownStates
+                            className="dropdown"
+                            id="TeacherBirthState"
+                            onChange={(e) => handleBirthStateChange(e.value)}
+                        />
                         <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
                     </div>
-                </div>
-                <div className="form-item flex flex-column align-items-start">
-                        {/* Campo para o ESTADO NATAL do professor */}
+
+                    {/* Campo para a CIDADE NATAL do professor */}
+                    <div className="form-item flex flex-column align-items-start">
+                        
                         <label htmlFor="teacherBirthCity">Cidade Natal:</label>
-                        <DropdownCities id="TeacherBirthCity"/>
+                        <DropdownCities
+                            className="dropdown"
+                            id="TeacherBirthCity"
+                            onChange={(e) => handleBirthCityChange(e.value)}
+                            stateId={selectedState}
+                        />
                         <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
                     </div>
+                </div>
                 <div className="form-buttons flex justify-content-center">
                     <Button onClick={navigateHome} label="Cancelar"/>
                     <Button className="yellow-bt" label="Salvar"/>

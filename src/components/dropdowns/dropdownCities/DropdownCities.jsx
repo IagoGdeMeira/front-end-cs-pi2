@@ -3,22 +3,28 @@ import { Dropdown } from 'primereact/dropdown';
 import React, { useState, useEffect } from 'react';
 
 
-const DropdownCities = ({ stateId }) => {
+const DropdownCities = ({
+    className,
+    stateId
+}) => {
     const [cities, setCities] = useState([]);
     const [selectedCity, setSelectedCity] = useState(null);
 
     useEffect(() => {
-        axios.get(stateId
-            ? `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/municipios?orderBy=nome`
-            : 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome'
-        )
-            .then(response => {
-                const citiesData = response.data.map(city => ({
-                    label: city.nome,
-                    value: city.id
-                }));
-                setCities(citiesData);
-            }).catch(error => console.error('Erro ao buscar cidades: ', error));
+        if(stateId) {
+            axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/municipios?orderBy=nome`)
+                .then(response => {
+                    const citiesData = response.data.map(city => ({
+                        label: city.nome,
+                        value: city.id
+                    }));
+
+                    setCities(citiesData);
+                })
+                .catch(error => console.error('Erro ao buscar cidades: ', error));
+            } else {
+                setCities([]);
+            }
         }, [stateId]);
 
     const handleCityChange = (e) => {
@@ -27,9 +33,9 @@ const DropdownCities = ({ stateId }) => {
 
     return (
         <Dropdown
+            className={className}
             onChange={handleCityChange}
             options={cities}
-            placeholder="Selecione uma cidade"
             value={selectedCity}
         />
     );

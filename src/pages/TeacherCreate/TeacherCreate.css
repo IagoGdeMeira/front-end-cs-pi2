@@ -22,6 +22,11 @@ label, small {
     margin-left: 10px;
 }
 
+.dropdown {
+    text-align: start;
+    width: 100%;
+}
+
 .form-buttons {
     gap: 20px;
 }
