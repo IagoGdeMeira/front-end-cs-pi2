@@ -35,6 +35,7 @@ const DropdownStates = ({
             emptyMessage="Nenhum estado disponível."
             onChange={handleStateChange}
             options={states}
+            placeholder="Escolha um estado."
             value={selectedState}
         />
     );

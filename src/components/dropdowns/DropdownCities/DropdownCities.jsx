@@ -40,6 +40,7 @@ const DropdownCities = ({
             emptyMessage="Selecione um estado antes."
             onChange={handleCityChange}
             options={cities}
+            placeholder="Escolha uma cidade."
             value={selectedCity}
         />
     );

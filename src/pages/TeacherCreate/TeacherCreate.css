@@ -23,9 +23,11 @@ label, small {
 }
 
 .dropdown {
+    overflow: hidden;
     text-align: start;
     text-overflow: ellipsis;
     width: 100%;
+    white-space: nowrap;
 }
 
 .form-buttons {
@@ -60,7 +62,7 @@ label, small {
     border-color: var(--yellow-300);
 }
 
-@media(max-width: 450px) {
+@media(max-width: 475px) {
     form {
         width: 95vw;
     }
