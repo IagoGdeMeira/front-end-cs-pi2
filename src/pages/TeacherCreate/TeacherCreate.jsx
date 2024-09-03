@@ -3,6 +3,16 @@ import './TeacherCreate.css';
 import { Button } from 'primereact/button';
 import DropdownCities from '../../components/dropdowns/DropdownCities/DropdownCities';
 import DropdownStates from '../../components/dropdowns/DropdownStates/DropdownStates';
+import {
+    handleNameChange,
+    handleBirthDateChange,
+    handleCPFChange,
+    handleRGChange,
+    handlePhoneNumberChange,
+    handleEmailChange,
+    handleBirthCityChange,
+    handleBirthStateChange
+} from "../TeacherCreate/handlers/teacherHandlers";
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
 import React, { useState } from "react";
@@ -27,55 +37,6 @@ const TeacherCreate = () => {
 
     const [selectedState, setSelectedState] = useState(null);
 
-    const handleNameChange = (e) => {
-        setTeacher({ ...teacher, teacherName: e.target.value });
-    };
-
-    const handleBirthDateChange = (e) => {
-        setTeacher({ ...teacher, teacherBirthDate: e.target.value });
-    }
-
-    const handleCPFChange = (e) => {
-        setTeacher({ ...teacher, teacherCPF: e.value });
-    };
-
-    const handleRGChange = (e) => {
-        setTeacher({ ...teacher, teacherRG: e.value });
-    };
-
-    const handlePhoneNumberChange = (e) => {
-        setTeacher({ ...teacher, teacherPhoneNumber: e.target.value });
-    };
-
-    const handleEmailChange = (e) => {
-        setTeacher({ ...teacher, teacherEmail: e.target.value });
-    };
-
-    const handleBirthCityChange = (value) => {
-        setTeacher({ ...teacher, teacherBirthCity: value });
-    };
-
-    const handleBirthStateChange = (value) => {
-        setSelectedState(value);
-        setTeacher({ ...teacher, teacherStateCity: value });
-    };
-
-    const handleWorkedHoursChange = (e) => {
-        const { value } = e.target;
-        
-        if(/^\d*$/.test(value))
-            setTeacher({ ...teacher, teacherTeachingHours: value });
-        else
-            console.error("ERROR: Only integer numbers are allowed in this input.");
-    };
-
-    const validateRG = (rg) => {
-        const rgRegex = /^[0-9]{1,2}(\.[0-9]{3}){2}-[0-9X]$|^[A-Za-z]{1,2}-[0-9]{2}(\.[0-9]{3}){2}-[0-9X]$|^[0-9]{1,9}[A-Za-z0-9]*$/;
-        const rgNormalized = rg.replace(/[.\-_\s]/g, '');
-
-        return rgRegex.test(rg) || /^[0-9]+$/.test(rgNormalized);
-    };
-
     const navigate = useNavigate();
     const navigateHome = () =>{
         navigate('/');
@@ -92,7 +53,7 @@ const TeacherCreate = () => {
                             aria-describedby="teacherName-help"
                             className="w-full"
                             id="teacherName"
-                            onChange={handleNameChange}
+                            onChange={(e) => handleNameChange(e, teacher, setTeacher)}
                             value={teacher.teacherName}
                         />
                         <small id="teacherName-help">Campo do nome do professor.</small>
@@ -106,7 +67,7 @@ const TeacherCreate = () => {
                             className="w-full"
                             id="teacherBirthDate"
                             mask="99/99/9999"
-                            onChange={handleBirthDateChange}
+                            onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
                             value={teacher.teacherBirthDate}
                         />
                         <small id="teacherName-help">Campo de data de nascimento.</small>
@@ -121,7 +82,7 @@ const TeacherCreate = () => {
                             className="w-full"
                             id="teacherCPF"
                             mask="999.999.999-99"
-                            onChange={handleCPFChange}
+                            onChange={(e) => handleCPFChange(e, teacher, setTeacher)}
                             value={teacher.teacherCPF}
                         />
                         <small id="teacherCPF-help">Campo do CPF do professor.</small>
@@ -134,7 +95,7 @@ const TeacherCreate = () => {
                             aria-describedby="teacherRG-help"
                             className="w-full"
                             id="teacherRG"
-                            onChange={handleRGChange}
+                            onChange={(e) => handleRGChange(e, teacher, setTeacher)}
                             value={teacher.teacherRG}
                         />
                         <small id="teacherRG-help">Campo do RG do professor.</small>
@@ -149,7 +110,7 @@ const TeacherCreate = () => {
                             className="w-full"
                             id="teacherPhoneNumber"
                             mask="(99) 9? 9999-9999"
-                            onChange={handlePhoneNumberChange}
+                            onChange={(e) => handlePhoneNumberChange(e, teacher, setTeacher)}
                             value={teacher.teacherPhoneNumber}
                         />
                         <small id="teacherPhoneNumber-help">Campo do número de contato do professor.</small>
@@ -162,7 +123,7 @@ const TeacherCreate = () => {
                             aria-describedby="teacherEmail-help"
                             className="w-full"
                             id="teacherEmail"
-                            onChange={handleEmailChange}
+                            onChange={(e) => handleEmailChange(e, teacher, setTeacher)}
                             value={teacher.teacherEmail}
                         />
                         <small id="teacherEmail-help">Campo do e-mail do professor.</small>
@@ -175,7 +136,10 @@ const TeacherCreate = () => {
                         <DropdownStates
                             className="dropdown"
                             id="TeacherBirthState"
-                            onChange={(e) => handleBirthStateChange(e.value)}
+                            onChange={(e) => {
+                                setSelectedState(e.value);
+                                handleBirthStateChange(e.value, teacher, setTeacher);
+                            }}
                         />
                         <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
                     </div>
@@ -187,7 +151,7 @@ const TeacherCreate = () => {
                         <DropdownCities
                             className="dropdown"
                             id="TeacherBirthCity"
-                            onChange={(e) => handleBirthCityChange(e.value)}
+                            onChange={(e) => handleBirthCityChange(e.value, teacher, setTeacher)}
                             stateId={selectedState}
                         />
                         <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
