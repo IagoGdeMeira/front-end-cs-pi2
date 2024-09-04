@@ -19,8 +19,9 @@ import React, { useState } from "react";
 import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { useNavigate } from "react-router-dom";
 
-
 const TeacherCreate = () => {
+    const navigate = useNavigate();
+    
     const [teacher, setTeacher] = useState({
         teacherName: '',        
         teacherCPF: '',         
@@ -37,11 +38,10 @@ const TeacherCreate = () => {
 
     const [selectedState, setSelectedState] = useState(null);
 
-    const navigate = useNavigate();
     const navigateHome = () =>{
         navigate('/');
     }
-
+    
     return (
         <SimpleLayout>
             <form className="flex flex-column">
@@ -157,6 +157,7 @@ const TeacherCreate = () => {
                         <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
                     </div>
                 </div>
+                
                 <div className="form-buttons flex justify-content-center">
                     <Button onClick={navigateHome} label="Cancelar"/>
                     <Button className="yellow-bt" label="Salvar"/>
