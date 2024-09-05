@@ -22,14 +22,6 @@ label, small {
     margin-left: 10px;
 }
 
-.dropdown {
-    overflow: hidden;
-    text-align: start;
-    text-overflow: ellipsis;
-    width: 100%;
-    white-space: nowrap;
-}
-
 .form-buttons {
     gap: 20px;
 }
@@ -57,12 +49,24 @@ label, small {
     max-width: 200px;
 }
 
+.optionalFields {
+    padding: 1vh 1vw;
+}
+
+.p-togglebutton-input {
+    border-radius: 10px;
+}
+
 .yellow-bt {
     background-color: var(--yellow-400);
     border-color: var(--yellow-300);
 }
 
-@media(max-width: 475px) {
+.toggle-color {
+    background-color: var(--yellow-400);
+}
+
+@media(max-width: 550px) {
     form {
         width: 95vw;
     }
