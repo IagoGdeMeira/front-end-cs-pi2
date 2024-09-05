@@ -5,15 +5,17 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ErrorPopup from "../../components/ErrorBox/ErrorBox";
+import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
+import DeletePopup from "../../components/DeletePopup/DeletePopup";
 
 const DisciplineCreate = () =>{
     const [discipline, setDiscipline] = useState({disciplineName: "", disciplineCode: ""});
     const navigate = useNavigate();
-    const [popupVisible, setPopupVisible] = useState(false); // Estado para controlar a visibilidade do popup
-    const [popupMessage, setPopupMessage] = useState(''); // Mensagem do popup
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+    const [popupDeleteVisible, setPopupDeleteVisible] = useState(false);
+    const [popupDeleteMessage, setPopupDeleteMessage] = useState('');
     
-
     const handleChange = (input) => {
         setDiscipline({ ...discipline, [input.target.name]: input.target.value });
     }
@@ -38,6 +40,7 @@ const DisciplineCreate = () =>{
             navigateHome();
         }
     }
+
     const isNameEmpty = () => {
         return discipline.disciplineName.trim() === '';
     };
@@ -48,6 +51,11 @@ const DisciplineCreate = () =>{
 
     const navigateHome = () =>{
         navigate('/');
+    }
+
+    const popupDelete = () =>{
+        setPopupDeleteMessage("Escreva o codigo da disciplina para confirmar a exclusão");
+        setPopupDeleteVisible(true);
     }
 
     return(
@@ -63,10 +71,18 @@ const DisciplineCreate = () =>{
                     <Button className="button-box" onClick={navigateHome} label="Cancelar"/>
                     <Button className="button-box" onClick={disciplineExists} label="Salvar"/>
                 </div>
+                <div>
+                    <Button onClick={popupDelete}><i class="pi pi-trash"/></Button> 
+                </div>
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}
                     onClose={() => setPopupVisible(false)}
+                />
+                <DeletePopup
+                    message={popupDeleteMessage}
+                    visible={popupDeleteVisible}
+                    onClose={() => setPopupDeleteVisible(false)}
                 />
             </Card>
         </>

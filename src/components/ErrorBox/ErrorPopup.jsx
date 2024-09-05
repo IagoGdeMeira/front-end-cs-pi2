@@ -1,8 +1,8 @@
 import React from 'react';
-import './ErrorBox.css'; // Arquivo CSS para estilos personalizados
+import './ErrorPopup.css'; 
 
 const ErrorPopup = ({ message, visible, onClose }) => {
-    if (!visible) return null; // Se o popup não estiver visível, não renderiza nada
+    if (!visible) return null;
 
     return (
         <div className="popup-overlay">
