@@ -36,25 +36,26 @@ label, small {
     flex-shrink: 0;
 }
 
-.form-item-full {
-    flex: 1;
-}
-
 .form-row {
     gap: 20px;
 }
 
-.input-date {
-    flex-shrink: 0;
-    max-width: 200px;
-}
-
 .optionalFields {
+    background-color: var(--yellow-100);
+    border-radius: 0 0 5px 5px;
     padding: 1vh 1vw;
 }
 
-.p-togglebutton-input {
-    border-radius: 10px;
+.optionalFields label, .optionalFields small {
+    color: var(--yellow-800);
+}
+
+.p-highlight .p-button {
+    background-color: var(--yellow-400);
+    border-color: var(--yellow-400);
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .yellow-bt {
@@ -62,11 +63,7 @@ label, small {
     border-color: var(--yellow-300);
 }
 
-.toggle-color {
-    background-color: var(--yellow-400);
-}
-
-@media(max-width: 550px) {
+@media(max-width: 560px) {
     form {
         width: 95vw;
     }

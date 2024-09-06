@@ -140,8 +140,7 @@ const TeacherCreate = () => {
                 <section>
                     <ToggleButton
                         checked={showOptionalFields}
-                        className= "align-items-center w-full toggle-color"
-                        severity="secondary"
+                        className= "align-items-center w-full"
                         id="showOptionalFields"
                         onChange={(e) => setShowOptionalFields(e.value)}
 
