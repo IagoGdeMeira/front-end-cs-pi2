@@ -4,7 +4,7 @@ export const handleNameChange = (e, teacher, setTeacher) => {
 
 export const handleBirthDateChange = (e, teacher, setTeacher) => {
     setTeacher({ ...teacher, teacherBirthDate: e.target.value });
-}
+};
 
 export const handleCPFChange = (e, teacher, setTeacher) => {
     setTeacher({ ...teacher, teacherCPF: e.value });

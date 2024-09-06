@@ -32,7 +32,7 @@ label, small {
 }
 
 .form-item-date {
-    max-width: 200px;
+    max-width: 150px;
     flex-shrink: 0;
 }
 
@@ -53,9 +53,7 @@ label, small {
 .p-highlight .p-button {
     background-color: var(--yellow-400);
     border-color: var(--yellow-400);
-
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 5px 5px 0 0;
 }
 
 .yellow-bt {

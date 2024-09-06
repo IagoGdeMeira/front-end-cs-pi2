@@ -21,6 +21,8 @@ import {
     handleBirthStateChange
 } from "../TeacherCreate/handlers/teacherHandlers";
 
+import AddressForm from './forms/AddressForm';
+
 
 const TeacherCreate = () => {
     const navigate = useNavigate();
@@ -77,7 +79,7 @@ const TeacherCreate = () => {
                             onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
                             value={teacher.teacherBirthDate}
                         />
-                        <small id="teacherName-help">Campo de data de nascimento.</small>
+                        <small id="teacherName-help">Data de nascimento.</small>
                     </div>
                 </div>
                 <div className="form-row flex">
@@ -180,6 +182,7 @@ const TeacherCreate = () => {
                                     <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
                                 </div>
                             </div>
+                            <AddressForm/>
                         </section>
                     )}
                 </section>
