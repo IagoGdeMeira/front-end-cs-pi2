@@ -1,0 +1,9 @@
+.degree-section {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.degree-section label,
+.degree-section small {
+    color: var(--surface-500);
+}
