@@ -17,7 +17,8 @@ label {
     font-weight: bold;
 }
 
-label, small {
+label,
+small {
     color: var(--surface-600);
     margin-left: 10px;
 }
@@ -30,7 +31,8 @@ label, small {
     flex: 1;
 }
 
-.form-item, .form-item-wh-input {
+.form-item,
+.form-item-wh-input {
     gap: 5px;
 }
 
@@ -39,7 +41,8 @@ label, small {
     min-width: 100px;
 }
 
-.form-item-date, .form-item-wh-input {
+.form-item-date,
+.form-item-wh-input {
     flex-shrink: 0;
 }
 
@@ -59,7 +62,9 @@ label, small {
     padding: 1vh 1vw;
 }
 
-.optionalFields h2, .optionalFields label, .optionalFields small {
+.optionalFields h2,
+.optionalFields label,
+.optionalFields small {
     color: var(--yellow-800);
 }
 

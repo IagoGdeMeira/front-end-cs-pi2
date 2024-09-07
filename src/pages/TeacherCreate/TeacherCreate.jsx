@@ -154,7 +154,7 @@ const TeacherCreate = () => {
                     />
 
                     { showOptionalFields && (
-                        <section className="optionalFields flex flex-column form-row">
+                        <section className="optionalFields border-2 border-top-none border-yellow-200 flex flex-column form-row">
                             <div className="form-row flex">
                                 {/* Campo para o ESTADO NATAL do professor */}
                                 <div className="form-item flex flex-column align-items-start">
