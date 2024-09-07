@@ -5,7 +5,7 @@ const ErrorPopup = ({ message, visible, onClose }) => {
     if (!visible) return null;
 
     return (
-        <div className="popup-overlay">
+        <div onClick={onClose} className="popup-overlay">
             <div className="popup-content">
                 <span className="popup-message">{message}</span>
                 <div>
