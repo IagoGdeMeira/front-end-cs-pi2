@@ -18,7 +18,8 @@ import {
     handlePhoneNumberChange,
     handleEmailChange,
     handleBirthCityChange,
-    handleBirthStateChange
+    handleBirthStateChange,
+    handleWorkedHoursChange
 } from "../TeacherCreate/handlers/teacherHandlers";
 
 import AddressForm from './forms/AddressForm';
@@ -40,7 +41,7 @@ const TeacherCreate = () => {
         teacherBirthDate: '',
         teacherBirthCity: '',
         teacherBirthState: '',
-        teacherWorkedHours: ''  // PENDENTE 
+        teacherWorkedHours: ''
     });
 
     const [address, setAddress] = useState({
@@ -153,7 +154,7 @@ const TeacherCreate = () => {
                     />
 
                     { showOptionalFields && (
-                        <section className="optionalFields">
+                        <section className="optionalFields flex flex-column form-row">
                             <div className="form-row flex">
                                 {/* Campo para o ESTADO NATAL do professor */}
                                 <div className="form-item flex flex-column align-items-start">
@@ -171,7 +172,6 @@ const TeacherCreate = () => {
 
                                 {/* Campo para a CIDADE NATAL do professor */}
                                 <div className="form-item flex flex-column align-items-start">
-                                        
                                     <label htmlFor="teacherBirthCity">Cidade Natal:</label>
                                     <DropdownCities
                                         className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
@@ -181,7 +181,20 @@ const TeacherCreate = () => {
                                     />
                                     <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
                                 </div>
-                            </div>
+
+                                {/* Campo para as HORAS TRABALHADAS do professor */}
+                                <div className="form-item-wh-input flex flex-column align-items-start">
+                                    <label htmlFor="teacherWorkedHours">Horas:</label>
+                                    <InputText
+                                        aria-describedby="teacherWorkedHours-help"
+                                        className="w-full text-overflow-ellipsis"
+                                        id="teacherWorkedHours"
+                                        onChange={(e) => handleWorkedHoursChange(e.value, teacher, setTeacher)}
+                                        value={teacher.teacherWorkedHours}
+                                    />
+                                    <small id="teacherWorkedHours-help">Horas/Aula</small>
+                                </div>
+                            </div>   
                             <AddressForm/>
                         </section>
                     )}

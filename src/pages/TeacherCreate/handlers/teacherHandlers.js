@@ -30,7 +30,7 @@ export const handleBirthStateChange = (value, teacher, setTeacher) => {
     setTeacher({ ...teacher, teacherStateCity: value });
 };
 
-const handleWorkedHoursChange = (e, teacher, setTeacher) => {
+export const handleWorkedHoursChange = (e, teacher, setTeacher) => {
     const { value } = e.target;
     
     if(/^\d*$/.test(value))

@@ -15,9 +15,12 @@ const AddressForm = () => {
     });
 
     return (
-        <>
-            
-        </>
+        <section className="flex flex-column">
+            <h2>Endereço Residencial</h2>
+            <div className="form-row flex">
+                <p>A</p>
+            </div>
+        </section>
     );
 }
 
