@@ -31,7 +31,7 @@ const DisciplineCreate = () =>{
         } else if (isCodeEmpty()) {
             setPopupMessage("Código da disciplina não pode ser vazio");
             setPopupVisible(true);
-        }else if (localStorage.getItem("disciplineCode") == discipline.disciplineCode){
+        }else if (localStorage.getItem("disciplineCode") === discipline.disciplineCode){
             setPopupMessage("Código da disciplina já existe");
             setPopupVisible(true);
         }else{

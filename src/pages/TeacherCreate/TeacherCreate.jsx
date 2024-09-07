@@ -24,6 +24,7 @@ import {
 
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
+import SpecializationForm from './forms/SpecializationForm';
 
 
 const TeacherCreate = () => {
@@ -200,6 +201,7 @@ const TeacherCreate = () => {
                             </div>   
                             <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
                             <DegreeForm/>
+                            <SpecializationForm/>
                         </section>
                     )}
                 </section>
