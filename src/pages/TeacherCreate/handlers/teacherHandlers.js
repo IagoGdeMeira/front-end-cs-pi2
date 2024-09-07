@@ -34,8 +34,17 @@ export const handleBirthStateChange = (value, teacher, setTeacher) => {
 };
 
 export const handleWorkedHoursChange = (e, teacher, setTeacher) => {
-    if(/^\d*$/.test(e.target.value))
-        setTeacher({ ...teacher, teacherWorkedHours: e.target.value});
-    else
-        throw new IntegerValidationError("teacherWorkedHours");
+    try {
+        if(/^\d*$/.test(e.target.value))
+            setTeacher({ ...teacher, teacherWorkedHours: e.target.value});
+        else
+            throw new IntegerValidationError("teacherWorkedHours");
+    } catch (error) {
+        if (error instanceof IntegerValidationError) {
+            console.error(`Validation Error: ${error.message}`);
+            alert(`Erro: Este campo só permite números inteiros.`);
+        } else {
+            console.error("Unexpected error:", error);
+        }
+    }
 };

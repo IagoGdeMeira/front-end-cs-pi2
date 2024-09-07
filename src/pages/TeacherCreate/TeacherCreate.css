@@ -1,6 +1,4 @@
 button {
-    background-color: var(--red-500);
-    border-color: var(--red-400);
     margin: 0;
     min-width: 120px;
 }
@@ -33,12 +31,12 @@ small {
 
 .form-item,
 .form-item-date,
-.form-item-wh-input {
+.form-item-integer-input {
     gap: 5px;
 }
 
 .form-item-date,
-.form-item-wh-input {
+.form-item-integer-input {
     flex-shrink: 0;
 }
 
@@ -66,18 +64,9 @@ small {
     border-radius: 5px 5px 0 0;
 }
 
-.yellow-bt {
-    background-color: var(--yellow-400);
-    border-color: var(--yellow-300);
-}
-
 @media(max-width: 430px) {
     form {
         width: 95vw;
-    }
-
-    .form-item-wh-input {
-        width: 100%;
     }
 
     .form-row {

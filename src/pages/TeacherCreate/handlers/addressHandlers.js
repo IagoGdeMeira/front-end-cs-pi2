@@ -26,8 +26,21 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
 };
 
 export const handleAddressNumberChange = (e, address, setAddress) => {
-    if(/^\d*$/.test(e.target.value))
-        setAddress({...address, addressStreet: e.target.value});
-    else
-        throw new IntegerValidationError("addressNumber");
+    try {
+        if(/^\d*$/.test(e.target.value))
+            setAddress({...address, addressNumber: e.target.value});
+        else
+            throw new IntegerValidationError("addressNumber");
+    } catch (error) {
+        if (error instanceof IntegerValidationError) {
+            console.error(`Validation Error: ${error.message}`);
+            alert(`Erro: Este campo só permite números inteiros.`);
+        } else {
+            console.error("Unexpected error:", error);
+        }
+    }
 };
+
+export const handleAddressStreetChange = (e, address, setAddress) => {
+    setAddress({ ...address, addressStreet: e.target.value });
+}

@@ -1,11 +1,13 @@
 import './TeacherCreate.css';
 
+import { handleResponsiveClasses } from '../../utils/classUtils';
+
 import { Button } from 'primereact/button';
 import DropdownCities from '../../components/dropdowns/DropdownCities/DropdownCities';
 import DropdownStates from '../../components/dropdowns/DropdownStates/DropdownStates';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { ToggleButton } from 'primereact/togglebutton';
 import { useNavigate } from "react-router-dom";
@@ -51,6 +53,16 @@ const TeacherCreate = () => {
         addressCEP: '',
         addressCity: ''
     });
+
+    useEffect(() => {
+        const w_7rem = document.querySelectorAll(".w-7rem");
+        const w_5rem = document.querySelectorAll(".w-5rem");
+
+        handleResponsiveClasses("(max-width: 430px)", [
+            { elements: w_7rem, removeClass: 'w-7rem', addClass: 'w-full' },
+            { elements: w_5rem, removeClass: 'w-5rem', addClass: 'w-full' }
+        ]);
+    }, []);
     
     return (
         <SimpleLayout>
@@ -183,7 +195,7 @@ const TeacherCreate = () => {
                                 </div>
 
                                 {/* Campo para as HORAS TRABALHADAS do professor */}
-                                <div className="w-5rem form-item-wh-input flex flex-column align-items-start">
+                                <div className="form-item-integer-input w-5rem flex flex-column align-items-start">
                                     <label htmlFor="teacherWorkedHours">Horas:</label>
                                     <InputText
                                         aria-describedby="teacherWorkedHours-help"
@@ -201,8 +213,15 @@ const TeacherCreate = () => {
                 </section>
 
                 <div className="form-buttons flex justify-content-center">
-                    <Button onClick={navigateHome} label="Cancelar"/>
-                    <Button className="yellow-bt" label="Salvar"/>
+                    <Button
+                        className="bg-red-500 border-red-500"
+                        label="Cancelar"
+                        onClick={navigateHome}
+                    />
+                    <Button
+                        label="Salvar"
+                        className="bg-yellow-400 border-yellow-400"
+                    />
                 </div>
             </form>
         </SimpleLayout>
