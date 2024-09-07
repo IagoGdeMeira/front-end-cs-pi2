@@ -1,13 +1,11 @@
 import './TeacherCreate.css';
 
-import { handleResponsiveClasses } from '../../utils/classUtils';
-
 import { Button } from 'primereact/button';
 import DropdownCities from '../../components/dropdowns/DropdownCities/DropdownCities';
 import DropdownStates from '../../components/dropdowns/DropdownStates/DropdownStates';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { ToggleButton } from 'primereact/togglebutton';
 import { useNavigate } from "react-router-dom";
@@ -25,6 +23,7 @@ import {
 } from "../TeacherCreate/handlers/teacherHandlers";
 
 import AddressForm from './forms/AddressForm';
+import DegreeForm from './forms/DegreeForm';
 
 
 const TeacherCreate = () => {
@@ -54,16 +53,6 @@ const TeacherCreate = () => {
         addressCity: ''
     });
 
-    useEffect(() => {
-        const elementsWith7rem = document.querySelectorAll('.w-7rem');
-        const elementsWith5rem = document.querySelectorAll('.w-5rem');
-        
-        handleResponsiveClasses('(max-width: 600px)', [
-            { elements: elementsWith7rem, removeClass: 'w-7rem', addClass: 'w-full' },
-            { elements: elementsWith5rem, removeClass: 'w-5rem', addClass: 'w-full' }
-        ]);
-    }, []);
-    
     return (
         <SimpleLayout>
             <form className="flex flex-column">
@@ -86,7 +75,7 @@ const TeacherCreate = () => {
                         <label htmlFor="teacherBirthDate">Nascido em:</label>
                         <InputMask
                             aria-describedby="teacherBirthDate-help"
-                            className="w-full"
+                            className="w-full text-overflow-ellipsis"
                             id="teacherBirthDate"
                             mask="99/99/9999"
                             onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
@@ -101,7 +90,7 @@ const TeacherCreate = () => {
                         <label htmlFor="teacherCPF">CPF do Professor:</label>
                         <InputMask
                             aria-describedby="teacherCPF-help"
-                            className="w-full"
+                            className="w-full text-overflow-ellipsis"
                             id="teacherCPF"
                             mask="999.999.999-99"
                             onChange={(e) => handleCPFChange(e, teacher, setTeacher)}
@@ -115,7 +104,7 @@ const TeacherCreate = () => {
                         <label htmlFor="teacherRG">RG do Professor:</label>
                         <InputText
                             aria-describedby="teacherRG-help"
-                            className="w-full"
+                            className="w-full text-overflow-ellipsis"
                             id="teacherRG"
                             onChange={(e) => handleRGChange(e, teacher, setTeacher)}
                             value={teacher.teacherRG}
@@ -129,7 +118,7 @@ const TeacherCreate = () => {
                         <label htmlFor="teacherPhoneNumber">Telefone do Professor:</label>
                         <InputMask
                             aria-describedby="teacherPhoneNumber-help"
-                            className="w-full"
+                            className="w-full text-overflow-ellipsis"
                             id="teacherPhoneNumber"
                             mask="(99) 9? 9999-9999"
                             onChange={(e) => handlePhoneNumberChange(e, teacher, setTeacher)}
@@ -143,7 +132,7 @@ const TeacherCreate = () => {
                         <label htmlFor="teacherEmail">E-mail do Professor:</label>
                         <InputText
                             aria-describedby="teacherEmail-help"
-                            className="w-full"
+                            className="w-full text-overflow-ellipsis"
                             id="teacherEmail"
                             onChange={(e) => handleEmailChange(e, teacher, setTeacher)}
                             value={teacher.teacherEmail}
@@ -178,6 +167,7 @@ const TeacherCreate = () => {
                                             setSelectedState(e.value);
                                             handleBirthStateChange(e.value, teacher, setTeacher);
                                         }}
+                                        value={teacher.teacherBirthState}
                                     />
                                     <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
                                 </div>
@@ -190,6 +180,7 @@ const TeacherCreate = () => {
                                         id="TeacherBirthCity"
                                         onChange={(e) => handleBirthCityChange(e.value, teacher, setTeacher)}
                                         stateId={selectedState}
+                                        value={teacher.teacherBirthCity}
                                     />
                                     <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
                                 </div>
@@ -207,7 +198,8 @@ const TeacherCreate = () => {
                                     <small id="teacherWorkedHours-help">Horas/Aula</small>
                                 </div>
                             </div>   
-                            <AddressForm/>
+                            <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
+                            <DegreeForm/>
                         </section>
                     )}
                 </section>

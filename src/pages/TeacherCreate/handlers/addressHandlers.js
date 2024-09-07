@@ -9,14 +9,15 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
         setCEP(cep);
         try {
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-            if (response.data.erro)
+            if (response.data.erro) {
+                setCEP('');
                 alert("CEP não encontrado.");
-            else {
+            } else {
                 setAddress({
                     ...address,
                     addressStreet: response.data.logradouro,
                     addressNeighborhood: response.data.bairro,
-                    addressCity: response.data.cidade
+                    addressCity: `${response.data.localidade} - ${response.data.uf}`
                 });
             }
         } catch (error) {
@@ -28,16 +29,15 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
 export const handleAddressNumberChange = (e, address, setAddress) => {
     try {
         if(/^\d*$/.test(e.target.value))
-            setAddress({...address, addressNumber: e.target.value});
+            setAddress({ ...address, addressNumber: e.target.value });
         else
             throw new IntegerValidationError("addressNumber");
     } catch (error) {
         if (error instanceof IntegerValidationError) {
             console.error(`Validation Error: ${error.message}`);
             alert(`Erro: Este campo só permite números inteiros.`);
-        } else {
+        } else
             console.error("Unexpected error:", error);
-        }
     }
 };
 
@@ -50,5 +50,5 @@ export const handleAddressNeighborhoodChange = (e, address, setAddress) => {
 }
 
 export const handleAddressCityChange = (e, address, setAddress) => {
-    setAddress({ ...address, addressNeighborhood: e.target.value })
+    setAddress({ ...address, addressCity: e.target.value })
 }

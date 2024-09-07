@@ -11,7 +11,7 @@ import {
 } from "../handlers/addressHandlers";
 
 
-const AddressForm = () => {
+const AddressForm = ({ teacherAddress, setTeacherAddress }) => {
     const [cep, setCEP] = useState('');
     const [address, setAddress] = useState({
         addressStreet: '',
@@ -20,12 +20,14 @@ const AddressForm = () => {
         addressCity: ''
     });
 
+    [teacherAddress, setTeacherAddress] = [address, setAddress];
+
     return (
         <section className="border-top-2 border-yellow-800 flex flex-column">
             <h2>Endereço Residencial</h2>
             <div className="form-row flex">
                 {/* Campo do CEP do endereço residencial */}
-                <div className="w-7rem form-item-integer-input flex flex-column align-items-start">
+                <div className="form-item flex flex-column align-items-start">
                     <label htmlFor="addressCEP">CEP:</label>
                     <InputMask
                         aria-describedby="addressCEP-help"
@@ -39,7 +41,7 @@ const AddressForm = () => {
                 </div>
 
                 {/* Campo do NÚMERO DA RESIDÊNCIA do professor */}
-                <div className="w-7rem form-item-integer-input flex flex-column align-items-start">
+                <div className="form-item flex flex-column align-items-start">
                     <label htmlFor="addressNumber">Número:</label>
                     <InputText
                         aria-describedby="addressNumber-help"
@@ -50,8 +52,11 @@ const AddressForm = () => {
                     />
                     <small id="addressNumber-help">Nº residencial.</small>
                 </div>
+            </div>
 
-                <div className="min-w-min form-item flex flex-column align-items-start">
+            <div className="form-row flex">
+                {/* Campo da RUA do endereço residencial */}
+                <div className="form-item flex flex-column align-items-start">
                     <label htmlFor="addressStreet">Rua:</label>
                     <InputText
                         aria-describedby="addressStreet-help"
@@ -63,6 +68,7 @@ const AddressForm = () => {
                     <small id="addressStreet-help">Campo da rua residencial.</small>
                 </div>
             </div>
+
             <div className="form-row flex">
                 {/* Campo para o BAIRRO residencial. */}
                 <div className="form-item flex flex-column align-items-start">
