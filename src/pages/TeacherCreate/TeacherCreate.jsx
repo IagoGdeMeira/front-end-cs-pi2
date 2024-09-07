@@ -189,7 +189,7 @@ const TeacherCreate = () => {
                                         aria-describedby="teacherWorkedHours-help"
                                         className="w-full text-overflow-ellipsis"
                                         id="teacherWorkedHours"
-                                        onChange={(e) => handleWorkedHoursChange(e.value, teacher, setTeacher)}
+                                        onChange={(e) => handleWorkedHoursChange(e, teacher, setTeacher)}
                                         value={teacher.teacherWorkedHours}
                                     />
                                     <small id="teacherWorkedHours-help">Horas/Aula</small>

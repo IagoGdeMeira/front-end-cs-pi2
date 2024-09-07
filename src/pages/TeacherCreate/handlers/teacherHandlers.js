@@ -31,10 +31,8 @@ export const handleBirthStateChange = (value, teacher, setTeacher) => {
 };
 
 export const handleWorkedHoursChange = (e, teacher, setTeacher) => {
-    const { value } = e.target;
-    
-    if(/^\d*$/.test(value))
-        setTeacher({ ...teacher, teacherTeachingHours: value });
+    if(/^\d*$/.test(e.target.value))
+        setTeacher({ ...teacher, teacherWorkedHours: e.target.value});
     else
         console.error("ERROR: Only integer numbers are allowed in this input.");
 };

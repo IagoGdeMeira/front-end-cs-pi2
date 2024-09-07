@@ -25,7 +25,7 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
 };
 
 export const handleAddressNumberChange = (e, address, setAddress) => {
-    const { value } = e.target;
+    const { value } = e.target.value;
 
     if(/^\d*$/.test(value))
         setAddress({...address, addressStreet: value});
