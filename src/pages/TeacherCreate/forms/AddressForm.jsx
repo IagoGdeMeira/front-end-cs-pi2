@@ -5,7 +5,9 @@ import React, { useState } from "react";
 import {
     handleAddressCEPChange,
     handleAddressNumberChange,
-    handleAddressStreetChange
+    handleAddressStreetChange,
+    handleAddressNeighborhoodChange,
+    handleAddressCityChange
 } from "../handlers/addressHandlers";
 
 
@@ -59,6 +61,33 @@ const AddressForm = () => {
                         value={address.addressStreet}
                     />
                     <small id="addressStreet-help">Campo da rua residencial.</small>
+                </div>
+            </div>
+            <div className="form-row flex">
+                {/* Campo para o BAIRRO residencial. */}
+                <div className="form-item flex flex-column align-items-start">
+                    <label htmlFor="addressNeighborhood">Bairro:</label>
+                    <InputText
+                        aria-describedby="addressNeighborhood-help"
+                        className="w-full"
+                        id="addressNeighborhood"
+                        onChange={(e) => handleAddressNeighborhoodChange(e, address, setAddress)}
+                        value={address.addressNeighborhood}
+                    />
+                    <small id="addressNeighborhood-help">Campo do bairro residencial.</small>
+                </div>
+
+                {/* Campo para a CIDADE residencial. */}
+                <div className="form-item flex flex-column align-items-start">
+                    <label htmlFor="addressCity">Cidade:</label>
+                    <InputText
+                        aria-describedby="addressCity-help"
+                        className="w-full"
+                        id="addressCity"
+                        onChange={(e) => handleAddressCityChange(e, address, setAddress)}
+                        value={address.addressCity}
+                    />
+                    <small id="addressCity-help">Campo da cidade residencial.</small>
                 </div>
             </div>
         </section>

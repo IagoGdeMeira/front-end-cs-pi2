@@ -44,3 +44,11 @@ export const handleAddressNumberChange = (e, address, setAddress) => {
 export const handleAddressStreetChange = (e, address, setAddress) => {
     setAddress({ ...address, addressStreet: e.target.value });
 }
+
+export const handleAddressNeighborhoodChange = (e, address, setAddress) => {
+    setAddress({ ...address, addressNeighborhood: e.target.value });
+}
+
+export const handleAddressCityChange = (e, address, setAddress) => {
+    setAddress({ ...address, addressNeighborhood: e.target.value })
+}

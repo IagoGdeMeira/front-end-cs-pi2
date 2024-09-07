@@ -55,12 +55,12 @@ const TeacherCreate = () => {
     });
 
     useEffect(() => {
-        const w_7rem = document.querySelectorAll(".w-7rem");
-        const w_5rem = document.querySelectorAll(".w-5rem");
-
-        handleResponsiveClasses("(max-width: 430px)", [
-            { elements: w_7rem, removeClass: 'w-7rem', addClass: 'w-full' },
-            { elements: w_5rem, removeClass: 'w-5rem', addClass: 'w-full' }
+        const elementsWith7rem = document.querySelectorAll('.w-7rem');
+        const elementsWith5rem = document.querySelectorAll('.w-5rem');
+        
+        handleResponsiveClasses('(max-width: 600px)', [
+            { elements: elementsWith7rem, removeClass: 'w-7rem', addClass: 'w-full' },
+            { elements: elementsWith5rem, removeClass: 'w-5rem', addClass: 'w-full' }
         ]);
     }, []);
     
