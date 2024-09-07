@@ -1,11 +1,12 @@
 import axios from "axios";
+import IntegerValidationError from "../../../utils/errors/IntegerValidationError";
 
 
 export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => {
     const cep = e.target.value.replace(/\D/g, "");
-    setCEP(cep);
 
     if (cep.length === 8) {
+        setCEP(cep);
         try {
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
             if (response.data.erro)
@@ -13,7 +14,7 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
             else {
                 setAddress({
                     ...address,
-                    addressNumber: response.data.logradouro,
+                    addressStreet: response.data.logradouro,
                     addressNeighborhood: response.data.bairro,
                     addressCity: response.data.cidade
                 });
@@ -25,10 +26,8 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
 };
 
 export const handleAddressNumberChange = (e, address, setAddress) => {
-    const { value } = e.target.value;
-
-    if(/^\d*$/.test(value))
-        setAddress({...address, addressStreet: value});
+    if(/^\d*$/.test(e.target.value))
+        setAddress({...address, addressStreet: e.target.value});
     else
-        console.error("ERROR: Only integer numbers are allowed in this input.");
+        throw new IntegerValidationError("addressNumber");
 };

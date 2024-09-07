@@ -32,22 +32,14 @@ small {
 }
 
 .form-item,
+.form-item-date,
 .form-item-wh-input {
     gap: 5px;
-}
-
-.form-item-date {
-    max-width: 150px;
-    min-width: 100px;
 }
 
 .form-item-date,
 .form-item-wh-input {
     flex-shrink: 0;
-}
-
-.form-item-wh-input {
-    width: 5rem;
 }
 
 .form-row {

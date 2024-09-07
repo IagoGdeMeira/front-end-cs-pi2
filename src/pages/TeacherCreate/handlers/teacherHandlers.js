@@ -1,3 +1,6 @@
+import IntegerValidationError from "../../../utils/errors/IntegerValidationError";
+
+
 export const handleNameChange = (e, teacher, setTeacher) => {
     setTeacher({ ...teacher, teacherName: e.target.value });
 };
@@ -34,5 +37,5 @@ export const handleWorkedHoursChange = (e, teacher, setTeacher) => {
     if(/^\d*$/.test(e.target.value))
         setTeacher({ ...teacher, teacherWorkedHours: e.target.value});
     else
-        console.error("ERROR: Only integer numbers are allowed in this input.");
+        throw new IntegerValidationError("teacherWorkedHours");
 };

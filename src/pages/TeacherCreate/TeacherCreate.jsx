@@ -70,7 +70,7 @@ const TeacherCreate = () => {
                     </div>
 
                     {/* Campo para a DATA DE NASCIMENTO do professor. */}
-                    <div className="form-item form-item-date flex flex-column align-items-start">
+                    <div className="w-9rem form-item-date flex flex-column align-items-start">
                         <label htmlFor="teacherBirthDate">Nascido em:</label>
                         <InputMask
                             aria-describedby="teacherBirthDate-help"
@@ -183,7 +183,7 @@ const TeacherCreate = () => {
                                 </div>
 
                                 {/* Campo para as HORAS TRABALHADAS do professor */}
-                                <div className="form-item-wh-input flex flex-column align-items-start">
+                                <div className="w-5rem form-item-wh-input flex flex-column align-items-start">
                                     <label htmlFor="teacherWorkedHours">Horas:</label>
                                     <InputText
                                         aria-describedby="teacherWorkedHours-help"
