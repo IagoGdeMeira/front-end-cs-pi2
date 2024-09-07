@@ -33,7 +33,7 @@ const AddressForm = ({ teacherAddress, setTeacherAddress }) => {
                         aria-describedby="addressCEP-help"
                         className="w-full text-overflow-ellipsis"
                         id="addressCEP"
-                        mask="99999-999"
+                        mask="99.999-999"
                         onChange={(e) => handleAddressCEPChange(e, setCEP, address, setAddress)}
                         value={cep}
                     />
