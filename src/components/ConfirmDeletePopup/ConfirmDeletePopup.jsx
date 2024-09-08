@@ -1,7 +1,7 @@
 import React from 'react';
 import './ConfirmDeletePopup.css'; 
 
-const ConfirmDeletePopup = ({ message, visible, onClose }) => {
+const ConfirmDeletePopup = ({ message, visible}) => {
     if (!visible) return null;
 
     return (

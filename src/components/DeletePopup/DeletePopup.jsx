@@ -3,7 +3,7 @@ import './DeletePopup.css';
 import { InputText } from 'primereact/inputtext';
 import { Button } from "primereact/button";
 import ErrorPopup from "../ErrorBox/ErrorPopup.jsx";
-import ConfirmDeletePopup from "../ComfirmDeletePopup/ConfirmDeletePopup.jsx";
+import ConfirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup.jsx";
 
 const DeletePopup = ({ message, visible, onClose }) => {
     const [codeDelete, setCodeDelete] = useState("");
@@ -42,7 +42,7 @@ const DeletePopup = ({ message, visible, onClose }) => {
     }
 
     const popupConfirmDeletion = () =>{
-        setPopupConfirmDeletionMessage("Disciplina Excluida")
+        setPopupConfirmDeletionMessage("Disciplina Excluída")
         SetPopupConfirmDeletionVisible(true);
         setTimeout(() => {
             SetPopupConfirmDeletionVisible(false);
@@ -63,7 +63,7 @@ const DeletePopup = ({ message, visible, onClose }) => {
                             name="codeDelete"
                             id="codeDelete"
                             type="text"
-                            placeholder="Codigo da disciplina"
+                            placeholder="Código da disciplina"
                         />
                     </div>
                     <div>

@@ -54,7 +54,7 @@ const DisciplineCreate = () =>{
     }
 
     const popupDelete = () =>{
-        setPopupDeleteMessage("Escreva o codigo da disciplina para confirmar a exclusão");
+        setPopupDeleteMessage("Digite o código da disciplina para confirmar a exclusão");
         setPopupDeleteVisible(true);
     }
 
