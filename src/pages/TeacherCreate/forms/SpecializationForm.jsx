@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Specialization from "../../../components/Specialization/Specialization";
 
 
-const SpecializationForm = () => {
+const SpecializationForm = ({ specializations, setSpecializations }) => {
     const [specialization, setSpecialization] = useState({
         specializationCourseName: '',
         specializationCourseLocation: '',

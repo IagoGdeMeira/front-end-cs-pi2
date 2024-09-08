@@ -12,7 +12,7 @@ import {
 
 const Specialization = ({ specialization, setSpecialization }) => {
     return (
-        <section className="degree-section flex flex-column surface-100 border-2 border-200">
+        <section className="specialization-section flex flex-column surface-100 border-2 border-200">
             <div className="form-row flex">
                 {/* Campo para o NOME DO CURSO da especialização. */}
                 <div className="form-item flex flex-column align-items-start">

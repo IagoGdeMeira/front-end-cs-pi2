@@ -33,7 +33,7 @@ const TeacherCreate = () => {
 
     const [selectedState, setSelectedState] = useState(null);
     const [showOptionalFields, setShowOptionalFields] = useState(false);
-    
+
     const [teacher, setTeacher] = useState({
         teacherName: '',        
         teacherCPF: '',         
@@ -53,6 +53,9 @@ const TeacherCreate = () => {
         addressCEP: '',
         addressCity: ''
     });
+
+    const [degrees, setDegrees] = useState([]);
+    const [specializations, setSpecializations] = useState([]);
 
     return (
         <SimpleLayout>
@@ -155,55 +158,53 @@ const TeacherCreate = () => {
                         onLabel=""
                     />
 
-                    { showOptionalFields && (
-                        <section className="optionalFields border-2 border-top-none border-yellow-200 flex flex-column form-row">
-                            <div className="form-row flex">
-                                {/* Campo para o ESTADO NATAL do professor */}
-                                <div className="form-item flex flex-column align-items-start">
-                                    <label htmlFor="teacherBirthState">Estado Natal:</label>
-                                    <DropdownStates
-                                        className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
-                                        id="TeacherBirthState"
-                                        onChange={(e) => {
-                                            setSelectedState(e.value);
-                                            handleBirthStateChange(e.value, teacher, setTeacher);
-                                        }}
-                                        value={teacher.teacherBirthState}
-                                    />
-                                    <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
-                                </div>
+                    <section className={`optionalFields border-2 border-top-none border-yellow-200 ${showOptionalFields ? "flex flex-column form-row" : "hidden"}`}>
+                        <div className="form-row flex">
+                            {/* Campo para o ESTADO NATAL do professor */}
+                            <div className="form-item flex flex-column align-items-start">
+                                <label htmlFor="teacherBirthState">Estado Natal:</label>
+                                <DropdownStates
+                                    className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
+                                    id="TeacherBirthState"
+                                    onChange={(e) => {
+                                        setSelectedState(e.value);
+                                        handleBirthStateChange(e.value, teacher, setTeacher);
+                                    }}
+                                    value={teacher.teacherBirthState}
+                                />
+                                <small id="teacherBirthState-help">Campo do estado natal do professor.</small>
+                            </div>
 
-                                {/* Campo para a CIDADE NATAL do professor */}
-                                <div className="form-item flex flex-column align-items-start">
-                                    <label htmlFor="teacherBirthCity">Cidade Natal:</label>
-                                    <DropdownCities
-                                        className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
-                                        id="TeacherBirthCity"
-                                        onChange={(e) => handleBirthCityChange(e.value, teacher, setTeacher)}
-                                        stateId={selectedState}
-                                        value={teacher.teacherBirthCity}
-                                    />
-                                    <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
-                                </div>
+                            {/* Campo para a CIDADE NATAL do professor */}
+                            <div className="form-item flex flex-column align-items-start">
+                                <label htmlFor="teacherBirthCity">Cidade Natal:</label>
+                                <DropdownCities
+                                    className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
+                                    id="TeacherBirthCity"
+                                    onChange={(e) => handleBirthCityChange(e.value, teacher, setTeacher)}
+                                    stateId={selectedState}
+                                    value={teacher.teacherBirthCity}
+                                />
+                                <small id="teacherBirthCity-help">Campo da cidade natal do professor.</small>
+                            </div>
 
-                                {/* Campo para as HORAS TRABALHADAS do professor */}
-                                <div className="form-item-integer-input w-5rem flex flex-column align-items-start">
-                                    <label htmlFor="teacherWorkedHours">Horas:</label>
-                                    <InputText
-                                        aria-describedby="teacherWorkedHours-help"
-                                        className="w-full text-overflow-ellipsis"
-                                        id="teacherWorkedHours"
-                                        onChange={(e) => handleWorkedHoursChange(e, teacher, setTeacher)}
-                                        value={teacher.teacherWorkedHours}
-                                    />
-                                    <small id="teacherWorkedHours-help">Horas/Aula</small>
-                                </div>
-                            </div>   
-                            <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
-                            <DegreeForm/>
-                            <SpecializationForm/>
-                        </section>
-                    )}
+                            {/* Campo para as HORAS TRABALHADAS do professor */}
+                            <div className="form-item-integer-input w-5rem flex flex-column align-items-start">
+                                <label htmlFor="teacherWorkedHours">Horas:</label>
+                                <InputText
+                                    aria-describedby="teacherWorkedHours-help"
+                                    className="w-full text-overflow-ellipsis"
+                                    id="teacherWorkedHours"
+                                    onChange={(e) => handleWorkedHoursChange(e, teacher, setTeacher)}
+                                    value={teacher.teacherWorkedHours}
+                                />
+                                <small id="teacherWorkedHours-help">Horas/Aula</small>
+                            </div>
+                        </div>   
+                        <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
+                        <DegreeForm degrees={degrees} setDegrees={setDegrees}/>
+                        <SpecializationForm specializations={specializations} setSpecializations={setSpecializations}/>
+                    </section>
                 </section>
 
                 <div className="form-buttons flex justify-content-center">
