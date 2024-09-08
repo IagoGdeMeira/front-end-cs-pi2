@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './DeletePopup.css';
-import { InputText } from 'primereact/inputtext';
+import { InputNumber } from 'primereact/inputnumber';
 import { Button } from "primereact/button";
 import ErrorPopup from "../ErrorBox/ErrorPopup.jsx";
 import ConfirmDeletePopup from "../ConfirmDeletePopup/ConfirmDeletePopup.jsx";
@@ -9,17 +9,16 @@ const DeletePopup = ({ message, visible, onClose }) => {
     const [codeDelete, setCodeDelete] = useState("");
     const [popupVisible, setPopupVisible] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
-    const [popupConfirmDeletionMessage, setPopupConfirmDeletionMessage] = useState(false);
-    const [popupConfirmDeletionVisible , SetPopupConfirmDeletionVisible] = useState(false);
+    const [popupConfirmDeletionMessage, setPopupConfirmDeletionMessage] = useState('');
+    const [popupConfirmDeletionVisible, setPopupConfirmDeletionVisible] = useState(false);
 
     if (!visible) return null;
 
-    const handleChange = (input) => {
-        setCodeDelete(input.target.value);
-    }
+    const handleChange = (e) => {
+        setCodeDelete(e.value);
+    };
 
     const DeleteDiscipline = () => {
-        localStorage.setItem("codeDelete", codeDelete);
         if (isCodeEmpty()) {
             setPopupMessage("Código da disciplina não pode ser vazio");
             setPopupVisible(true);
@@ -27,42 +26,40 @@ const DeletePopup = ({ message, visible, onClose }) => {
             setPopupMessage("Código da disciplina é diferente");
             setPopupVisible(true);
         } else {
-            localStorage.setItem("disciplineCode", "");
-            localStorage.setItem("disciplineName", "");
+            localStorage.removeItem("disciplineCode");
+            localStorage.removeItem("disciplineName");
             popupConfirmDeletion();
         }
-    }
+    };
 
     const isCodeEmpty = () => {
-        return codeDelete.trim() === '';
-    }
+        return !codeDelete;
+    };
 
     const isCodeEqual = () => {
-        return localStorage.getItem("disciplineCode") === codeDelete;
-    }
+        return String(localStorage.getItem("disciplineCode")) === String(codeDelete); // Compara como strings
+    };
 
-    const popupConfirmDeletion = () =>{
-        setPopupConfirmDeletionMessage("Disciplina Excluída")
-        SetPopupConfirmDeletionVisible(true);
+    const popupConfirmDeletion = () => {
+        setPopupConfirmDeletionMessage("Disciplina Excluída");
+        setPopupConfirmDeletionVisible(true);
         setTimeout(() => {
-            SetPopupConfirmDeletionVisible(false);
+            setPopupConfirmDeletionVisible(false);
             onClose();
         }, 2000);
-        
-    }
+    };
+
     return (
         <>
             <div className="popup-overlay" onClick={onClose}>
                 <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                     <span className="popup-message">{message}</span>
                     <div>
-                        <InputText
+                        <InputNumber
                             className="popup-input"
+                            value={codeDelete}
                             onChange={handleChange}
-                            label="Codigo da disciplina"
-                            name="codeDelete"
-                            id="codeDelete"
-                            type="text"
+                            useGrouping={false}
                             placeholder="Código da disciplina"
                         />
                     </div>
@@ -71,11 +68,10 @@ const DeletePopup = ({ message, visible, onClose }) => {
                         <Button
                             className="popup-delete-button"
                             onClick={DeleteDiscipline}
-                            disabled={codeDelete !== localStorage.getItem("disciplineCode")}>
+                            disabled={String(localStorage.getItem("disciplineCode")) != String(codeDelete) || localStorage.getItem("disciplineCode") == null}>
                             Deletar Disciplina
                         </Button>
                     </div>
- 
                 </div>
             </div>
 
@@ -88,7 +84,7 @@ const DeletePopup = ({ message, visible, onClose }) => {
             <ConfirmDeletePopup
                 message={popupConfirmDeletionMessage}
                 visible={popupConfirmDeletionVisible}
-                onClose={() => SetPopupConfirmDeletionVisible(false)}
+                onClose={() => setPopupConfirmDeletionVisible(false)}
             />
         </>
     );
