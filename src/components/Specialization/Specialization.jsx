@@ -36,6 +36,7 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         id="specializationConclusionDate"
                         mask="99/99/9999"
                         onChange={(e) => handleConclusionDateChange(e, specialization, setSpecialization)}
+                        slotChar="mm/dd/yyyy"
                         value={specialization.specializationConclusionDate}
                     />
                     <small id="specializationConclusionDate-help">Data de conclusão.</small>

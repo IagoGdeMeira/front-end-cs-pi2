@@ -22,6 +22,16 @@ import {
     handleWorkedHoursChange
 } from "../TeacherCreate/handlers/teacherHandlers";
 
+import {
+    handleDegreeChange,
+    handleAddDegree
+} from '../TeacherCreate/handlers/degreeHandlers';
+
+import {
+    handleSpecializationChange,
+    handleAddSpecialization
+} from '../TeacherCreate/handlers/specializationHandlers';
+
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
 import SpecializationForm from './forms/SpecializationForm';
@@ -83,6 +93,7 @@ const TeacherCreate = () => {
                             id="teacherBirthDate"
                             mask="99/99/9999"
                             onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
+                            slotChar="mm/dd/yyyy"
                             value={teacher.teacherBirthDate}
                         />
                         <small id="teacherName-help">Data de nascimento.</small>
@@ -202,7 +213,12 @@ const TeacherCreate = () => {
                             </div>
                         </div>   
                         <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
-                        <DegreeForm degrees={degrees} setDegrees={setDegrees}/>
+                        <DegreeForm
+                            degrees={degrees}
+                            handleAddDegree={handleAddDegree}
+                            handleDegreeChange={handleDegreeChange}
+                            setDegrees={setDegrees}
+                        />
                         <SpecializationForm specializations={specializations} setSpecializations={setSpecializations}/>
                     </section>
                 </section>

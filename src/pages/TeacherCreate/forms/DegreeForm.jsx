@@ -3,21 +3,12 @@ import Degree from "../../../components/Degree/Degree";
 import React from "react";
 
 
-const DegreeForm = ({ degrees, setDegrees }) => {
-    const addDegree = () => {
-        setDegrees([...degrees, {
-            degreeCourseName: '',
-            degreeCourseLocation: '',
-            degreeConclusionDate: ''
-        }]);
+const DegreeForm = ({ degrees, setDegrees, handleAddDegree, handleDegreeChange }) => {
+    const handleAdd = (e) => {
+        e.preventDefault();
+        handleAddDegree(degrees, setDegrees);
     };
 
-    const handleDegreeChange = (index, field, value) => {
-        const newDegrees = [...degrees];
-        newDegrees[index][field] = value;
-        setDegrees(newDegrees);
-    };
-    
     return (
         <section className="border-top-2 border-yellow-800 flex flex-column">
             <h2>Graduações do Professor</h2>
@@ -26,11 +17,11 @@ const DegreeForm = ({ degrees, setDegrees }) => {
                 <Degree
                     degree={degree}
                     key={index}
-                    setDegree={(field, value) => handleDegreeChange(index, field, value)}
+                    setDegree={(field, value) => handleDegreeChange(index, field, value, degrees, setDegrees)}
                 />
             ))}
 
-            <Button label="Adicionar Graduação" icon="pi pi-plus" onClick={addDegree} />
+            <Button label="Adicionar Graduação" icon="pi pi-plus" onClick={handleAdd} />
         </section>
     );
 };
