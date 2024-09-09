@@ -25,12 +25,12 @@ import {
 import {
     handleDegreeChange,
     handleAddDegree
-} from '../TeacherCreate/handlers/degreeHandlers';
+} from './handlers/formHandlers/degreeFormHandlers';
 
 import {
     handleSpecializationChange,
     handleAddSpecialization
-} from '../TeacherCreate/handlers/specializationHandlers';
+} from './handlers/formHandlers/specializationFormHandlers';
 
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
@@ -93,7 +93,7 @@ const TeacherCreate = () => {
                             id="teacherBirthDate"
                             mask="99/99/9999"
                             onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
-                            slotChar="mm/dd/yyyy"
+                            slotChar="dd/mm/aaaa"
                             value={teacher.teacherBirthDate}
                         />
                         <small id="teacherName-help">Data de nascimento.</small>
@@ -212,14 +212,20 @@ const TeacherCreate = () => {
                                 <small id="teacherWorkedHours-help">Horas/Aula</small>
                             </div>
                         </div>   
-                        <AddressForm teacherAddress={address} setTeacherAddress={setAddress}/>
+                        <AddressForm
+                            setTeacherAddress={setAddress}
+                            teacherAddress={address}
+                        />
                         <DegreeForm
                             degrees={degrees}
                             handleAddDegree={handleAddDegree}
                             handleDegreeChange={handleDegreeChange}
                             setDegrees={setDegrees}
                         />
-                        <SpecializationForm specializations={specializations} setSpecializations={setSpecializations}/>
+                        <SpecializationForm
+                            setSpecializations={setSpecializations}
+                            specializations={specializations}
+                        />
                     </section>
                 </section>
 

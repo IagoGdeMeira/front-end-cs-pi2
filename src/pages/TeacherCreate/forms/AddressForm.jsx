@@ -8,7 +8,7 @@ import {
     handleAddressStreetChange,
     handleAddressNeighborhoodChange,
     handleAddressCityChange
-} from "../handlers/addressHandlers";
+} from "../handlers/formHandlers/addressFormHandlers";
 
 
 const AddressForm = ({ teacherAddress, setTeacherAddress }) => {

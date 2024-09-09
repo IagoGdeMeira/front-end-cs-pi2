@@ -1,3 +1,11 @@
+export const handleAddDegree = (degrees, setDegrees) => {
+    setDegrees([...degrees, {
+        degreeCourseName: '',
+        degreeCourseLocation: '',
+        degreeConclusionDate: ''
+    }]);
+};
+
 export const handleDegreeChange = (index, field, value, degrees, setDegrees) => {
     const updatedDegrees = [...degrees];
 
@@ -7,12 +15,4 @@ export const handleDegreeChange = (index, field, value, degrees, setDegrees) => 
     };
 
     setDegrees(updatedDegrees);
-};
-
-export const handleAddDegree = (degrees, setDegrees) => {
-    setDegrees([...degrees, {
-        degreeCourseName: '',
-        degreeCourseLocation: '',
-        degreeConclusionDate: ''
-    }]);
 };

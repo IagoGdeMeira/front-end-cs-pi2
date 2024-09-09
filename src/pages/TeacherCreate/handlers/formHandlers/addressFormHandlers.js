@@ -1,5 +1,5 @@
 import axios from "axios";
-import IntegerValidationError from "../../../utils/errors/IntegerValidationError";
+import IntegerValidationError from "../../../../utils/errors/IntegerValidationError";
 
 
 export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => {
