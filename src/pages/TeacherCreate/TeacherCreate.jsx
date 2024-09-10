@@ -1,8 +1,8 @@
 import './TeacherCreate.css';
 
 import { Button } from 'primereact/button';
-import DropdownCities from '../../components/dropdowns/DropdownCities/DropdownCities';
-import DropdownStates from '../../components/dropdowns/DropdownStates/DropdownStates';
+import DropdownCities from '../../components/pages/teacherCreate/DropdownCities/DropdownCities';
+import DropdownStates from '../../components/pages/teacherCreate/DropdownStates/DropdownStates';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
 import React, { useState } from "react";

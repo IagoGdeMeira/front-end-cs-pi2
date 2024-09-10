@@ -1,5 +1,5 @@
 import { Button } from 'primereact/button';
-import Degree from "../../../components/Degree/Degree";
+import Degree from "../../../components/pages/teacherCreate/Degree/Degree";
 import React from "react";
 
 import {

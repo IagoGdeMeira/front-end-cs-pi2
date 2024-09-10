@@ -1,5 +1,5 @@
 import { Button } from 'primereact/button';
-import FunctionalRegistration from '../../../components/FunctionalRegistration/FunctionalRegistration';
+import FunctionalRegistration from '../../../components/pages/teacherCreate/FunctionalRegistration/FunctionalRegistration';
 import React from "react";
 
 import {

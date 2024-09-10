@@ -1,6 +1,6 @@
 import { Button } from 'primereact/button';
 import React from "react";
-import Specialization from "../../../components/Specialization/Specialization";
+import Specialization from "../../../components/pages/teacherCreate/Specialization/Specialization";
 
 import {
     handleAddSpecialization,
