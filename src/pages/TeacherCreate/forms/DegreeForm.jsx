@@ -4,7 +4,8 @@ import React from "react";
 
 import {
     handleAddDegree,
-    handleDegreeChange,
+    handleRemoveDegree,
+    handleDegreeChange
 } from "../handlers/formHandlers/degreeFormHandlers";
 
 
@@ -15,10 +16,12 @@ const DegreeForm = ({ degrees, setDegrees }) => {
 
             {degrees.map((degree, index) => (
                 <Degree
-                    key={index}
-                    degree={degree}
-                    setDegree={(e) => handleDegreeChange(e, index, degrees, setDegrees)}
-                />
+                key={index}
+                degree={degree}
+                handleDegreeChange={(e) => handleDegreeChange(e, index, degrees, setDegrees)}
+                handleRemoveDegree={() => handleRemoveDegree(index, degrees, setDegrees)}
+                index={index}
+            />
             ))}
 
             <Button

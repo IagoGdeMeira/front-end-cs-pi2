@@ -3,12 +3,6 @@ import "./Specialization.css";
 import { InputMask } from "primereact/inputmask";
 import { InputText } from "primereact/inputtext";
 
-import {
-    handleCourseNameChange,
-    handleConclusionDateChange,
-    handleCourseLocationChange
-} from "./handlers/specializationHandlers";
-
 
 const Specialization = ({ specialization, setSpecialization }) => {
     return (
@@ -21,7 +15,8 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         aria-describedby="specializationCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseName"
-                        onChange={(e) => handleCourseNameChange(e, specialization, setSpecialization)}
+                        onChange={(e) => setSpecialization(e)}
+                        name="specializationCourseName"
                         value={specialization.specializationCourseName}
                     />
                     <small id="specializationCourseName-help">Curso de especialização.</small>
@@ -35,7 +30,8 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         className="w-full text-overflow-ellipsis"
                         id="specializationConclusionDate"
                         mask="99/99/9999"
-                        onChange={(e) => handleConclusionDateChange(e, specialization, setSpecialization)}
+                        onChange={(e) => setSpecialization(e)}
+                        name="specializationConclusionDate"
                         slotChar="dd/mm/aaaa"
                         value={specialization.specializationConclusionDate}
                     />
@@ -51,7 +47,8 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         aria-describedby="specializationCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseLocation"
-                        onChange={(e) => handleCourseLocationChange(e, specialization, setSpecialization)}
+                        onChange={(e) => setSpecialization(e)}
+                        name="specializationCourseLocation"
                         value={specialization.specializationCourseLocation}
                     />
                     <small id="specializationCourseLocation-help">Local onde a especialização foi realizada.</small>

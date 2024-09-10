@@ -203,16 +203,16 @@ const TeacherCreate = () => {
                             </div>
                         </div>   
                         <AddressForm
-                            setTeacherAddress={setAddress}
                             teacherAddress={address}
+                            setTeacherAddress={setAddress}
                         />
                         <DegreeForm
                             degrees={degrees}
                             setDegrees={setDegrees}
                         />
                         <SpecializationForm
-                            setSpecializations={setSpecializations}
                             specializations={specializations}
+                            setSpecializations={setSpecializations}
                         />
                     </section>
                 </section>

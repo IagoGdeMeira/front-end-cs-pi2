@@ -1,18 +1,23 @@
-export const handleSpecializationChange = (index, field, value, specializations, setSpecializations) => {
-    const updatedSpecializations = [...specializations];
-
-    updatedSpecializations[index] = {
-        ...updatedSpecializations[index],
-        [field]: value
+export const handleAddSpecialization = (specializations, setSpecializations) => {
+    const newSpecialization = {
+        specializationCourseName: "",
+        specializationCourseLocation: "",
+        specializationConclusionDate: ""
     };
-    
+
+    setSpecializations([...specializations, newSpecialization]);
+};
+
+export const handleRemoveSpecialization = (index, specializations, setSpecializations) => {
+    const updatedSpecializations = specializations.filter((_, i) => i !== index);
+
     setSpecializations(updatedSpecializations);
 };
 
-export const handleAddSpecialization = (specializations, setSpecializations) => {
-    setSpecializations([...specializations, {
-        specializationCourseName: '',
-        specializationCourseLocation: '',
-        specializationConclusionDate: ''
-    }]);
+export const handleSpecializationChange = (e, index, specializations, setSpecializations) => {
+    const { name, value } = e.target ? e.target : e;
+    const updatedSpecializations = [...specializations];
+    updatedSpecializations[index] = { ...updatedSpecializations[index], [name]: value };
+
+    setSpecializations(updatedSpecializations);
 };

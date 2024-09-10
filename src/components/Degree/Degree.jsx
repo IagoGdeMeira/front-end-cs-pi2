@@ -1,12 +1,22 @@
 import './Degree.css';
 
+import { Button } from 'primereact/button';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
 
 
-const Degree = ({ degree, setDegree }) => {
+const Degree = ({ degree, handleRemoveDegree, index, handleDegreeChange }) => {
     return (
         <section className="degree-section flex flex-column surface-100 border-2 border-200">
+            <div className="degree-header flex justify-content-between align-items-center">
+                <h3>Graduação {index + 1}</h3>
+                <Button
+                    icon="pi pi-trash"
+                    label=""
+                    onClick={handleRemoveDegree}
+                    type="button"
+                />
+            </div>
             <div className="form-row flex">
                 {/* Campo para o NOME DO CURSO da graduação. */}
                 <div className="form-item flex flex-column align-items-start">
@@ -15,7 +25,7 @@ const Degree = ({ degree, setDegree }) => {
                         aria-describedby="degreeCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseName"
-                        onChange={(e) => setDegree(e)}
+                        onChange={(e) => handleDegreeChange(e, index)}
                         name="degreeCourseName"
                         value={degree.degreeCourseName}
                     />
@@ -30,7 +40,7 @@ const Degree = ({ degree, setDegree }) => {
                         className="w-full text-overflow-ellipsis"
                         id="degreeConclusionDate"
                         mask="99/99/9999"
-                        onChange={(e) => setDegree(e)}
+                        onChange={(e) => handleDegreeChange(e, index)}
                         name="degreeConclusionDate"
                         slotChar="dd/mm/aaaa"
                         value={degree.degreeConclusionDate}
@@ -47,7 +57,7 @@ const Degree = ({ degree, setDegree }) => {
                         aria-describedby="degreeCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseLocation"
-                        onChange={(e) => setDegree(e)}
+                        onChange={(e) => handleDegreeChange(e, index)}
                         name="degreeCourseLocation"
                         value={degree.degreeCourseLocation}
                     />
