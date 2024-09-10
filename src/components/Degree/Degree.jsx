@@ -3,12 +3,6 @@ import './Degree.css';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
 
-import {
-    handleCourseNameChange,
-    handleConclusionDateChange,
-    handleCourseLocationChange
-} from "./handlers/degreeHandlers";
-
 
 const Degree = ({ degree, setDegree }) => {
     return (
@@ -21,7 +15,8 @@ const Degree = ({ degree, setDegree }) => {
                         aria-describedby="degreeCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseName"
-                        onChange={(e) => handleCourseNameChange(e, degree, setDegree)}
+                        onChange={(e) => setDegree(e)}
+                        name="degreeCourseName"
                         value={degree.degreeCourseName}
                     />
                     <small id="degreeCourseName-help">Curso de graduação.</small>
@@ -35,7 +30,8 @@ const Degree = ({ degree, setDegree }) => {
                         className="w-full text-overflow-ellipsis"
                         id="degreeConclusionDate"
                         mask="99/99/9999"
-                        onChange={(e) => handleConclusionDateChange(e, degree, setDegree)}
+                        onChange={(e) => setDegree(e)}
+                        name="degreeConclusionDate"
                         slotChar="dd/mm/aaaa"
                         value={degree.degreeConclusionDate}
                     />
@@ -51,7 +47,8 @@ const Degree = ({ degree, setDegree }) => {
                         aria-describedby="degreeCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseLocation"
-                        onChange={(e) => handleCourseLocationChange(e, degree, setDegree)}
+                        onChange={(e) => setDegree(e)}
+                        name="degreeCourseLocation"
                         value={degree.degreeCourseLocation}
                     />
                     <small id="degreeCourseLocation-help">Local onde a graduação foi realizada.</small>

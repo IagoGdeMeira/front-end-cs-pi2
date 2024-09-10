@@ -1,18 +1,23 @@
 export const handleAddDegree = (degrees, setDegrees) => {
-    setDegrees([...degrees, {
-        degreeCourseName: '',
-        degreeCourseLocation: '',
-        degreeConclusionDate: ''
-    }]);
+    const newDegree = {
+        degreeCourseName: "",
+        degreeCourseLocation: "",
+        degreeConclusionDate: ""
+    };
+
+    setDegrees([...degrees, newDegree]);
 };
 
-export const handleDegreeChange = (index, field, value, degrees, setDegrees) => {
-    const updatedDegrees = [...degrees];
+export const handleRemoveDegree = (index, degrees, setDegrees) => {
+    const updatedDegrees = degrees.filter((_, i) => i !== index);
 
-    updatedDegrees[index] = {
-        ...updatedDegrees[index],
-        [field]: value
-    };
+    setDegrees(updatedDegrees);
+};
+
+export const handleDegreeChange = (e, index, degrees, setDegrees) => {
+    const { name, value } = e.target ? e.target : e;
+    const updatedDegrees = [...degrees];
+    updatedDegrees[index] = { ...updatedDegrees[index], [name]: value };
 
     setDegrees(updatedDegrees);
 };

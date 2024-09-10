@@ -22,16 +22,6 @@ import {
     handleWorkedHoursChange
 } from "../TeacherCreate/handlers/teacherHandlers";
 
-import {
-    handleDegreeChange,
-    handleAddDegree
-} from './handlers/formHandlers/degreeFormHandlers';
-
-import {
-    handleSpecializationChange,
-    handleAddSpecialization
-} from './handlers/formHandlers/specializationFormHandlers';
-
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
 import SpecializationForm from './forms/SpecializationForm';
@@ -218,8 +208,6 @@ const TeacherCreate = () => {
                         />
                         <DegreeForm
                             degrees={degrees}
-                            handleAddDegree={handleAddDegree}
-                            handleDegreeChange={handleDegreeChange}
                             setDegrees={setDegrees}
                         />
                         <SpecializationForm
