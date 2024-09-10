@@ -25,8 +25,9 @@ const DegreeForm = ({ degrees, setDegrees }) => {
             ))}
 
             <Button
+                className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"
-                label="Adicionar Graduação"
+                label=""
                 onClick={() => handleAddDegree(degrees, setDegrees)}
                 type="button"
             />

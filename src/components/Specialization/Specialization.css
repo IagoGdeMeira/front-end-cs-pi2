@@ -1,9 +1,18 @@
-.specialization-section {
-    border-radius: 10px;
+button .spec-remove {
+    min-width: 50px;
+}
+
+.specialization-header,
+.specialization-section .form-row {
     padding: 10px;
 }
 
+.specialization-header h3,
 .specialization-section label,
 .specialization-section small {
     color: var(--surface-500);
+}
+
+.specialization-section {
+    border-radius: 10px;
 }

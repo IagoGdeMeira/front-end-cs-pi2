@@ -1,12 +1,23 @@
 import "./Specialization.css";
 
+import { Button } from 'primereact/button';
 import { InputMask } from "primereact/inputmask";
 import { InputText } from "primereact/inputtext";
 
 
-const Specialization = ({ specialization, setSpecialization }) => {
+const Specialization = ({ specialization, handleRemoveSpecialization, index, handleSpecializationChange }) => {
     return (
         <section className="specialization-section flex flex-column surface-100 border-2 border-200">
+            <div className="specialization-header flex justify-content-between align-items-center surface-200">
+                <h3>Especialização {index + 1}</h3>
+                <Button
+                    icon="pi pi-trash"
+                    className="spec-remove bg-red-500 border-red-500"
+                    label=""
+                    onClick={handleRemoveSpecialization}
+                    type="button"
+                />
+            </div>
             <div className="form-row flex">
                 {/* Campo para o NOME DO CURSO da especialização. */}
                 <div className="form-item flex flex-column align-items-start">
@@ -15,7 +26,7 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         aria-describedby="specializationCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseName"
-                        onChange={(e) => setSpecialization(e)}
+                        onChange={(e) => handleSpecializationChange(e, index)}
                         name="specializationCourseName"
                         value={specialization.specializationCourseName}
                     />
@@ -30,7 +41,7 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         className="w-full text-overflow-ellipsis"
                         id="specializationConclusionDate"
                         mask="99/99/9999"
-                        onChange={(e) => setSpecialization(e)}
+                        onChange={(e) => handleSpecializationChange(e, index)}
                         name="specializationConclusionDate"
                         slotChar="dd/mm/aaaa"
                         value={specialization.specializationConclusionDate}
@@ -47,7 +58,7 @@ const Specialization = ({ specialization, setSpecialization }) => {
                         aria-describedby="specializationCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseLocation"
-                        onChange={(e) => setSpecialization(e)}
+                        onChange={(e) => handleSpecializationChange(e, index)}
                         name="specializationCourseLocation"
                         value={specialization.specializationCourseLocation}
                     />

@@ -8,10 +8,11 @@ import { InputText } from 'primereact/inputtext';
 const Degree = ({ degree, handleRemoveDegree, index, handleDegreeChange }) => {
     return (
         <section className="degree-section flex flex-column surface-100 border-2 border-200">
-            <div className="degree-header flex justify-content-between align-items-center">
+            <div className="degree-header flex justify-content-between align-items-center surface-200">
                 <h3>Graduação {index + 1}</h3>
                 <Button
                     icon="pi pi-trash"
+                    className="grad-remove bg-red-500 border-red-500"
                     label=""
                     onClick={handleRemoveDegree}
                     type="button"
