@@ -1,0 +1,18 @@
+button .grad-remove  {
+    min-width: 50px;
+}
+
+.degree-header,
+.degree-section .form-row{
+    padding: 10px;
+}
+
+.degree-header h3,
+.degree-section label,
+.degree-section small {
+    color: var(--surface-500);
+}
+
+.degree-section {
+    border-radius: 10px;
+}
