@@ -5,7 +5,7 @@ import DropdownCities from '../../components/pages/teacherCreate/DropdownCities/
 import DropdownStates from '../../components/pages/teacherCreate/DropdownStates/DropdownStates';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { ToggleButton } from 'primereact/togglebutton';
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,10 @@ import {
     handleWorkedHoursChange
 } from "../TeacherCreate/handlers/teacherHandlers";
 
+import {
+    areRequiredFieldsFilled
+} from "../TeacherCreate/validators/teacherValidators";
+
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
 import FunctionalRegistrationForm from './forms/FunctionalRegistrationForm';
@@ -35,6 +39,7 @@ const TeacherCreate = () => {
 
     const [selectedState, setSelectedState] = useState(null);
     const [showOptionalFields, setShowOptionalFields] = useState(false);
+    const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
     const [teacher, setTeacher] = useState({
         teacherName: '',        
@@ -59,6 +64,13 @@ const TeacherCreate = () => {
     const [degrees, setDegrees] = useState([]);
     const [specializations, setSpecializations] = useState([]);
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
+
+    useEffect(() => {
+        const allFieldsFilled = areRequiredFieldsFilled(teacher);
+        console.log("Todos os campos preenchidos?", allFieldsFilled);
+        setSaveButtonDisabled(!allFieldsFilled);
+    }, [teacher]);
+
 
     return (
         <SimpleLayout>
@@ -232,8 +244,9 @@ const TeacherCreate = () => {
                         onClick={navigateHome}
                     />
                     <Button
-                        label="Salvar"
                         className="w-8rem h-3rem bg-yellow-400 border-yellow-400"
+                        disabled={saveButtonDisabled}
+                        label="Salvar"
                     />
                 </div>
             </form>

@@ -11,7 +11,7 @@ export const handleCPFChange = (e, teacher, setTeacher) => {
 };
 
 export const handleRGChange = (e, teacher, setTeacher) => {
-    setTeacher({ ...teacher, teacherRG: e.value });
+    setTeacher({ ...teacher, teacherRG: e.target.value });
 };
 
 export const handlePhoneNumberChange = (e, teacher, setTeacher) => {
