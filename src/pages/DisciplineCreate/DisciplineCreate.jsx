@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+
 import "./DisciplineCreate.css";
-import { InputText } from 'primereact/inputtext';
+
+import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";
