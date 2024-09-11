@@ -24,6 +24,7 @@ import {
 
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
+import FunctionalRegistrationForm from './forms/FunctionalRegistrationForm';
 import SpecializationForm from './forms/SpecializationForm';
 
 
@@ -56,6 +57,7 @@ const TeacherCreate = () => {
 
     const [degrees, setDegrees] = useState([]);
     const [specializations, setSpecializations] = useState([]);
+    const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
 
     return (
         <SimpleLayout>
@@ -214,18 +216,22 @@ const TeacherCreate = () => {
                             specializations={specializations}
                             setSpecializations={setSpecializations}
                         />
+                        <FunctionalRegistrationForm
+                            functionalRegistrations={functionalRegistrations}
+                            setFunctionalRegistrations={setFunctionalRegistrations}
+                        />
                     </section>
                 </section>
 
                 <div className="form-buttons flex justify-content-center">
                     <Button
-                        className="bg-red-500 border-red-500"
+                        className="w-8rem h-3rem bg-red-500 border-red-500"
                         label="Cancelar"
                         onClick={navigateHome}
                     />
                     <Button
                         label="Salvar"
-                        className="bg-yellow-400 border-yellow-400"
+                        className="w-8rem h-3rem bg-yellow-400 border-yellow-400"
                     />
                 </div>
             </form>
