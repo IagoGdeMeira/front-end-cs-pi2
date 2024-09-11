@@ -26,6 +26,7 @@ import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
 import FunctionalRegistrationForm from './forms/FunctionalRegistrationForm';
 import SpecializationForm from './forms/SpecializationForm';
+import { InputNumber } from 'primereact/inputnumber';
 
 
 const TeacherCreate = () => {
@@ -192,13 +193,14 @@ const TeacherCreate = () => {
                             </div>
 
                             {/* Campo para as HORAS TRABALHADAS do professor */}
-                            <div className="form-item-integer-input w-5rem flex flex-column align-items-start">
+                            <div className="form-item-integer-input flex flex-column align-items-start">
                                 <label htmlFor="teacherWorkedHours">Horas:</label>
-                                <InputText
+                                <InputNumber
                                     aria-describedby="teacherWorkedHours-help"
                                     className="w-full text-overflow-ellipsis"
                                     id="teacherWorkedHours"
-                                    onChange={(e) => handleWorkedHoursChange(e, teacher, setTeacher)}
+                                    onChange={(e) => handleWorkedHoursChange(e.value, teacher, setTeacher)}
+                                    useGrouping={false}
                                     value={teacher.teacherWorkedHours}
                                 />
                                 <small id="teacherWorkedHours-help">Horas/Aula</small>

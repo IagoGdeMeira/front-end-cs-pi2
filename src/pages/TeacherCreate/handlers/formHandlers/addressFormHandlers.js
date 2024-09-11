@@ -1,5 +1,4 @@
 import axios from "axios";
-import IntegerValidationError from "../../../../utils/errors/IntegerValidationError";
 
 
 export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => {
@@ -23,19 +22,8 @@ export const handleAddressCEPChange = async (e, setCEP, address, setAddress) => 
     }
 };
 
-export const handleAddressNumberChange = (e, address, setAddress) => {
-    try {
-        if(/^\d*$/.test(e.target.value))
-            setAddress({ ...address, addressNumber: e.target.value });
-        else
-            throw new IntegerValidationError("addressNumber");
-    } catch (error) {
-        if (error instanceof IntegerValidationError) {
-            console.error(`Validation Error: ${error.message}`);
-            alert(`Erro: Este campo só permite números inteiros.`);
-        } else
-            console.error("Unexpected error:", error);
-    }
+export const handleAddressNumberChange = (value, address, setAddress) => {
+    setAddress({ ...address, addressNumber: value });
 };
 
 export const handleAddressStreetChange = (e, address, setAddress) => {
