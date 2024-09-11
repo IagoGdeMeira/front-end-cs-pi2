@@ -1,78 +1,113 @@
+
 import "./DisciplineCreate.css";
 
+import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import ErrorPopup from "../../components/ErrorBox/ErrorBox";
-import { InputText } from 'primereact/inputtext';
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
+import DeletePopup from "../../components/DeletePopup/DeletePopup";
+import { InputNumber } from "primereact/inputnumber";
 
-
-const DisciplineCreate = () =>{
-    const [discipline, setDiscipline] = useState({disciplineName: "", disciplineCode: ""});
-    const [popupVisible, setPopupVisible] = useState(false); // Estado para controlar a visibilidade do popup
-    const [popupMessage, setPopupMessage] = useState(''); // Mensagem do popup
-    
+const DisciplineCreate = () => {
+    const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
     const navigate = useNavigate();
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+    const [popupDeleteVisible, setPopupDeleteVisible] = useState(false);
+    const [popupDeleteMessage, setPopupDeleteMessage] = useState('');
 
-    const handleChange = (input) => {
-        setDiscipline({ ...discipline, [input.target.name]: input.target.value });
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setDiscipline((prevState) => ({
+            ...prevState,
+            [name]: value, // Atualiza o estado de discipline com base no input
+        }));
+    };
 
-    const save = () =>{
+    const save = () => {
         localStorage.setItem("disciplineName", discipline.disciplineName);
         localStorage.setItem("disciplineCode", discipline.disciplineCode);
-    }
+    };
 
-    const disciplineExists = () =>{
+    const disciplineExists = () => {
         if (isNameEmpty()) {
             setPopupMessage("Nome da disciplina não pode ser vazio");
             setPopupVisible(true);
         } else if (isCodeEmpty()) {
             setPopupMessage("Código da disciplina não pode ser vazio");
             setPopupVisible(true);
-        }else if (localStorage.getItem("disciplineCode") === discipline.disciplineCode){
+        } else if (localStorage.getItem("disciplineCode") === discipline.disciplineCode) {
             setPopupMessage("Código da disciplina já existe");
             setPopupVisible(true);
-        }else{
+        } else {
             save();
             navigateHome();
         }
-    }
-    
+    };
+
     const isNameEmpty = () => {
-        return discipline.disciplineName.trim() === '';
+        return !discipline.disciplineName || String(discipline.disciplineName).trim() === '';
     };
 
     const isCodeEmpty = () => {
-        return discipline.disciplineCode.trim() === '';
-    }
+        return !discipline.disciplineCode || String(discipline.disciplineCode).trim() === '';
+    };
 
-    const navigateHome = () =>{
+    const navigateHome = () => {
         navigate('/');
-    }
+    };
 
-    return(
+    const popupDelete = () => {
+        setPopupDeleteMessage("Digite o código da disciplina para confirmar a exclusão");
+        setPopupDeleteVisible(true);
+    };
+
+    return (
         <>
             <Card>
                 <div className="card flex justify-content-center">
-                    <InputText className="text-box" onChange={handleChange} name="disciplineName" id="disciplineName" type="disciplineName" Keyfilter="discipline-name" placeholder="Nome Disciplina"/>
+                    <InputText
+                        className="text-box"
+                        onChange={handleChange}
+                        name="disciplineName"
+                        id="disciplineName"
+                        value={discipline.disciplineName} // Conectando o valor ao estado
+                        placeholder="Nome Disciplina"
+                    />
                 </div>
                 <div className="card flex justify-content-center">
-                    <InputText className="text-box"  onChange={handleChange} name="disciplineCode" id="disciplineCode" type="disciplineCode" Keyfilter="discipline-code" placeholder="Código disciplina"/>
+                    <InputNumber
+                        className="text-box"
+                        onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} // Para InputNumber, tratamos o valor diretamente
+                        useGrouping={false}
+                        name="disciplineCode"
+                        id="disciplineCode"
+                        value={discipline.disciplineCode} // Conectando o valor ao estado
+                        placeholder="Código disciplina"
+                    />
                 </div>
                 <div className="card flex justify-content-center">
-                    <Button className="button-box" onClick={navigateHome} label="Cancelar"/>
-                    <Button className="button-box" onClick={disciplineExists} label="Salvar"/>
+                    <Button className="button-box" onClick={navigateHome} label="Cancelar" />
+                    <Button className="button-box" onClick={disciplineExists} label="Salvar" />
+                </div>
+
+                <div>
+                    <Button onClick={popupDelete}><i className="pi pi-trash" /></Button>
                 </div>
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}
                     onClose={() => setPopupVisible(false)}
                 />
+                <DeletePopup
+                    message={popupDeleteMessage}
+                    visible={popupDeleteVisible}
+                    onClose={() => setPopupDeleteVisible(false)}
+                />
             </Card>
         </>
     );
-}
+};
 
 export default DisciplineCreate;

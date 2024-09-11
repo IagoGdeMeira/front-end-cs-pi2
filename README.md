@@ -1,3 +1,5 @@
+A funcionalidade de exclusão de disciplina esta na mesma pagina de criação de disciplina por momento
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
