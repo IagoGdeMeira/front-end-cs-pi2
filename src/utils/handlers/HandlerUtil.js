@@ -11,3 +11,13 @@ export const handleFieldChange = (e, ...args) => {
         setObject({ ...object, [name]: value });
     }
 };
+
+export const handleAddObject = (objects, setObjects, objectTemplate) => {
+    const newObject = { ...objectTemplate };
+    setObjects([...objects, newObject]);
+};
+
+export const handleRemoveObject = (index, objects, setObjects) => {
+    const updatedObjects = objects.filter((_, i) => i !== index);
+    setObjects(updatedObjects);
+};

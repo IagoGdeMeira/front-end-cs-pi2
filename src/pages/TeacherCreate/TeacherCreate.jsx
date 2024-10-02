@@ -10,21 +10,8 @@ import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { ToggleButton } from 'primereact/togglebutton';
 import { useNavigate } from "react-router-dom";
 
-import {
-    handleNameChange,
-    handleBirthDateChange,
-    handleCPFChange,
-    handleRGChange,
-    handlePhoneNumberChange,
-    handleEmailChange,
-    handleBirthCityChange,
-    handleBirthStateChange,
-    handleWorkedHoursChange
-} from "../TeacherCreate/handlers/teacherHandlers";
-
-import {
-    areRequiredFieldsFilled
-} from "../TeacherCreate/validators/teacherValidators";
+import { handleFieldChange } from "../TeacherCreate/handlers/teacherHandlers";
+import { areRequiredFieldsFilled } from "../TeacherCreate/validators/teacherValidators";
 
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
@@ -83,7 +70,8 @@ const TeacherCreate = () => {
                             aria-describedby="teacherName-help"
                             className="w-full text-overflow-ellipsis"
                             id="teacherName"
-                            onChange={(e) => handleNameChange(e, teacher, setTeacher)}
+                            name="teacherName"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             value={teacher.teacherName}
                         />
                         <small id="teacherName-help">Campo do nome do professor.</small>
@@ -97,7 +85,8 @@ const TeacherCreate = () => {
                             className="w-full text-overflow-ellipsis"
                             id="teacherBirthDate"
                             mask="99/99/9999"
-                            onChange={(e) => handleBirthDateChange(e, teacher, setTeacher)}
+                            name="teacherBirthDate"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             slotChar="dd/mm/aaaa"
                             value={teacher.teacherBirthDate}
                         />
@@ -113,7 +102,8 @@ const TeacherCreate = () => {
                             className="w-full text-overflow-ellipsis"
                             id="teacherCPF"
                             mask="999.999.999-99"
-                            onChange={(e) => handleCPFChange(e, teacher, setTeacher)}
+                            name="teacherCPF"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             value={teacher.teacherCPF}
                         />
                         <small id="teacherCPF-help">Campo do CPF do professor.</small>
@@ -126,7 +116,8 @@ const TeacherCreate = () => {
                             aria-describedby="teacherRG-help"
                             className="w-full text-overflow-ellipsis"
                             id="teacherRG"
-                            onChange={(e) => handleRGChange(e, teacher, setTeacher)}
+                            name="teacherRG"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             value={teacher.teacherRG}
                         />
                         <small id="teacherRG-help">Campo do RG do professor.</small>
@@ -140,8 +131,9 @@ const TeacherCreate = () => {
                             aria-describedby="teacherPhoneNumber-help"
                             className="w-full text-overflow-ellipsis"
                             id="teacherPhoneNumber"
-                            mask="(99) 9? 9999-9999"
-                            onChange={(e) => handlePhoneNumberChange(e, teacher, setTeacher)}
+                            mask="(99) 9 9999-9999"
+                            name="teacherPhoneNumber"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             value={teacher.teacherPhoneNumber}
                         />
                         <small id="teacherPhoneNumber-help">Campo do número de contato do professor.</small>
@@ -154,7 +146,8 @@ const TeacherCreate = () => {
                             aria-describedby="teacherEmail-help"
                             className="w-full text-overflow-ellipsis"
                             id="teacherEmail"
-                            onChange={(e) => handleEmailChange(e, teacher, setTeacher)}
+                            name="teacherEmail"
+                            onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                             value={teacher.teacherEmail}
                         />
                         <small id="teacherEmail-help">Campo do e-mail do professor.</small>
@@ -182,9 +175,10 @@ const TeacherCreate = () => {
                                 <DropdownStates
                                     className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
                                     id="TeacherBirthState"
+                                    name="TeacherBirthState"
                                     onChange={(e) => {
                                         setSelectedState(e.value);
-                                        handleBirthStateChange(e.value, teacher, setTeacher);
+                                        handleFieldChange(e.value, teacher, setTeacher);
                                     }}
                                     value={teacher.teacherBirthState}
                                 />
@@ -197,7 +191,8 @@ const TeacherCreate = () => {
                                 <DropdownCities
                                     className="w-full text-left white-space-nowrap overflow-hidden text-overflow-clip"
                                     id="TeacherBirthCity"
-                                    onChange={(e) => handleBirthCityChange(e.value, teacher, setTeacher)}
+                                    name="TeacherBirthCity"
+                                    onChange={(e) => handleFieldChange(e.value, teacher, setTeacher)}
                                     stateId={selectedState}
                                     value={teacher.teacherBirthCity}
                                 />
@@ -211,7 +206,8 @@ const TeacherCreate = () => {
                                     aria-describedby="teacherWorkedHours-help"
                                     className="w-full text-overflow-ellipsis"
                                     id="teacherWorkedHours"
-                                    onChange={(e) => handleWorkedHoursChange(e.value, teacher, setTeacher)}
+                                    name="teacherWorkedHours"
+                                    onChange={(e) => handleFieldChange(e.value, teacher, setTeacher)}
                                     useGrouping={false}
                                     value={teacher.teacherWorkedHours}
                                 />
