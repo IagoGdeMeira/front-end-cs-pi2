@@ -1,15 +1,22 @@
 import { Button } from 'primereact/button';
 import React from "react";
+
 import Specialization from "../../../components/pages/teacherCreate/Specialization/Specialization";
 
 import {
-    handleAddSpecialization,
-    handleRemoveSpecialization,
-    handleSpecializationChange
-} from "../handlers/formHandlers/specializationFormHandlers";
+    handleAddObject,
+    handleFieldChange,
+    handleRemoveObject
+} from "../../../utils/handlers/handlerUtil";
 
 
 const SpecializationForm = ({ specializations, setSpecializations }) => {
+    const specializationTemplate = {
+        specializationCourseName: "",
+        specializationCourseLocation: "",
+        specializationConclusionDate: ""
+    };
+
     return (
         <section className="border-top-2 border-yellow-800 flex flex-column">
             <h2>Especializações do Professor</h2>
@@ -18,8 +25,8 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
                 <Specialization
                     key={index}
                     specialization={specialization}
-                    handleSpecializationChange={(e) => handleSpecializationChange(e, index, specializations, setSpecializations)}
-                    handleRemoveSpecialization={() => handleRemoveSpecialization(index, specializations, setSpecializations)}
+                    handleSpecializationChange={(e) => handleFieldChange(e, index, specializations, setSpecializations)}
+                    handleRemoveSpecialization={() => handleRemoveObject(index, specializations, setSpecializations)}
                     index={index}
                 />
             ))}
@@ -28,7 +35,7 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"
                 label=""
-                onClick={() => handleAddSpecialization(specializations, setSpecializations)}
+                onClick={() => handleAddObject(specializations, setSpecializations, specializationTemplate)}
                 type="button"
             />
         </section>
