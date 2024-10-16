@@ -3,98 +3,93 @@ import { InputText } from 'primereact/inputtext';
 
 import { handleFieldChange } from '../../../utils/handlers/handlerUtil';
 
+const inputVisualConfig = `
+    align-items-start
+    col
+    flex
+    flex-column
+    row-gap-2
+`;
 
 const TeacherForm = ({ teacher, setTeacher }) => {
     return (
-        <div className="teacher-form">
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="teacherName">Nome do Professor:</label>
+        <>
+            <div className="grid">
+                <div className={inputVisualConfig + 'col-12'}>
+                    <label htmlFor="teacherName">Nome</label>
                     <InputText
-                        aria-describedby="teacherName-help"
-                        className="w-full text-overflow-ellipsis"
+                        className="w-full"
                         id="teacherName"
                         name="teacherName"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                         value={teacher.teacherName}
+                        placeholder="Digite o nome"
                     />
-                    <small id="teacherName-help">Campo do nome do professor.</small>
+                    <small id="teacherName-help">Campo do nome do professor</small>
                 </div>
 
-                <div className="w-9rem form-item-date flex flex-column align-items-start">
-                    <label htmlFor="teacherBirthDate">Nascido em:</label>
+                <div className={inputVisualConfig + 'col-5'}>
+                    <label htmlFor="teacherBirthDate">Data de Nascimento</label>
                     <InputMask
-                        aria-describedby="teacherBirthDate-help"
-                        className="w-full text-overflow-ellipsis"
+                        className="w-8rem"
                         id="teacherBirthDate"
                         mask="99/99/9999"
                         name="teacherBirthDate"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        slotChar="dd/mm/aaaa"
                         value={teacher.teacherBirthDate}
+                        slotChar="dd/mm/aaaa"
                     />
-                    <small id="teacherBirthDate-help">Data de nascimento.</small>
+                    <small id="teacherBirthDate-help">Data de nascimento</small>
                 </div>
             </div>
 
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="teacherCPF">CPF do Professor:</label>
+                <div className="p-field p-col">
+                    <label htmlFor="teacherCPF">CPF</label>
                     <InputMask
-                        aria-describedby="teacherCPF-help"
-                        className="w-full text-overflow-ellipsis"
                         id="teacherCPF"
                         mask="999.999.999-99"
                         name="teacherCPF"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                         value={teacher.teacherCPF}
                     />
-                    <small id="teacherCPF-help">Campo do CPF do professor.</small>
+                    <small id="teacherCPF-help" className="p-d-block">Campo do CPF</small>
                 </div>
 
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="teacherRG">RG do Professor:</label>
+                <div className="p-field p-col">
+                    <label htmlFor="teacherRG">RG</label>
                     <InputText
-                        aria-describedby="teacherRG-help"
-                        className="w-full text-overflow-ellipsis"
                         id="teacherRG"
                         name="teacherRG"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                         value={teacher.teacherRG}
                     />
-                    <small id="teacherRG-help">Campo do RG do professor.</small>
+                    <small id="teacherRG-help" className="p-d-block">Campo do RG</small>
                 </div>
-            </div>
 
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="teacherPhoneNumber">Telefone do Professor:</label>
+                <div className="p-field p-col">
+                    <label htmlFor="teacherPhoneNumber">Telefone</label>
                     <InputMask
-                        aria-describedby="teacherPhoneNumber-help"
-                        className="w-full text-overflow-ellipsis"
                         id="teacherPhoneNumber"
                         mask="(99) 9 9999-9999"
                         name="teacherPhoneNumber"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                         value={teacher.teacherPhoneNumber}
                     />
-                    <small id="teacherPhoneNumber-help">Campo do número de contato do professor.</small>
+                    <small id="teacherPhoneNumber-help" className="p-d-block">Número de contato</small>
                 </div>
 
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="teacherEmail">E-mail do Professor:</label>
+                <div className="p-field p-col">
+                    <label htmlFor="teacherEmail">E-mail</label>
                     <InputText
-                        aria-describedby="teacherEmail-help"
-                        className="w-full text-overflow-ellipsis"
                         id="teacherEmail"
                         name="teacherEmail"
                         onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
                         value={teacher.teacherEmail}
                     />
-                    <small id="teacherEmail-help">Campo do e-mail do professor.</small>
+                    <small id="teacherEmail-help" className="p-d-block">E-mail do professor</small>
                 </div>
-            </div>
-        </div>
+            
+        </>
     );
 };
 

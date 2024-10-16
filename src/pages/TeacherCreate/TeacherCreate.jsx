@@ -1,19 +1,16 @@
-import './TeacherCreate.css';
-
 import { Button } from 'primereact/button';
-import React, { useEffect, useState } from "react";
-import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
 import { ToggleButton } from 'primereact/togglebutton';
-import { useNavigate } from "react-router-dom";
-
-import { areRequiredFieldsFilled } from "../TeacherCreate/validators/teacherValidators";
-
-import TeacherForm from './forms/TeacherForm'; 
-import TeacherOptionalForm from './forms/TeacherOptionalForm'; 
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SimpleLayout from '../../components/layouts/simpleLayout/SimpleLayout';
+ 
 import AddressForm from './forms/AddressForm';
 import DegreeForm from './forms/DegreeForm';
 import FunctionalRegistrationForm from './forms/FunctionalRegistrationForm';
 import SpecializationForm from './forms/SpecializationForm';
+import TeacherForm from './forms/TeacherForm'; 
+import TeacherOptionalForm from './forms/TeacherOptionalForm';
+import { areRequiredFieldsFilled } from '../TeacherCreate/validators/teacherValidators';
 
 
 const TeacherCreate = () => {
@@ -54,13 +51,16 @@ const TeacherCreate = () => {
 
     return (
         <SimpleLayout>
-            <form className="flex flex-column">
+            <form className="
+                bg-bluegray-100
+                border-round-lg
+            ">
                 <TeacherForm teacher={teacher} setTeacher={setTeacher} />
                 
-                <section>
+                <section className="p-field">
                     <ToggleButton
                         checked={showOptionalFields}
-                        className= "align-items-center w-full"
+                        className="w-full"
                         id="showOptionalFields"
                         onChange={(e) => setShowOptionalFields(e.value)}
                         offIcon="pi pi-angle-down"
@@ -69,7 +69,7 @@ const TeacherCreate = () => {
                         onLabel=""
                     />
 
-                    <section className={`optionalFields border-2 border-top-none border-yellow-200 ${showOptionalFields ? "flex flex-column form-row" : "hidden"}`}>
+                    <section className={`${showOptionalFields ? "flex flex-column form-row" : "hidden"}`}>
                         <TeacherOptionalForm teacher={teacher} setTeacher={setTeacher} />
                         <AddressForm teacherAddress={address} setTeacherAddress={setAddress} />
                         <DegreeForm degrees={degrees} setDegrees={setDegrees} />
@@ -78,9 +78,9 @@ const TeacherCreate = () => {
                     </section>
                 </section>
 
-                <div className="form-buttons flex justify-content-center">
-                    <Button className="w-8rem h-3rem bg-red-500 border-red-500" label="Cancelar" onClick={navigateHome} />
-                    <Button className="w-8rem h-3rem bg-yellow-400 border-yellow-400" disabled={saveButtonDisabled} label="Salvar" />
+                <div className="p-d-flex p-jc-center">
+                    <Button className="p-button-danger p-mr-2" label="Cancelar" onClick={navigateHome} />
+                    <Button className="p-button-warning" label="Salvar" disabled={saveButtonDisabled} />
                 </div>
             </form>
         </SimpleLayout>

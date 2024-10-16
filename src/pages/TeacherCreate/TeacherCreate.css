@@ -1,13 +1,8 @@
 form {
+    padding: 20px 10px;
+    max-width: 800px;
     background-color: var(--bluegray-100);
     border-radius: 10px;
-    padding: 20px 10px;
-    width: 800px;
-}
-
-form,
-.flex-column {
-    gap: 25px;
 }
 
 label {
@@ -20,33 +15,8 @@ small {
     margin-left: 10px;
 }
 
-.form-buttons {
-    gap: 20px;
-}
-
-.form-item {
-    flex-grow: 1;
-}
-
-.form-item,
-.form-item-date,
-.form-item-integer-input {
-    gap: 5px;
-}
-
-.form-item-date,
-.form-item-integer-input {
-    flex-shrink: 0;
-}
-
 .form-item-integer-input input {
     width: 5rem;
-}
-
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
 }
 
 .optionalFields {
@@ -61,22 +31,8 @@ small {
     color: var(--yellow-800);
 }
 
-.p-highlight .p-button {
-    background-color: var(--yellow-400);
-    border-color: var(--yellow-400);
-    border-radius: 5px 5px 0 0;
-}
-
-@media(max-width: 430px) {
+@media (max-width: 430px) {
     form {
         width: 95vw;
-    }
-
-    .form-item-integer-input {
-        flex-grow: 1;
-    }
-
-    .form-row {
-        flex-direction: column;
     }
 }
