@@ -1,94 +1,108 @@
+import { addLocale } from 'primereact/api';
+import { Calendar } from 'primereact/calendar';
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
+import React from 'react';
 
 import { handleFieldChange } from '../../../utils/handlers/handlerUtil';
+import { inputConfig, labelConfig } from '../js/config';
+import ptBR from '../../../utils/locales/pt-br.json';
 
-const inputVisualConfig = `
-    align-items-start
-    col
-    flex
-    flex-column
-    row-gap-2
-`;
+
+addLocale('pt-br', ptBR);
 
 const TeacherForm = ({ teacher, setTeacher }) => {
+    const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
+
     return (
         <>
-            <div className="grid">
-                <div className={inputVisualConfig + 'col-12'}>
-                    <label htmlFor="teacherName">Nome</label>
-                    <InputText
-                        className="w-full"
-                        id="teacherName"
-                        name="teacherName"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherName}
-                        placeholder="Digite o nome"
-                    />
-                    <small id="teacherName-help">Campo do nome do professor</small>
-                </div>
-
-                <div className={inputVisualConfig + 'col-5'}>
-                    <label htmlFor="teacherBirthDate">Data de Nascimento</label>
-                    <InputMask
-                        className="w-8rem"
-                        id="teacherBirthDate"
-                        mask="99/99/9999"
-                        name="teacherBirthDate"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherBirthDate}
-                        slotChar="dd/mm/aaaa"
-                    />
-                    <small id="teacherBirthDate-help">Data de nascimento</small>
-                </div>
+            <div className={"col" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherName"
+                >Nome:</label>
+                <InputText
+                    className="text-overflow-ellipsis"
+                    id="teacherName"
+                    name="teacherName"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Digite um nome aqui"
+                    value={teacher.teacherName}
+                />
             </div>
-
-                <div className="p-field p-col">
-                    <label htmlFor="teacherCPF">CPF</label>
-                    <InputMask
-                        id="teacherCPF"
-                        mask="999.999.999-99"
-                        name="teacherCPF"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherCPF}
-                    />
-                    <small id="teacherCPF-help" className="p-d-block">Campo do CPF</small>
-                </div>
-
-                <div className="p-field p-col">
-                    <label htmlFor="teacherRG">RG</label>
-                    <InputText
-                        id="teacherRG"
-                        name="teacherRG"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherRG}
-                    />
-                    <small id="teacherRG-help" className="p-d-block">Campo do RG</small>
-                </div>
-
-                <div className="p-field p-col">
-                    <label htmlFor="teacherPhoneNumber">Telefone</label>
-                    <InputMask
-                        id="teacherPhoneNumber"
-                        mask="(99) 9 9999-9999"
-                        name="teacherPhoneNumber"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherPhoneNumber}
-                    />
-                    <small id="teacherPhoneNumber-help" className="p-d-block">Número de contato</small>
-                </div>
-
-                <div className="p-field p-col">
-                    <label htmlFor="teacherEmail">E-mail</label>
-                    <InputText
-                        id="teacherEmail"
-                        name="teacherEmail"
-                        onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
-                        value={teacher.teacherEmail}
-                    />
-                    <small id="teacherEmail-help" className="p-d-block">E-mail do professor</small>
-                </div>
-            
+            <div className={"col-12 sm:col-3" + inputConfig} style={{maxWidth: "180px", minWidth: "175px"}}>
+                <label
+                    className={labelConfig + "text-overflow-ellipsis"}
+                    htmlFor="teacherBirthDate"
+                >Nascido em:</label>
+                <Calendar
+                    dateFormat="dd/mm/yy"
+                    id="teacherBirthDate"
+                    locale="pt-br"
+                    maxDate={new Date()}
+                    name="teacherBirthDate"
+                    onChange={(e) => handleChange(e)}
+                    showIcon
+                    value={teacher.teacherBirthDate}
+                />
+            </div>
+            <div className={"col md:col-6" + inputConfig}>
+                <label
+                    className={labelConfig + "text-overflow-ellipsis"}
+                    htmlFor="teacherCPF"
+                >CPF:</label>
+                <InputMask
+                    id="teacherCPF"
+                    mask="999.999.999-99"
+                    name="teacherCPF"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Digite um CPF aqui"
+                    value={teacher.teacherCPF}
+                />
+            </div>
+            <div className={"col md:col-6" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherRG"
+                >RG:</label>
+                <InputText
+                    className="text-overflow-ellipsis"
+                    id="teacherRG"
+                    name="teacherRG"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Digite um RG aqui"
+                    value={teacher.teacherRG}
+                />
+            </div>
+            <div className={"col md:col-6" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherPhoneNumber"
+                >Telefone:</label>
+                <InputMask
+                    className="text-overflow-ellipsis"
+                    id="teacherPhoneNumber"
+                    mask="(99) 9 9999-9999"
+                    name="teacherPhoneNumber"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Digite um telefone aqui"
+                    value={teacher.teacherPhoneNumber}
+                />
+            </div>
+            <div className={"col md:col-6" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherEmail"
+                >E-mail:</label>
+                <InputText
+                    className="text-overflow-ellipsis"
+                    id="teacherEmail"
+                    name="teacherEmail"
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Digite um e-mail aqui"
+                    value={teacher.teacherEmail}
+                />
+            </div>
         </>
     );
 };

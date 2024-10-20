@@ -1,68 +1,82 @@
 import './Degree.css';
 
+import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
-import { InputMask } from 'primereact/inputmask';
+import { Calendar } from 'primereact/calendar';
 import { InputText } from 'primereact/inputtext';
 
+import {
+    cardConfig,
+    inputConfig,
+    labelConfig 
+} from '../../../../pages/TeacherCreate/js/config';
+import ptBR from '../../../../utils/locales/pt-br.json';
 
-const Degree = ({ degree, handleRemoveDegree, index, handleDegreeChange }) => {
+
+addLocale('pt-br', ptBR);
+
+const Degree = ({
+    degree,
+    handleDegreeChange,
+    handleRemoveDegree,
+    index
+}) => {
     return (
-        <section className="degree-section flex flex-column surface-100 border-2 border-200">
-            <div className="degree-header flex justify-content-between align-items-center surface-200">
-                <h3>Graduação {index + 1}</h3>
+        <section className={cardConfig}>
+            <div className="align-items-center flex justify-content-between p-2 surface-200">
+                <h3 className="text-gray-600">Graduação {index + 1}</h3>
                 <Button
                     icon="pi pi-trash"
-                    className="grad-remove bg-red-500 border-red-500"
+                    className="bg-red-500 border-red-500"
                     label=""
                     onClick={handleRemoveDegree}
                     type="button"
                 />
             </div>
-            <div className="form-row flex">
-                {/* Campo para o NOME DO CURSO da graduação. */}
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="degreeCourseName">Nome do curso:</label>
+            <div className="grid p-2">
+                <div className={"col-12 sm:col" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="degreeCourseName"
+                    >Nome do curso:</label>
                     <InputText
-                        aria-describedby="degreeCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseName"
-                        onChange={(e) => handleDegreeChange(e, index)}
                         name="degreeCourseName"
+                        onChange={(e) => handleDegreeChange(e, index)}
+                        placeholder="Informe o nome do curso"
                         value={degree.degreeCourseName}
                     />
-                    <small id="degreeCourseName-help">Curso de graduação.</small>
                 </div>
-
-                {/* Campo para a DATA DE CONCLUSÃO da graduação. */}
-                <div className="w-9rem form-item-date flex flex-column align-items-start">
-                    <label htmlFor="degreeConclusionDate">Conclusão:</label>
-                    <InputMask
-                        aria-describedby="degreeConclusionDate-help"
-                        className="w-full text-overflow-ellipsis"
+                <div className={"col-3" + inputConfig} style={{maxWidth: "180px", minWidth: "175px"}}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="degreeConclusionDate"
+                    >Conclusão:</label>
+                    <Calendar
+                        dateFormat="dd/mm/yy"
                         id="degreeConclusionDate"
-                        mask="99/99/9999"
-                        onChange={(e) => handleDegreeChange(e, index)}
+                        locale="pt-br"
+                        maxDate={new Date()}
                         name="degreeConclusionDate"
-                        slotChar="dd/mm/aaaa"
+                        onChange={(e) => handleDegreeChange(e, index)}
+                        showIcon
                         value={degree.degreeConclusionDate}
                     />
-                    <small id="degreeConclusionDate-help">Data de conclusão.</small>
                 </div>
-            </div>
-
-            <div className="form-row flex">
-                {/* Campo para o LOCAL da graduação. */}
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="degreeCourseLocation">Local da Graduação:</label>
+                <div className={"col-12" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="degreeCourseLocation"
+                    >Local da Graduação:</label>
                     <InputText
-                        aria-describedby="degreeCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseLocation"
-                        onChange={(e) => handleDegreeChange(e, index)}
                         name="degreeCourseLocation"
+                        onChange={(e) => handleDegreeChange(e, index)}
+                        placeholder="Informe o local de realização da graduação"
                         value={degree.degreeCourseLocation}
                     />
-                    <small id="degreeCourseLocation-help">Local onde a graduação foi realizada.</small>
                 </div>
             </div>
         </section>

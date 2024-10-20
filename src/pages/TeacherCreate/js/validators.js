@@ -1,11 +1,15 @@
 export const areRequiredFieldsFilled = (teacher) => {
-    return (
-        teacher.teacherName.trim() !== '' &&
-        teacher.teacherCPF.trim() !== '' &&
-        teacher.teacherRG.trim() !== '' &&
-        teacher.teacherPhoneNumber.trim() !== '' &&
-        teacher.teacherEmail.trim() !== ''
-    );
+    const requiredFields = [
+        'teacherName',
+        'teacherCPF',
+        'teacherRG',
+        'teacherPhoneNumber',
+        'teacherEmail'
+    ];
+
+    return requiredFields.every((field) => {
+        return teacher[field] && teacher[field].trim() !== '';
+    });
 };
 
 const validateRG = (rg) => {

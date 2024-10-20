@@ -4,51 +4,60 @@ import React, { useState } from 'react';
 import DropdownCities from '../../../components/pages/teacherCreate/DropdownCities/DropdownCities';
 import DropdownStates from '../../../components/pages/teacherCreate/DropdownStates/DropdownStates';
 import { handleFieldChange } from '../../../utils/handlers/handlerUtil';
+import { inputConfig, labelConfig } from '../js/config';
 
 
 const TeacherOptionalForm = ({ teacher, setTeacher }) => {
     const [selectedState, setSelectedState] = useState(null);
+    const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
 
     return (
-        <div className="p-grid">
-            <div className="p-field p-col">
-                <label htmlFor="teacherBirthState">Estado Natal</label>
+        <section className="grid">
+            <div className={"col md:col-5" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherBirthState"
+                >Estado Natal:</label>
                 <DropdownStates
+                    className="text-overflow-ellipsis"
                     id="teacherBirthState"
                     name="teacherBirthState"
                     onChange={(e) => {
                         setSelectedState(e.value);
-                        handleFieldChange(e, teacher, setTeacher);
+                        handleChange(e);
                     }}
                     value={teacher.teacherBirthState}
                 />
-                <small id="teacherBirthState-help" className="p-d-block">Campo do estado natal</small>
             </div>
-
-            <div className="p-field p-col">
-                <label htmlFor="teacherBirthCity">Cidade Natal</label>
+            <div className={"col md:col-5" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherBirthCity"
+                >Cidade Natal:</label>
                 <DropdownCities
+                    className="text-overflow-ellipsis"
                     id="teacherBirthCity"
                     name="teacherBirthCity"
                     stateId={selectedState}
-                    onChange={(e) => handleFieldChange(e, teacher, setTeacher)}
+                    onChange={(e) => handleChange(e)}
                     value={teacher.teacherBirthCity}
                 />
-                <small id="teacherBirthCity-help" className="p-d-block">Campo da cidade natal</small>
             </div>
-
-            <div className="p-field p-col">
-                <label htmlFor="teacherWorkedHours">Horas/Aula</label>
+            <div className={"col md:col-2" + inputConfig}>
+                <label
+                    className={labelConfig}
+                    htmlFor="teacherWorkedHours"
+                >Horas/Aula:</label>
                 <InputNumber
+                    className="max-w-full text-overflow-ellipsis"
                     id="teacherWorkedHours"
                     name="teacherWorkedHours"
-                    onChange={(e) => handleFieldChange(e.value, teacher, setTeacher)}
+                    onChange={(e) => handleChange(e)}
                     useGrouping={false}
                     value={teacher.teacherWorkedHours}
                 />
-                <small id="teacherWorkedHours-help" className="p-d-block">Horas de aula</small>
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -4,84 +4,91 @@ import { InputNumber } from 'primereact/inputnumber';
 import React, { useState } from "react";
 
 import { handleFieldChange } from "../../../utils/handlers/handlerUtil";
+import { handleCEPChange } from "../js/handlers";
+import { inputConfig, labelConfig } from '../js/config';
 
 
-const AddressForm = ({ teacherAddress, setTeacherAddress }) => {
+const AddressForm = ({ address, setAddress }) => {
     const [cep, setCEP] = useState('');
+    const handleChange = (e) => handleFieldChange(e, address, setAddress);
+    const handleCEPChanges = (e, setCEP) => handleCEPChange(e, setCEP, address, setAddress);
 
     return (
-        <section className="border-top-2 border-yellow-800 flex flex-column">
-            <h2>Endereço Residencial</h2>
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="addressCEP">CEP:</label>
+        <section className="border-top-3 border-600 flex flex-column gap-5">
+            <h2 className="text-gray-600">Endereço Residencial</h2>
+            <div className="grid">
+                <div className={"col-12 sm:col-4" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="addressCEP"
+                    >CEP:</label>
                     <InputMask
-                        aria-describedby="addressCEP-help"
                         className="w-full text-overflow-ellipsis"
                         id="addressCEP"
                         mask="99.999-999"
                         name="addressCEP"
-                        onChange={(e) => handleFieldChange(e, setCEP, teacherAddress, setTeacherAddress)}
+                        onChange={(e) => {
+                            handleCEPChanges(e, setCEP);
+                        }}
+                        placeholder="Digite um CEP"
                         value={cep}
                     />
-                    <small id="addressCEP-help">CEP residencial.</small>
                 </div>
-
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="addressNumber">Número:</label>
+                <div className={"col-12 sm:col-2" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="addressNumber"
+                    >Número:</label>
                     <InputNumber
-                        aria-describedby="addressNumber-help"
-                        className="w-full text-overflow-ellipsis"
+                        className="max-w-full text-overflow-ellipsis"
                         id="addressNumber"
                         name="addressNumber"
-                        onChange={(e) => handleFieldChange(e.value, teacherAddress, setTeacherAddress)}
+                        onChange={(e) => handleChange(e)}
                         useGrouping={false}
-                        value={teacherAddress.addressNumber}
+                        value={address.addressNumber}
                     />
-                    <small id="addressNumber-help">Nº residencial.</small>
                 </div>
-            </div>
-
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="addressStreet">Rua:</label>
+                <div className={"col-12 sm:col-6" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="addressStreet"
+                    >Rua:</label>
                     <InputText
-                        aria-describedby="addressStreet-help"
                         className="w-full text-overflow-ellipsis"
                         id="addressStreet"
                         name="addressStreet"
-                        onChange={(e) => handleFieldChange(e, teacherAddress, setTeacherAddress)}
-                        value={teacherAddress.addressStreet}
+                        onChange={handleChange}
+                        placeholder="Digite o nome de uma rua"
+                        value={address.addressStreet}
                     />
-                    <small id="addressStreet-help">Campo da rua residencial.</small>
                 </div>
-            </div>
-
-            <div className="form-row flex">
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="addressNeighborhood">Bairro:</label>
+                <div className={"col-12 sm:col" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="addressNeighborhood"
+                    >Bairro:</label>
                     <InputText
-                        aria-describedby="addressNeighborhood-help"
-                        className="w-full"
+                        className="w-full text-overflow-ellipsis"
                         id="addressNeighborhood"
                         name="addressNeighborhood"
-                        onChange={(e) => handleFieldChange(e, teacherAddress, setTeacherAddress)}
-                        value={teacherAddress.addressNeighborhood}
+                        onChange={handleChange}
+                        placeholder="Digite o nome de um bairro"
+                        value={address.addressNeighborhood}
                     />
-                    <small id="addressNeighborhood-help">Campo do bairro residencial.</small>
                 </div>
-
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="addressCity">Cidade:</label>
+                <div className={"col-12 sm:col" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="addressCity"
+                    >Município:</label>
                     <InputText
-                        aria-describedby="addressCity-help"
-                        className="w-full"
+                        className="w-full text-overflow-ellipsis"
                         id="addressCity"
                         name="addressCity"
-                        onChange={(e) => handleFieldChange(e, teacherAddress, setTeacherAddress)}
-                        value={teacherAddress.addressCity}
+                        onChange={handleChange}
+                        placeholder="Digite o nome de um município"
+                        value={address.addressCity}
                     />
-                    <small id="addressCity-help">Campo da cidade residencial.</small>
                 </div>
             </div>
         </section>

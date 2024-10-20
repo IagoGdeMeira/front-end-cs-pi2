@@ -1,68 +1,82 @@
 import "./Specialization.css";
 
+import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
-import { InputMask } from "primereact/inputmask";
+import { Calendar } from 'primereact/calendar';
 import { InputText } from "primereact/inputtext";
 
+import {
+    cardConfig,
+    inputConfig,
+    labelConfig
+} from "../../../../pages/TeacherCreate/js/config";
+import ptBR from '../../../../utils/locales/pt-br.json';
 
-const Specialization = ({ specialization, handleRemoveSpecialization, index, handleSpecializationChange }) => {
+
+addLocale('pt-br', ptBR);
+
+const Specialization = ({
+    handleRemoveSpecialization,
+    handleSpecializationChange,
+    index,
+    specialization
+}) => {
     return (
-        <section className="specialization-section flex flex-column surface-100 border-2 border-200">
-            <div className="specialization-header flex justify-content-between align-items-center surface-200">
-                <h3>Especialização {index + 1}</h3>
+        <section className={cardConfig}>
+            <div className="align-items-center flex justify-content-between p-2 surface-200">
+                <h3 className="text-gray-600">Especialização {index + 1}</h3>
                 <Button
                     icon="pi pi-trash"
-                    className="spec-remove bg-red-500 border-red-500"
+                    className="bg-red-500 border-red-500"
                     label=""
                     onClick={handleRemoveSpecialization}
                     type="button"
                 />
             </div>
-            <div className="form-row flex">
-                {/* Campo para o NOME DO CURSO da especialização. */}
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="specializationCourseName">Nome do curso:</label>
+            <div className="grid p-2">
+                <div className={"col-12 sm:col" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="specializationCourseName"
+                    >Nome do curso:</label>
                     <InputText
-                        aria-describedby="specializationCourseName-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseName"
-                        onChange={(e) => handleSpecializationChange(e, index)}
                         name="specializationCourseName"
+                        onChange={(e) => handleSpecializationChange(e, index)}
+                        placeholder="Informe o nome do curso"
                         value={specialization.specializationCourseName}
                     />
-                    <small id="specializationCourseName-help">Curso de especialização.</small>
                 </div>
-
-                {/* Campo para a DATA DE CONCLUSÃO da especialização. */}
-                <div className="w-9rem form-item-date flex flex-column align-items-start">
-                    <label htmlFor="specializationConclusionDate">Conclusão:</label>
-                    <InputMask
-                        aria-describedby="specializationConclusionDate-help"
-                        className="w-full text-overflow-ellipsis"
+                <div className={"col-3" + inputConfig} style={{maxWidth: "180px", minWidth: "175px"}}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="specializationConclusionDate"
+                    >Conclusão:</label>
+                    <Calendar
+                        dateFormat="dd/mm/yy"
                         id="specializationConclusionDate"
-                        mask="99/99/9999"
-                        onChange={(e) => handleSpecializationChange(e, index)}
+                        locale=""
+                        maxDate={new Date()}
                         name="specializationConclusionDate"
-                        slotChar="dd/mm/aaaa"
+                        onChange={(e) => handleSpecializationChange(e, index)}
+                        showIcon
                         value={specialization.specializationConclusionDate}
                     />
-                    <small id="specializationConclusionDate-help">Data de conclusão.</small>
                 </div>
-            </div>
-
-            <div className="form-row flex">
-                {/* Campo para o LOCAL da graduação. */}
-                <div className="form-item flex flex-column align-items-start">
-                    <label htmlFor="specializationCourseLocation">Local da Especialização:</label>
+                <div className={"col-12" + inputConfig}>
+                    <label
+                        className={labelConfig}
+                        htmlFor="specializationCourseLocation"
+                    >Local da Especialização:</label>
                     <InputText
-                        aria-describedby="specializationCourseLocation-help"
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseLocation"
-                        onChange={(e) => handleSpecializationChange(e, index)}
                         name="specializationCourseLocation"
+                        onChange={(e) => handleSpecializationChange(e, index)}
+                        placeholder="Informe o local de realização da especialização"
                         value={specialization.specializationCourseLocation}
                     />
-                    <small id="specializationCourseLocation-help">Local onde a especialização foi realizada.</small>
                 </div>
             </div>
         </section>

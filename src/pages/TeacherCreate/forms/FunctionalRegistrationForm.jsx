@@ -11,31 +11,38 @@ import {
 
 
 const FunctionalRegistrationForm = ({ functionalRegistrations, setFunctionalRegistrations }) => {
-    const functionalRegistrationTemplate = {
-        functionalRegistrationDiscipline: "",
-        functionalLine: "",
-        functionalRegistrationLink: ""
-    };
+    const handleAdd = () => {
+        const newFunctionalRegistration = {
+            functionalRegistrationDiscipline: "",
+            functionalLine: "",
+            functionalRegistrationLink: ""
+        };
+
+        handleAddObject(functionalRegistrations, setFunctionalRegistrations, newFunctionalRegistration);
+    }
+
+    const handleChange = (e, index) => handleFieldChange(e, index, functionalRegistrations, setFunctionalRegistrations);
+    const handleRemove = (index) => handleRemoveObject(index, functionalRegistrations, setFunctionalRegistrations);
 
     return (
-        <section className="border-top-2 border-yellow-800 flex flex-column">
-            <h2>Registros Funcionais</h2>
+        <section className="border-top-3 border-600 flex flex-column gap-3">
+            <h2 className="text-gray-600">Registros Funcionais</h2>
 
             {functionalRegistrations.map((functionalRegistration, index) => (
                 <FunctionalRegistration
-                key={index}
-                functionalRegistration={functionalRegistration}
-                handleFunctionalRegistrationChange={(e) => handleFieldChange(e, index, functionalRegistrations, setFunctionalRegistrations)}
-                handleRemoveFunctionalRegistration={() => handleRemoveObject(index, functionalRegistrations, setFunctionalRegistrations)}
-                index={index}
-            />
+                    key={index}
+                    functionalRegistration={functionalRegistration}
+                    handleFunctionalRegistrationChange={(e) => handleChange(e, index)}
+                    handleRemoveFunctionalRegistration={() => handleRemove(index)}
+                    index={index}
+                />
             ))}
 
             <Button
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"
                 label=""
-                onClick={() => handleAddObject(functionalRegistrations, setFunctionalRegistrations, functionalRegistrationTemplate)}
+                onClick={handleAdd}
                 type="button"
             />
         </section>

@@ -11,22 +11,29 @@ import {
 
 
 const SpecializationForm = ({ specializations, setSpecializations }) => {
-    const specializationTemplate = {
-        specializationCourseName: "",
-        specializationCourseLocation: "",
-        specializationConclusionDate: ""
+    const handleAdd = () => {
+        const newDegree = {
+            specializationCourseName: "",
+            specializationCourseLocation: "",
+            specializationConclusionDate: ""
+        };
+
+        handleAddObject(specializations, setSpecializations, newDegree);
     };
 
+    const handleChange = (e, index) => handleFieldChange(e, index, specializations, setSpecializations);
+    const handleRemove = (index) => handleRemoveObject(index, specializations, setSpecializations);
+
     return (
-        <section className="border-top-2 border-yellow-800 flex flex-column">
-            <h2>Especializações do Professor</h2>
+        <section className="border-top-3 border-600 flex flex-column gap-3">
+            <h2 className="text-gray-600">Especializações do Professor</h2>
 
             {specializations.map((specialization, index) => (
                 <Specialization
                     key={index}
                     specialization={specialization}
-                    handleSpecializationChange={(e) => handleFieldChange(e, index, specializations, setSpecializations)}
-                    handleRemoveSpecialization={() => handleRemoveObject(index, specializations, setSpecializations)}
+                    handleSpecializationChange={(e, index) => handleChange(e, index)}
+                    handleRemoveSpecialization={() => handleRemove(index)}
                     index={index}
                 />
             ))}
@@ -35,7 +42,7 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"
                 label=""
-                onClick={() => handleAddObject(specializations, setSpecializations, specializationTemplate)}
+                onClick={handleAdd}
                 type="button"
             />
         </section>
