@@ -96,6 +96,11 @@ const DisciplineCreate = () => {
                 <div>
                     <Button onClick={popupDelete}><i className="pi pi-trash" /></Button>
                 </div>
+
+                <div>
+                    <Button>Detalhes</Button>
+                </div>
+
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}
