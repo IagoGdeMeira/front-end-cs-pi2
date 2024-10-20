@@ -1,0 +1,43 @@
+div[data-pc-section="actions"] {
+    background-color: var(--red-500);
+    border-radius: 50%;
+    max-width: fit-content;
+    padding: 0;
+}
+
+div[data-pc-section="actions"]:hover {
+    background-color: var(--red-600);
+}
+
+div[data-pc-section="actions"] button {
+    color: var(--surface-100);
+}
+
+span[data-pc-section="filesize"] {
+    background-color: var(--surface-600);
+    border-radius: 0.25rem;
+    color: var(--surface-100);
+    padding: 0.25rem 0.5rem;
+}
+
+.p-fileupload-filename {
+    display: block;
+    flex: 1;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.p-fileupload-row {
+    background-color: var(--surface-200);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    text-align: start;
+}
+
+.p-fileupload-content > div:not([class]) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

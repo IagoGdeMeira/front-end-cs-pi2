@@ -1,5 +1,3 @@
-import './Degree.css';
-
 import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
@@ -10,6 +8,8 @@ import {
     inputConfig,
     labelConfig 
 } from '../../../../pages/TeacherCreate/js/config';
+import FileUploader from '../FileUploader/FileUploader';
+import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -27,7 +27,7 @@ const Degree = ({
                 <h3 className="text-gray-600">Graduação {index + 1}</h3>
                 <Button
                     icon="pi pi-trash"
-                    className="bg-red-500 border-red-500"
+                    className="bg-red-500 border-red-500 hover:bg-red-600 hover:border-red-600"
                     label=""
                     onClick={handleRemoveDegree}
                     type="button"
@@ -78,7 +78,17 @@ const Degree = ({
                         value={degree.degreeCourseLocation}
                     />
                 </div>
-            </div>
+            </div> 
+            {/* 
+            <FileUploader
+                label="Arquivos da Graduação:"
+                id="fileUpload"
+                uploadedFiles={degree.uploadedFiles}
+                handleFileUpload={handleFileUpload}
+                index={index}
+                name="certificate"
+            />
+            */}
         </section>
     );
 };

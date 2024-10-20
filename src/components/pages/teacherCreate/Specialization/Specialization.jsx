@@ -1,5 +1,3 @@
-import "./Specialization.css";
-
 import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
@@ -10,6 +8,8 @@ import {
     inputConfig,
     labelConfig
 } from "../../../../pages/TeacherCreate/js/config";
+import FileUploader from '../FileUploader/FileUploader';
+import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -79,6 +79,14 @@ const Specialization = ({
                     />
                 </div>
             </div>
+            <FileUploader
+                label="Arquivos da Especialização:"
+                id="fileUpload"
+                uploadedFiles={specialization.uploadedFiles}
+                handleFileUpload={handleFileUpload}
+                index={index}
+                name="certificate"
+            />
         </section>
     );
 };

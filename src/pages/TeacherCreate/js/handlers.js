@@ -20,3 +20,20 @@ export const handleCEPChange = async (e, setCEP, address, setAddress) => {
         };
     }
 };
+
+export const handleFileUpload = (e, index, objects, setObjects) => {
+    const uploadedFiles = e.files;
+
+    if (!Array.isArray(objects)) {
+        console.error("The 'objects' parameter is not an array:", objects);
+        return;
+    }
+
+    const updatedObjects = [...objects];
+    updatedObjects[index] = {
+        ...updatedObjects[index],
+        uploadedFiles,
+    };
+
+    setObjects(updatedObjects);
+};

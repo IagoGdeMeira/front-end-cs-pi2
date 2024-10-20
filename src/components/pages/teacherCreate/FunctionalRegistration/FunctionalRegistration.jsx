@@ -1,5 +1,3 @@
-import './FunctionalRegistration.css';
-
 import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
@@ -10,6 +8,8 @@ import {
     inputConfig,
     labelConfig 
 } from '../../../../pages/TeacherCreate/js/config';
+import FileUploader from '../FileUploader/FileUploader';
+import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -80,6 +80,14 @@ const FunctionalRegistration = ({
                     />
                 </div>       
             </div>
+            <FileUploader
+                label="Arquivos da Linha Funcional:"
+                id="fileUpload"
+                uploadedFiles={functionalRegistration.uploadedFiles}
+                handleFileUpload={handleFileUpload}
+                index={index}
+                name="certificate"
+            />
         </section>
     );
 };
