@@ -9,7 +9,6 @@ import {
     labelConfig 
 } from '../../../../pages/TeacherCreate/js/config';
 import FileUploader from '../FileUploader/FileUploader';
-import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -18,17 +17,17 @@ addLocale('pt-br', ptBR);
 
 const FunctionalRegistration = ({
     functionalRegistration,
+    handleFileUpload,
     handleFunctionalRegistrationChange,
     handleRemoveFunctionalRegistration,
     index
 }) => {
     return (
         <section className={cardConfig}>
-            <div className="align-items-center flex justify-content-between p-2 surface-200">
-                <h3 className="text-gray-600">Registro Funcional {index + 1}</h3>
+            <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
-                    className="bg-red-500 border-red-500"
+                    className="bg-red-500 border-red-500 hover:bg-red-600 hover:border-red-600"
                     label=""
                     onClick={handleRemoveFunctionalRegistration}
                     type="button"
@@ -44,7 +43,7 @@ const FunctionalRegistration = ({
                         className="w-full text-overflow-ellipsis"
                         id="functionalLine"
                         name="functionalLine"
-                        onChange={(e) => handleFunctionalRegistrationChange(e, index)}
+                        onChange={(e) => handleFunctionalRegistrationChange(e, functionalRegistration.id)}
                         placeholder="Informe a linha funcional"
                         useGrouping={false}
                         value={functionalRegistration.functionalLine}
@@ -59,7 +58,7 @@ const FunctionalRegistration = ({
                         className="w-full text-overflow-ellipsis"
                         id="functionalRegistrationLink"
                         name="functionalRegistrationLink"
-                        onChange={(e) => handleFunctionalRegistrationChange(e, index)}
+                        onChange={(e) => handleFunctionalRegistrationChange(e, functionalRegistration.id)}
                         placeholder="Informe o vínculo da linha funcional"
                         value={functionalRegistration.functionalRegistrationLink}
                     />
@@ -73,7 +72,7 @@ const FunctionalRegistration = ({
                         className="w-full text-overflow-ellipsis"
                         id="functionalRegistrationDiscipline"
                         name="functionalRegistrationDiscipline"
-                        onChange={(e) => handleFunctionalRegistrationChange(e, index)}
+                        onChange={(e) => handleFunctionalRegistrationChange(e, functionalRegistration.id)}
                         useGrouping={false}
                         placeholder="Informe a disciplina da linha funcional"
                         value={functionalRegistration.functionalLine}
@@ -81,12 +80,12 @@ const FunctionalRegistration = ({
                 </div>       
             </div>
             <FileUploader
-                label="Arquivos da Linha Funcional:"
-                id="fileUpload"
-                uploadedFiles={functionalRegistration.uploadedFiles}
                 handleFileUpload={handleFileUpload}
+                id="fileUpload"
                 index={index}
+                label="Arquivos da Linha Funcional:"
                 name="certificate"
+                uploadedFiles={functionalRegistration.uploadedFiles}
             />
         </section>
     );

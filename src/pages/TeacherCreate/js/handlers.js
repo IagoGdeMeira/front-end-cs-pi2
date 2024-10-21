@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const handleCEPChange = async (e, setCEP, address, setAddress) => {
     const cep = e.target.value.replace(/\D/g, "");
 
@@ -21,7 +22,7 @@ export const handleCEPChange = async (e, setCEP, address, setAddress) => {
     }
 };
 
-export const handleFileUpload = (e, index, objects, setObjects) => {
+export const handleFileUpload = (e, id, objects, setObjects) => {
     const uploadedFiles = e.files;
 
     if (!Array.isArray(objects)) {
@@ -29,11 +30,5 @@ export const handleFileUpload = (e, index, objects, setObjects) => {
         return;
     }
 
-    const updatedObjects = [...objects];
-    updatedObjects[index] = {
-        ...updatedObjects[index],
-        uploadedFiles,
-    };
-
-    setObjects(updatedObjects);
+    setObjects(objects.map(obj => obj.id === id ? { ...obj, uploadedFiles } : obj));
 };

@@ -9,7 +9,6 @@ import {
     labelConfig 
 } from '../../../../pages/TeacherCreate/js/config';
 import FileUploader from '../FileUploader/FileUploader';
-import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -18,13 +17,13 @@ addLocale('pt-br', ptBR);
 const Degree = ({
     degree,
     handleDegreeChange,
+    handleFileUpload,
     handleRemoveDegree,
     index
 }) => {
     return (
         <section className={cardConfig}>
-            <div className="align-items-center flex justify-content-between p-2 surface-200">
-                <h3 className="text-gray-600">Graduação {index + 1}</h3>
+            <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
                     className="bg-red-500 border-red-500 hover:bg-red-600 hover:border-red-600"
@@ -43,7 +42,7 @@ const Degree = ({
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseName"
                         name="degreeCourseName"
-                        onChange={(e) => handleDegreeChange(e, index)}
+                        onChange={(e) => handleDegreeChange(e, degree.id)}
                         placeholder="Informe o nome do curso"
                         value={degree.degreeCourseName}
                     />
@@ -59,7 +58,7 @@ const Degree = ({
                         locale="pt-br"
                         maxDate={new Date()}
                         name="degreeConclusionDate"
-                        onChange={(e) => handleDegreeChange(e, index)}
+                        onChange={(e) => handleDegreeChange(e, degree.id)}
                         showIcon
                         value={degree.degreeConclusionDate}
                     />
@@ -73,22 +72,20 @@ const Degree = ({
                         className="w-full text-overflow-ellipsis"
                         id="degreeCourseLocation"
                         name="degreeCourseLocation"
-                        onChange={(e) => handleDegreeChange(e, index)}
+                        onChange={(e) => handleDegreeChange(e, degree.id)}
                         placeholder="Informe o local de realização da graduação"
                         value={degree.degreeCourseLocation}
                     />
                 </div>
             </div> 
-            {/* 
             <FileUploader
-                label="Arquivos da Graduação:"
+                handleFileUpload={(e) => handleFileUpload(e, degree.id)}
                 id="fileUpload"
-                uploadedFiles={degree.uploadedFiles}
-                handleFileUpload={handleFileUpload}
                 index={index}
+                label="Arquivos da Graduação:"
                 name="certificate"
+                uploadedFiles={degree.uploadedFiles}
             />
-            */}
         </section>
     );
 };

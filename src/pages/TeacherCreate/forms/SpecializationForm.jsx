@@ -8,36 +8,33 @@ import {
     handleFieldChange,
     handleRemoveObject
 } from "../../../utils/handlers/handlerUtil";
+import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 
 const SpecializationForm = ({ specializations, setSpecializations }) => {
-    const handleAdd = () => {
-        const newDegree = {
-            specializationCourseName: "",
-            specializationCourseLocation: "",
-            specializationConclusionDate: ""
-        };
-
-        handleAddObject(specializations, setSpecializations, newDegree);
-    };
-
-    const handleChange = (e, index) => handleFieldChange(e, index, specializations, setSpecializations);
-    const handleRemove = (index) => handleRemoveObject(index, specializations, setSpecializations);
+    const handleFileUpload = (e, id) => uploadHandler(e, id, specializations, setSpecializations);
+    const handleChange = (e, id) => handleFieldChange(e, id, specializations, setSpecializations);
+    const handleRemove = (id) => handleRemoveObject(id, specializations, setSpecializations);
+    const handleAdd = () => handleAddObject(specializations, setSpecializations, {
+        specializationCourseName: "",
+        specializationCourseLocation: "",
+        specializationConclusionDate: "",
+        uploadedFiles: []
+    });
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-3">
             <h2 className="text-gray-600">Especializações do Professor</h2>
-
-            {specializations.map((specialization, index) => (
+            {specializations.map((specialization) => (
                 <Specialization
-                    key={index}
+                    handleSpecializationChange={(e) => handleChange(e, specialization.id)}
+                    handleFileUpload={handleFileUpload}
+                    handleRemoveSpecialization={() => handleRemove(specialization.id)}
+                    index={specialization.id}
+                    key={specialization.id}
                     specialization={specialization}
-                    handleSpecializationChange={(e, index) => handleChange(e, index)}
-                    handleRemoveSpecialization={() => handleRemove(index)}
-                    index={index}
                 />
             ))}
-
             <Button
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"

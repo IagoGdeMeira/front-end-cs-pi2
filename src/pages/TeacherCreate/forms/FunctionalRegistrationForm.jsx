@@ -8,36 +8,33 @@ import {
     handleFieldChange,
     handleRemoveObject
 } from "../../../utils/handlers/handlerUtil";
+import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 
 const FunctionalRegistrationForm = ({ functionalRegistrations, setFunctionalRegistrations }) => {
-    const handleAdd = () => {
-        const newFunctionalRegistration = {
-            functionalRegistrationDiscipline: "",
-            functionalLine: "",
-            functionalRegistrationLink: ""
-        };
-
-        handleAddObject(functionalRegistrations, setFunctionalRegistrations, newFunctionalRegistration);
-    }
-
-    const handleChange = (e, index) => handleFieldChange(e, index, functionalRegistrations, setFunctionalRegistrations);
-    const handleRemove = (index) => handleRemoveObject(index, functionalRegistrations, setFunctionalRegistrations);
+    const handleFileUpload = (e, id) => uploadHandler(e, id, functionalRegistrations, setFunctionalRegistrations);
+    const handleChange = (e, id) => handleFieldChange(e, id, functionalRegistrations, setFunctionalRegistrations);
+    const handleRemove = (id) => handleRemoveObject(id, functionalRegistrations, setFunctionalRegistrations);
+    const handleAdd = () => handleAddObject(functionalRegistrations, setFunctionalRegistrations, {
+        functionalRegistrationDiscipline: "",
+        functionalLine: "",
+        functionalRegistrationLink: "",
+        uploadedFiles: []
+    });
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-3">
             <h2 className="text-gray-600">Registros Funcionais</h2>
-
-            {functionalRegistrations.map((functionalRegistration, index) => (
+            {functionalRegistrations.map((functionalRegistration) => (
                 <FunctionalRegistration
-                    key={index}
                     functionalRegistration={functionalRegistration}
-                    handleFunctionalRegistrationChange={(e) => handleChange(e, index)}
-                    handleRemoveFunctionalRegistration={() => handleRemove(index)}
-                    index={index}
+                    key={functionalRegistration.id}
+                    handleFileUpload={handleFileUpload}
+                    handleFunctionalRegistrationChange={(e) => handleChange(e, functionalRegistration.id)}
+                    handleRemoveFunctionalRegistration={() => handleRemove(functionalRegistration.id)}
+                    index={functionalRegistration.id}
                 />
             ))}
-
             <Button
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"

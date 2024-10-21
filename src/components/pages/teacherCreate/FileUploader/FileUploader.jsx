@@ -7,6 +7,8 @@ import React from 'react';
 import { labelConfig } from '../../../../pages/TeacherCreate/js/config';
 
 
+
+
 const FileUploader = ({
     label,
     id,
@@ -24,7 +26,14 @@ const FileUploader = ({
             <FileUpload
                 auto
                 cancelLabel="Cancelar"
-                chooseLabel="Escolher"
+                chooseLabel="Upload"
+                chooseOptions={
+                    {
+                        label: "Upload",
+                        icon: "pi pi-upload",
+                        className: "surface-400 border-400 hover:bg-yellow-400 hover:border-yellow-400"
+                    }
+                }
                 className="w-full"
                 customUpload
                 id={`${id}-${index}`}
@@ -33,15 +42,6 @@ const FileUploader = ({
                 uploadHandler={(e) => handleFileUpload(e, index)}
                 uploadLabel="Enviar"
             />
-            {uploadedFiles && uploadedFiles.length > 0 && (
-                <div className="mt-2">
-                    {uploadedFiles.map((file, idx) => (
-                        <p key={idx} className="text-gray-600">
-                            Arquivo enviado: {file.name}
-                        </p>
-                    ))}
-                </div>
-            )}
         </div>
     );
 };

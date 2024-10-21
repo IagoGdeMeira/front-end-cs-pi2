@@ -8,36 +8,33 @@ import {
     handleFieldChange,
     handleRemoveObject
 } from "../../../utils/handlers/handlerUtil";
+import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 
 const DegreeForm = ({ degrees, setDegrees }) => {
-    const handleAdd = () => {
-        const newDegree = {
-            degreeCourseName: "",
-            degreeCourseLocation: "",
-            degreeConclusionDate: ""
-        };
-
-        handleAddObject(degrees, setDegrees, newDegree);
-    };
-
-    const handleChange = (e, index) => handleFieldChange(e, index, degrees, setDegrees);
-    const handleRemove = (index) => handleRemoveObject(index, degrees, setDegrees);
+    const handleFileUpload = (e, id) => uploadHandler(e, id, degrees, setDegrees);
+    const handleChange = (e, id) => handleFieldChange(e, id, degrees, setDegrees);
+    const handleRemove = (id) => handleRemoveObject(id, degrees, setDegrees);
+    const handleAdd = () => handleAddObject(degrees, setDegrees, {
+        degreeCourseName: "",
+        degreeCourseLocation: "",
+        degreeConclusionDate: "",
+        uploadedFiles: [],
+    });
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-3">
             <h2 className="text-gray-600">Graduações do Professor</h2>
-
-            {degrees.map((degree, index) => (
+            {degrees.map((degree) => (
                 <Degree
-                    key={index}
                     degree={degree}
-                    handleDegreeChange={(e) => handleChange(e, index)}
-                    handleRemoveDegree={() => handleRemove(index)}
-                    index={index}
+                    handleDegreeChange={(e) => handleChange(e, degree.id)}
+                    handleFileUpload={handleFileUpload}
+                    handleRemoveDegree={() => handleRemove(degree.id)}
+                    index={degree.id}
+                    key={degree.id}
                 />
             ))}
-
             <Button
                 className="bg-yellow-500 border-yellow-500 w-full"
                 icon="pi pi-plus"

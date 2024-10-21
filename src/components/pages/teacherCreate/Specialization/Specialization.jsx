@@ -9,25 +9,24 @@ import {
     labelConfig
 } from "../../../../pages/TeacherCreate/js/config";
 import FileUploader from '../FileUploader/FileUploader';
-import { handleFileUpload } from '../../../../pages/TeacherCreate/js/handlers';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
 addLocale('pt-br', ptBR);
 
 const Specialization = ({
-    handleRemoveSpecialization,
     handleSpecializationChange,
+    handleFileUpload,
+    handleRemoveSpecialization,
     index,
     specialization
 }) => {
     return (
         <section className={cardConfig}>
-            <div className="align-items-center flex justify-content-between p-2 surface-200">
-                <h3 className="text-gray-600">Especialização {index + 1}</h3>
+            <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
-                    className="bg-red-500 border-red-500"
+                    className="bg-red-500 border-red-500 hover:bg-red-600 hover:border-red-600"
                     label=""
                     onClick={handleRemoveSpecialization}
                     type="button"
@@ -43,7 +42,7 @@ const Specialization = ({
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseName"
                         name="specializationCourseName"
-                        onChange={(e) => handleSpecializationChange(e, index)}
+                        onChange={(e) => handleSpecializationChange(e, specialization.id)}
                         placeholder="Informe o nome do curso"
                         value={specialization.specializationCourseName}
                     />
@@ -56,10 +55,10 @@ const Specialization = ({
                     <Calendar
                         dateFormat="dd/mm/yy"
                         id="specializationConclusionDate"
-                        locale=""
+                        locale="pt-br"
                         maxDate={new Date()}
                         name="specializationConclusionDate"
-                        onChange={(e) => handleSpecializationChange(e, index)}
+                        onChange={(e) => handleSpecializationChange(e, specialization.id)}
                         showIcon
                         value={specialization.specializationConclusionDate}
                     />
@@ -73,19 +72,19 @@ const Specialization = ({
                         className="w-full text-overflow-ellipsis"
                         id="specializationCourseLocation"
                         name="specializationCourseLocation"
-                        onChange={(e) => handleSpecializationChange(e, index)}
+                        onChange={(e) => handleSpecializationChange(e, specialization.id)}
                         placeholder="Informe o local de realização da especialização"
                         value={specialization.specializationCourseLocation}
                     />
                 </div>
             </div>
             <FileUploader
-                label="Arquivos da Especialização:"
+                handleFileUpload={(e) => handleFileUpload(e, specialization.id)}
                 id="fileUpload"
-                uploadedFiles={specialization.uploadedFiles}
-                handleFileUpload={handleFileUpload}
                 index={index}
+                label="Arquivos da Especialização:"
                 name="certificate"
+                uploadedFiles={specialization.uploadedFiles}
             />
         </section>
     );

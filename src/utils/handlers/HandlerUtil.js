@@ -1,23 +1,20 @@
+import { v4 as uuidv4 } from 'uuid';
+
+
 export const handleFieldChange = (e, ...args) => {
     const { name, value } = e.target ? e.target : e;
 
     if (Array.isArray(args[1])) {
-        const [index, objects, setObjects] = args;
-        const updatedObjects = [...objects];
-        updatedObjects[index] = { ...objects[index], [name]: value };
-        setObjects(updatedObjects);
+        const [id, objects, setObjects] = args;
+        setObjects(objects.map(obj => obj.id === id ? { ...obj, [name]: value } : obj));
     } else {
         const [object, setObject] = args;
         setObject({ ...object, [name]: value });
     }
 };
 
-export const handleAddObject = (objects, setObjects, objectTemplate) => {
-    const newObject = { ...objectTemplate };
-    setObjects([...objects, newObject]);
-};
+export const handleAddObject = (objects, setObjects, objectTemplate) =>
+    setObjects([...objects, { id: uuidv4(), ...objectTemplate }]);
 
-export const handleRemoveObject = (index, objects, setObjects) => {
-    const updatedObjects = objects.filter((_, i) => i !== index);
-    setObjects(updatedObjects);
-};
+export const handleRemoveObject = (id, objects, setObjects) =>
+    setObjects(objects.filter(obj => obj.id !== id));
