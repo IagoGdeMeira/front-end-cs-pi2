@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Card } from "primereact/card";
+import { Dialog } from "primereact/dialog";
 
 const DisciplineDetails = ({onClose}) =>{
     const [edits, setEdits] = useState([]);
@@ -20,25 +21,37 @@ const DisciplineDetails = ({onClose}) =>{
     // useEffect(() =>{
     //     // EditsService.getEdits().then(data=> setEdits(data));
     // }, []);
+    const [dialogVisible, setDialogVisible] = useState(false);
+
+
+    const dialogFooterTemplate = () => {
+        return <Button label="Ok" icon="pi pi-check" onClick={() => setDialogVisible(false)} />;
+    };
 
     return(
         <div>
-            <div className="col-1 col-offset-11"><Button onClick={onClose} className="popup-close-button"><i className="pi pi-times" /></Button></div>
-            <Card>
+            <div>
+                <Button label="Show" icon="pi pi-external-link" onClick={() => setDialogVisible(true)} />
+            </div>
+            <Dialog header="Flex Scroll" visible={dialogVisible} style={{ width: '75vw' }} maximizable modal contentStyle={{ height: '200vw' }} onHide={() => setDialogVisible(false)} closeOnEscape={true}>
                 <div>
-                    <p>Nome disciplina</p>
-                    <p>Codigo disciplina</p>
+                    <Card>
+                        <div>
+                            <p>Nome disciplina</p>
+                            <p>Codigo disciplina</p>
 
-                    <p>grade de horário de aulas</p>
-                    <p>os professores vinculados a disciplina</p>
-                    <div className={styles["container-details"]}>a</div>
-                    <DataTable value={edits}>
-                        {columns.map((col, i) => (
-                            <Column key={col.field} field={col.field} header={col.header} />
-                        ))}
-                    </DataTable>
+                            <p>grade de horário de aulas</p>
+                            <p>os professores vinculados a disciplina</p>
+                            <div className={styles["container-details"]}>a</div>
+                            <DataTable value={edits}>
+                                {columns.map((col, i) => (
+                                    <Column key={col.field} field={col.field} header={col.header} />
+                                ))}
+                            </DataTable>
+                        </div>
+                    </Card>
                 </div>
-            </Card>
+            </Dialog>
         </div>
     )
 }

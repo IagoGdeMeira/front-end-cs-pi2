@@ -1,4 +1,4 @@
-import styles from "./DisciplineCreate.module.css"; // Importando o módulo CSS
+import styles from "./DisciplineCreate.module.css";
 
 import React, { useState } from "react";
 import { Button } from 'primereact/button';
@@ -21,7 +21,7 @@ const DisciplineCreate = () => {
         const { name, value } = e.target;
         setDiscipline((prevState) => ({
             ...prevState,
-            [name]: value, // Atualiza o estado de discipline com base no input
+            [name]: value,
         }));
     };
 
@@ -65,25 +65,25 @@ const DisciplineCreate = () => {
 
     return (
         <>
-            <Card className={styles.card}> {/* Aplicando o estilo "card" */}
+            <Card className={styles.card}>
                 <div className={`${styles.card} flex justify-content-center`}>
                     <InputText
-                        className={styles['text-box']} // Aplicando o estilo "text-box"
+                        className={styles['text-box']} 
                         onChange={handleChange}
                         name="disciplineName"
                         id="disciplineName"
-                        value={discipline.disciplineName} // Conectando o valor ao estado
+                        value={discipline.disciplineName} 
                         placeholder="Nome Disciplina"
                     />
                 </div>
                 <div className={`${styles.card} flex justify-content-center`}>
                     <InputNumber
-                        className={styles['text-box']} // Aplicando o estilo "text-box"
-                        onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} // Para InputNumber, tratamos o valor diretamente
+                        className={styles['text-box']} 
+                        onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} 
                         useGrouping={false}
                         name="disciplineCode"
                         id="disciplineCode"
-                        value={discipline.disciplineCode} // Conectando o valor ao estado
+                        value={discipline.disciplineCode} 
                         placeholder="Código disciplina"
                     />
                 </div>

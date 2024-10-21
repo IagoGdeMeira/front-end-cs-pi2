@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from './DeletePopup.module.css'; // Importando o módulo CSS
+import styles from './DeletePopup.module.css';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from "primereact/button";
 import ErrorPopup from "../ErrorBox/ErrorPopup.jsx";
@@ -37,7 +37,7 @@ const DeletePopup = ({ message, visible, onClose }) => {
     };
 
     const isCodeEqual = () => {
-        return String(localStorage.getItem("disciplineCode")) === String(codeDelete); // Compara como strings
+        return String(localStorage.getItem("disciplineCode")) === String(codeDelete);
     };
 
     const popupConfirmDeletion = () => {
