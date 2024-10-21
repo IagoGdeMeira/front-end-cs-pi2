@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './DeletePopup.css';
+import styles from './DeletePopup.module.css'; // Importando o módulo CSS
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from "primereact/button";
 import ErrorPopup from "../ErrorBox/ErrorPopup.jsx";
@@ -51,12 +51,12 @@ const DeletePopup = ({ message, visible, onClose }) => {
 
     return (
         <>
-            <div className="popup-overlay" onClick={onClose}>
-                <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-                    <span className="popup-message">{message}</span>
+            <div className={styles['popup-overlay']} onClick={onClose}>
+                <div className={styles['popup-content']} onClick={(e) => e.stopPropagation()}>
+                    <span className={styles['popup-message']}>{message}</span>
                     <div>
                         <InputNumber
-                            className="popup-input"
+                            className={styles['popup-input']}
                             value={codeDelete}
                             onChange={handleChange}
                             useGrouping={false}
@@ -64,9 +64,9 @@ const DeletePopup = ({ message, visible, onClose }) => {
                         />
                     </div>
                     <div>
-                        <Button className="popup-close-button" onClick={onClose}>Cancelar</Button>
+                        <Button className={styles['popup-close-button']} onClick={onClose}>Cancelar</Button>
                         <Button
-                            className="popup-delete-button"
+                            className={styles['popup-delete-button']}
                             onClick={DeleteDiscipline}
                             disabled={String(localStorage.getItem("disciplineCode")) != String(codeDelete) || localStorage.getItem("disciplineCode") == null}>
                             Deletar Disciplina

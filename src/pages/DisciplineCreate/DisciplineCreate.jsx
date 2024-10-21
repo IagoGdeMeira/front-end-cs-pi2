@@ -1,5 +1,4 @@
-
-import "./DisciplineCreate.css";
+import styles from "./DisciplineCreate.module.css"; // Importando o módulo CSS
 
 import React, { useState } from "react";
 import { Button } from 'primereact/button';
@@ -8,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
 import DeletePopup from "../../components/DeletePopup/DeletePopup";
 import { InputNumber } from "primereact/inputnumber";
+import { InputText } from 'primereact/inputtext';
 
 const DisciplineCreate = () => {
     const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
@@ -65,10 +65,10 @@ const DisciplineCreate = () => {
 
     return (
         <>
-            <Card>
-                <div className="card flex justify-content-center">
+            <Card className={styles.card}> {/* Aplicando o estilo "card" */}
+                <div className={`${styles.card} flex justify-content-center`}>
                     <InputText
-                        className="text-box"
+                        className={styles['text-box']} // Aplicando o estilo "text-box"
                         onChange={handleChange}
                         name="disciplineName"
                         id="disciplineName"
@@ -76,9 +76,9 @@ const DisciplineCreate = () => {
                         placeholder="Nome Disciplina"
                     />
                 </div>
-                <div className="card flex justify-content-center">
+                <div className={`${styles.card} flex justify-content-center`}>
                     <InputNumber
-                        className="text-box"
+                        className={styles['text-box']} // Aplicando o estilo "text-box"
                         onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} // Para InputNumber, tratamos o valor diretamente
                         useGrouping={false}
                         name="disciplineCode"
@@ -87,9 +87,9 @@ const DisciplineCreate = () => {
                         placeholder="Código disciplina"
                     />
                 </div>
-                <div className="card flex justify-content-center">
-                    <Button className="button-box" onClick={navigateHome} label="Cancelar" />
-                    <Button className="button-box" onClick={disciplineExists} label="Salvar" />
+                <div className={`${styles.card} flex justify-content-center`}>
+                    <Button className={styles['button-box']} onClick={navigateHome} label="Cancelar" />
+                    <Button className={styles['button-box']} onClick={disciplineExists} label="Salvar" />
                 </div>
 
                 <div>

@@ -1,3 +1,5 @@
+import styles from "./DisciplineDetails.module.css"
+
 import React, { useEffect, useState } from "react";
 import 'primeicons/primeicons.css';
 import { Button } from "primereact/button";
@@ -29,6 +31,7 @@ const DisciplineDetails = ({onClose}) =>{
 
                     <p>grade de horário de aulas</p>
                     <p>os professores vinculados a disciplina</p>
+                    <div className={styles["container-details"]}>a</div>
                     <DataTable value={edits}>
                         {columns.map((col, i) => (
                             <Column key={col.field} field={col.field} header={col.header} />
