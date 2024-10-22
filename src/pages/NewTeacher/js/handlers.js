@@ -1,4 +1,6 @@
 import axios from "axios";
+import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
+import { validateEmail, validateRG } from "./validators";
 
 
 export const handleCEPChange = async (e, setCEP, address, setAddress) => {
@@ -31,4 +33,17 @@ export const handleFileUpload = (e, id, objects, setObjects) => {
     }
 
     setObjects(objects.map(obj => obj.id === id ? { ...obj, uploadedFiles } : obj));
+};
+
+export const handlePhoneNumberChange = (e, fieldName, object, setObject) => {
+    let phoneNumber = e.target.value.replace(/\D/g, '');
+    
+    if (phoneNumber.length > 10)
+        phoneNumber = phoneNumber.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    else if (phoneNumber.length > 6)
+        phoneNumber = phoneNumber.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+    else if (phoneNumber.length > 2)
+        phoneNumber = phoneNumber.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+
+    handleFieldChange({ target: { name: fieldName, value: phoneNumber } }, object, setObject);
 };

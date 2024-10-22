@@ -1,4 +1,4 @@
-import "./TeacherCreate.css";
+import "./NewTeacher.css";
 
 import { Button } from 'primereact/button';
 import React, { useState, useEffect } from 'react';
@@ -12,17 +12,22 @@ import FunctionalRegistrationForm from './forms/FunctionalRegistrationForm';
 import SpecializationForm from './forms/SpecializationForm';
 import TeacherForm from './forms/TeacherForm'; 
 import TeacherOptionalForm from './forms/TeacherOptionalForm';
-import { areRequiredFieldsFilled } from './js/validators';
+
+import { areRequiredFieldsFilled, validateEmail, validateRG } from './js/validators';
 
 
-const TeacherCreate = () => {
+const NewTeacher = () => {
     const navigate = useNavigate();
     const navigateHome = () => navigate('/');
+    const cancelButtonConfig = "bg-red-400 border-red-400 hover:bg-red-600 hover:border-red-600 ";
+    const saveButtonConfig = "bg-yellow-400 border-yellow-400 hover:bg-yellow-600 hover:border-yellow-600 ";
 
     const [showOptionalFields, setShowOptionalFields] = useState(false);
     const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
     const [teacher, setTeacher] = useState({});
+    const [errors, setErrors] = useState({});
+
     const [address, setAddress] = useState({});
     const [degrees, setDegrees] = useState([]);
     const [specializations, setSpecializations] = useState([]);
@@ -33,8 +38,30 @@ const TeacherCreate = () => {
         setSaveButtonDisabled(!allFieldsFilled);
     }, [teacher]);
 
-    const cancelButtonConfig = "bg-red-400 border-red-400 hover:bg-red-600 hover:border-red-600 ";
-    const saveButtonConfig = "bg-yellow-400 border-yellow-400 hover:bg-yellow-600 hover:border-yellow-600 ";
+    const handleTeacherValidation = () => {
+        const newErrors = {};
+    
+        if (!teacher.teacherName || teacher.teacherName.trim() === '')
+            newErrors.teacherName = "Nome é obrigatório.";
+        if (!teacher.teacherCPF || teacher.teacherCPF.trim() === '')
+            newErrors.teacherCPF = "CPF é obrigatório.";
+        if (!teacher.teacherRG || teacher.teacherRG.trim() === '' || !validateRG(teacher.teacherRG))
+            newErrors.teacherRG = "RG é obrigatório ou inválido.";
+        if (!teacher.teacherPhoneNumber || teacher.teacherPhoneNumber.trim() === '')
+            newErrors.teacherPhoneNumber = "Telefone é obrigatório.";
+        if (!teacher.teacherEmail || !validateEmail(teacher.teacherEmail))
+            newErrors.teacherEmail = "E-mail é obrigatório ou inválido.";
+    
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (handleTeacherValidation()) {
+            console.log("Form submitted:", teacher);
+        }
+    };
 
     return (
         <SimpleLayout>
@@ -47,7 +74,7 @@ const TeacherCreate = () => {
                 py-3
                 sm:border-round-lg
             ">
-                <TeacherForm teacher={teacher} setTeacher={setTeacher} />
+                <TeacherForm errors={errors} teacher={teacher} setTeacher={setTeacher} />
                 <section className="col-12">
                     <ToggleButton
                         checked={showOptionalFields}
@@ -77,6 +104,7 @@ const TeacherCreate = () => {
                         className={saveButtonConfig + "w-9rem"}
                         disabled={saveButtonDisabled}
                         label="Salvar"
+                        onClick={handleSubmit}
                     />
                 </div> 
             </form>
@@ -84,4 +112,4 @@ const TeacherCreate = () => {
     );
 }
 
-export default TeacherCreate;
+export default NewTeacher;

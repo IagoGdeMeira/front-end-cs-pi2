@@ -1,13 +1,13 @@
 import { Button } from 'primereact/button';
 import React from "react";
 
-import Specialization from "../../../components/pages/teacherCreate/Specialization/Specialization";
+import Specialization from "../../../components/pages/NewTeacher/Specialization/Specialization";
 
 import {
     handleAddObject,
     handleFieldChange,
     handleRemoveObject
-} from "../../../utils/handlers/handlerUtil";
+} from "../../../utils/handlers/globalHandlers";
 import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 

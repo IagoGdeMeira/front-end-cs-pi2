@@ -4,7 +4,7 @@ import { FileUpload } from 'primereact/fileupload';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { labelConfig } from '../../../../pages/TeacherCreate/js/config';
+import { labelConfig } from '../../../../pages/NewTeacher/js/config';
 
 
 

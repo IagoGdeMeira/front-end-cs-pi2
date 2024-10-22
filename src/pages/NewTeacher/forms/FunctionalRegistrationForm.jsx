@@ -1,13 +1,13 @@
 import { Button } from 'primereact/button';
 import React from "react";
 
-import FunctionalRegistration from '../../../components/pages/teacherCreate/FunctionalRegistration/FunctionalRegistration';
+import FunctionalRegistration from '../../../components/pages/NewTeacher/FunctionalRegistration/FunctionalRegistration';
 
 import {
     handleAddObject,
     handleFieldChange,
     handleRemoveObject
-} from "../../../utils/handlers/handlerUtil";
+} from "../../../utils/handlers/globalHandlers";
 import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 

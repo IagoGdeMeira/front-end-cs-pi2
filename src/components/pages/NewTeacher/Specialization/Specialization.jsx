@@ -7,7 +7,7 @@ import {
     cardConfig,
     inputConfig,
     labelConfig
-} from "../../../../pages/TeacherCreate/js/config";
+} from "../../../../pages/NewTeacher/js/config";
 import FileUploader from '../FileUploader/FileUploader';
 import ptBR from '../../../../utils/locales/pt-br.json';
 

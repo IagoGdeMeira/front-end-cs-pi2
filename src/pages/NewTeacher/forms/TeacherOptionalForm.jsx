@@ -1,9 +1,9 @@
 import { InputNumber } from 'primereact/inputnumber';
 import React, { useState } from 'react';
 
-import DropdownCities from '../../../components/pages/teacherCreate/DropdownCities/DropdownCities';
-import DropdownStates from '../../../components/pages/teacherCreate/DropdownStates/DropdownStates';
-import { handleFieldChange } from '../../../utils/handlers/handlerUtil';
+import DropdownCities from '../../../components/pages/NewTeacher/DropdownCities/DropdownCities';
+import DropdownStates from '../../../components/pages/NewTeacher/DropdownStates/DropdownStates';
+import { handleFieldChange } from '../../../utils/handlers/globalHandlers';
 import { inputConfig, labelConfig } from '../js/config';
 
 

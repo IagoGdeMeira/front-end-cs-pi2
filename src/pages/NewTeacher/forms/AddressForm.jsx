@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import React, { useState } from "react";
 
-import { handleFieldChange } from "../../../utils/handlers/handlerUtil";
+import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
 import { handleCEPChange } from "../js/handlers";
 import { inputConfig, labelConfig } from '../js/config';
 
