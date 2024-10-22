@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
 import DeletePopup from "../../components/DeletePopup/DeletePopup";
 import { InputNumber } from "primereact/inputnumber";
+import { InputText } from "primereact/inputtext";
 
 const DisciplineCreate = () => {
     const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
@@ -95,6 +96,11 @@ const DisciplineCreate = () => {
                 <div>
                     <Button onClick={popupDelete}><i className="pi pi-trash" /></Button>
                 </div>
+
+                <div>
+                    <Button>Detalhes</Button>
+                </div>
+
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}
