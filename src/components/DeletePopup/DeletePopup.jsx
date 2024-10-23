@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from './DeletePopup.module.css';
+import './DeletePopup.css';
 import { InputNumber } from 'primereact/inputnumber';
 import { Button } from "primereact/button";
 import ErrorPopup from "../ErrorBox/ErrorPopup.jsx";
@@ -37,7 +37,7 @@ const DeletePopup = ({ message, visible, onClose }) => {
     };
 
     const isCodeEqual = () => {
-        return String(localStorage.getItem("disciplineCode")) === String(codeDelete);
+        return String(localStorage.getItem("disciplineCode")) === String(codeDelete); // Compara como strings
     };
 
     const popupConfirmDeletion = () => {
@@ -51,12 +51,12 @@ const DeletePopup = ({ message, visible, onClose }) => {
 
     return (
         <>
-            <div className={styles['popup-overlay']} onClick={onClose}>
-                <div className={styles['popup-content']} onClick={(e) => e.stopPropagation()}>
-                    <span className={styles['popup-message']}>{message}</span>
+            <div className="popup-overlay" onClick={onClose}>
+                <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+                    <span className="popup-message">{message}</span>
                     <div>
                         <InputNumber
-                            className={styles['popup-input']}
+                            className="popup-input"
                             value={codeDelete}
                             onChange={handleChange}
                             useGrouping={false}
@@ -64,9 +64,9 @@ const DeletePopup = ({ message, visible, onClose }) => {
                         />
                     </div>
                     <div>
-                        <Button className={styles['popup-close-button']} onClick={onClose}>Cancelar</Button>
+                        <Button className="popup-close-button" onClick={onClose}>Cancelar</Button>
                         <Button
-                            className={styles['popup-delete-button']}
+                            className="popup-delete-button"
                             onClick={DeleteDiscipline}
                             disabled={String(localStorage.getItem("disciplineCode")) != String(codeDelete) || localStorage.getItem("disciplineCode") == null}>
                             Deletar Disciplina
