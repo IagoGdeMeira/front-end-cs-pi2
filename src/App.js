@@ -1,10 +1,11 @@
 import './App.css';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
 import DisciplineCreate from "./pages/DisciplineCreate/DisciplineCreate";
+import DisciplineDetails from './components/DisciplineDetails/DisciplineDetails';
 import Home from "./pages/Home/Home";
 import NewTeacher from './pages/NewTeacher/NewTeacher';
-import DisciplineDetails from './components/DisciplineDetails/DisciplineDetails';
 
 
 function App() {
