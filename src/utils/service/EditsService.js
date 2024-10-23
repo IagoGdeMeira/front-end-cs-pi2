@@ -1,5 +1,0 @@
-class EditsService{
-    getEdits(){
-        
-    }
-}
