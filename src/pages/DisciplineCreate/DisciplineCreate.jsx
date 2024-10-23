@@ -1,15 +1,17 @@
 import styles from "./DisciplineCreate.module.css";
 
-import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import { useNavigate } from "react-router-dom";
-import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
-import DeletePopup from "../../components/DeletePopup/DeletePopup";
+import { Dialog } from "primereact/dialog";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from 'primereact/inputtext';
-import { Dialog } from "primereact/dialog";
+import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+
 import DisciplineDetails from "../../components/DisciplineDetails/DisciplineDetails";
+import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
+import DeletePopup from "../../components/DeletePopup/DeletePopup";
+
 
 const DisciplineCreate = () => {
     const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
