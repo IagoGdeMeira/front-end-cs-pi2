@@ -1,14 +1,17 @@
+import styles from "./DisciplineCreate.module.css";
 
-import "./DisciplineCreate.css";
-
-import React, { useState } from "react";
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { Dialog } from "primereact/dialog";
+import { InputNumber } from "primereact/inputnumber";
+import { InputText } from 'primereact/inputtext';
 import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+
+import DisciplineDetails from "../../components/DisciplineDetails/DisciplineDetails";
 import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
 import DeletePopup from "../../components/DeletePopup/DeletePopup";
-import { InputNumber } from "primereact/inputnumber";
-import { InputText } from "primereact/inputtext";
+
 
 const DisciplineCreate = () => {
     const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
@@ -22,7 +25,7 @@ const DisciplineCreate = () => {
         const { name, value } = e.target;
         setDiscipline((prevState) => ({
             ...prevState,
-            [name]: value, // Atualiza o estado de discipline com base no input
+            [name]: value,
         }));
     };
 
@@ -64,43 +67,42 @@ const DisciplineCreate = () => {
         setPopupDeleteVisible(true);
     };
 
+    const [dialogVisible, setDialogVisible] = useState(false);
+
     return (
         <>
-            <Card>
-                <div className="card flex justify-content-center">
+            <Card className={styles.card}>
+                <div className={`${styles.card} flex justify-content-center`}>
                     <InputText
-                        className="text-box"
+                        className={styles['text-box']} 
                         onChange={handleChange}
                         name="disciplineName"
                         id="disciplineName"
-                        value={discipline.disciplineName} // Conectando o valor ao estado
+                        value={discipline.disciplineName} 
                         placeholder="Nome Disciplina"
                     />
                 </div>
-                <div className="card flex justify-content-center">
+                <div className={`${styles.card} flex justify-content-center`}>
                     <InputNumber
-                        className="text-box"
-                        onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} // Para InputNumber, tratamos o valor diretamente
+                        className={styles['text-box']} 
+                        onChange={(e) => setDiscipline({ ...discipline, disciplineCode: e.value })} 
                         useGrouping={false}
                         name="disciplineCode"
                         id="disciplineCode"
-                        value={discipline.disciplineCode} // Conectando o valor ao estado
+                        value={discipline.disciplineCode} 
                         placeholder="Código disciplina"
                     />
                 </div>
-                <div className="card flex justify-content-center">
-                    <Button className="button-box" onClick={navigateHome} label="Cancelar" />
-                    <Button className="button-box" onClick={disciplineExists} label="Salvar" />
+                <div className={`${styles.card} flex justify-content-center`}>
+                    <Button className={styles['button-box']} onClick={navigateHome} label="Cancelar" />
+                    <Button className={styles['button-box']} onClick={disciplineExists} label="Salvar" />
                 </div>
-
                 <div>
                     <Button onClick={popupDelete}><i className="pi pi-trash" /></Button>
                 </div>
-
-                <div>
-                    <Button>Detalhes</Button>
-                </div>
-
+                <DisciplineDetails
+                    dVisible={dialogVisible}
+                    onClose={()=> setDialogVisible(false)}/>
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}

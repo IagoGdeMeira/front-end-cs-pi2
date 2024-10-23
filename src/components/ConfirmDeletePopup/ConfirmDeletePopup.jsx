@@ -1,13 +1,13 @@
 import React from 'react';
-import './ConfirmDeletePopup.css'; 
+import styles from './ConfirmDeletePopup.module.css'; 
 
 const ConfirmDeletePopup = ({ message, visible}) => {
     if (!visible) return null;
 
     return (
-        <div className="popup-overlay">
-            <div className="popup-content">
-                <span className="popup-message">{message}</span>
+        <div className={styles["popup-overlay"]}>
+            <div className={styles["popup-content"]}>
+                <span className={styles["popup-message"]}>{message}</span>
             </div>
         </div>
     );
