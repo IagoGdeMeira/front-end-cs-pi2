@@ -8,6 +8,8 @@ import ErrorPopup from "../../components/ErrorBox/ErrorPopup";
 import DeletePopup from "../../components/DeletePopup/DeletePopup";
 import { InputNumber } from "primereact/inputnumber";
 import { InputText } from 'primereact/inputtext';
+import { Dialog } from "primereact/dialog";
+import DisciplineDetails from "../../components/DisciplineDetails/DisciplineDetails";
 
 const DisciplineCreate = () => {
     const [discipline, setDiscipline] = useState({ disciplineName: "", disciplineCode: "" });
@@ -63,6 +65,8 @@ const DisciplineCreate = () => {
         setPopupDeleteVisible(true);
     };
 
+    const [dialogVisible, setDialogVisible] = useState(false);
+
     return (
         <>
             <Card className={styles.card}>
@@ -91,10 +95,12 @@ const DisciplineCreate = () => {
                     <Button className={styles['button-box']} onClick={navigateHome} label="Cancelar" />
                     <Button className={styles['button-box']} onClick={disciplineExists} label="Salvar" />
                 </div>
-
                 <div>
                     <Button onClick={popupDelete}><i className="pi pi-trash" /></Button>
                 </div>
+                <DisciplineDetails
+                    dVisible={dialogVisible}
+                    onClose={()=> setDialogVisible(false)}/>
                 <ErrorPopup
                     message={popupMessage}
                     visible={popupVisible}

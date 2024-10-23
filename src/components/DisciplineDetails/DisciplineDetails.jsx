@@ -8,9 +8,8 @@ import { Column } from 'primereact/column';
 import { Card } from "primereact/card";
 import { Dialog } from "primereact/dialog";
 
-const DisciplineDetails = ({onClose}) =>{
+function DisciplineDetails(onClose){
     const [edits, setEdits] = useState([]);
-
     
     const columns = [
         {field: 'idModifier', header: 'Id de modificação'},
@@ -18,11 +17,16 @@ const DisciplineDetails = ({onClose}) =>{
         {field: 'modified', header: "Modificação"}
     ]
 
-    // useEffect(() =>{
-    //     // EditsService.getEdits().then(data=> setEdits(data));
-    // }, []);
-    const [dialogVisible, setDialogVisible] = useState(false);
+    let [dialogVisible, setDialogVisible] = useState(false);
 
+    const data = [
+        { col1: 'PRIMEIRA AULA 7:30 AS 8:20', col2: 'Matemática', col3: 'História', col4: 'Física', col5: 'Biologia', col6: 'Geografia' },
+        { col1: 'SEGUNDA AULA 8:20 AS 9:10', col2: 'Português', col3: 'Geografia', col4: 'Química', col5: 'Matemática', col6: 'Educação Física' },
+        { col1: 'TERCEIRA AULA 9:10 AS 10:00', col2: 'Inglês', col3: 'Português', col4: 'Matemática', col5: 'Química', col6: 'Filosofia' },
+        { col1: 'INTERVALO 10:00 AS 10:20', col2: 'INTERVALO', col3: 'INTERVALO', col4: 'INTERVALO', col5: 'INTERVALO', col6: 'INTERVALO' },
+        { col1: 'QUARTA AULA 10:20 AS 11:10', col2: 'Ciências', col3: 'Educação Física', col4: 'Português', col5: 'Física', col6: 'Sociologia' },
+        { col1: 'QUINTA AULA 11:10 AS 12:00', col2: 'História', col3: 'Matemática', col4: 'Inglês', col5: 'Geografia', col6: 'Arte' }
+    ];
 
     const dialogFooterTemplate = () => {
         return <Button label="Ok" icon="pi pi-check" onClick={() => setDialogVisible(false)} />;
@@ -31,27 +35,53 @@ const DisciplineDetails = ({onClose}) =>{
     return(
         <div>
             <div>
-                <Button label="Show" icon="pi pi-external-link" onClick={() => setDialogVisible(true)} />
+            <Button className={styles['button-box']} label="Show" icon="pi pi-external-link" onClick={() => setDialogVisible(true)} />
+            </div >
+            <div>
+                <Dialog header="Detalhes da disciplina" visible={dialogVisible} style={{ width: '75vw' }} maximizable modal contentStyle={{ height: '200vw' }} onHide={() => setDialogVisible(false)} closeOnEscape={true} >
+                    <div>
+                        <Card>
+                            <div>
+                                <p>Disciplina: Matemática</p>
+                                <p>Codigo de Disciplina: 1265</p>
+                                <div  className={styles["table-container"]}>
+                                    <table className={styles["table"]} border="1">
+                                        <thead>
+                                            <tr>
+                                                <th >Horarios</th>
+                                                <th className={styles["columns"]}>Segunda-Feira</th>
+                                                <th className={styles["columns"]}>Terça-Feira</th>
+                                                <th className={styles["columns"]}>Quarta-Feira</th>
+                                                <th className={styles["columns"]}>Quinta-Feira</th>
+                                                <th className={styles["columns"]}>Sexta-Feira</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {data.map((row, index) => (
+                                                <tr className={styles["table-br"]} key={index}>
+                                                    <td>{row.col1}</td>
+                                                    <td>{row.col2}</td>
+                                                    <td>{row.col3}</td>
+                                                    <td>{row.col4}</td>
+                                                    <td>{row.col5}</td>
+                                                    <td>{row.col6}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                    <p>Professores: Marcia Almeida, Felipe Silva</p>
+                                {/* <DataTable value={edits}>
+                                    {columns.map((col, i) => (
+                                        <Column key={col.field} field={col.field} header={col.header} />
+                                    ))}
+                                </DataTable> */}
+                                <Button>Historico de Edição</Button>
+                            </div>
+                        </Card>
+                    </div>
+                </Dialog>
             </div>
-            <Dialog header="Flex Scroll" visible={dialogVisible} style={{ width: '75vw' }} maximizable modal contentStyle={{ height: '200vw' }} onHide={() => setDialogVisible(false)} closeOnEscape={true}>
-                <div>
-                    <Card>
-                        <div>
-                            <p>Nome disciplina</p>
-                            <p>Codigo disciplina</p>
-
-                            <p>grade de horário de aulas</p>
-                            <p>os professores vinculados a disciplina</p>
-                            <div className={styles["container-details"]}>a</div>
-                            <DataTable value={edits}>
-                                {columns.map((col, i) => (
-                                    <Column key={col.field} field={col.field} header={col.header} />
-                                ))}
-                            </DataTable>
-                        </div>
-                    </Card>
-                </div>
-            </Dialog>
         </div>
     )
 }
