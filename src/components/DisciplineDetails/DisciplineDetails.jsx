@@ -1,10 +1,8 @@
 import styles from "./DisciplineDetails.module.css"
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import 'primeicons/primeicons.css';
 import { Button } from "primereact/button";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
 import { Card } from "primereact/card";
 import { Dialog } from "primereact/dialog";
 
@@ -20,12 +18,12 @@ function DisciplineDetails(onClose){
     let [dialogVisible, setDialogVisible] = useState(false);
 
     const data = [
-        { col1: 'PRIMEIRA AULA 7:30 AS 8:20', col2: 'Matemática', col3: 'História', col4: 'Física', col5: 'Biologia', col6: 'Geografia' },
-        { col1: 'SEGUNDA AULA 8:20 AS 9:10', col2: 'Português', col3: 'Geografia', col4: 'Química', col5: 'Matemática', col6: 'Educação Física' },
-        { col1: 'TERCEIRA AULA 9:10 AS 10:00', col2: 'Inglês', col3: 'Português', col4: 'Matemática', col5: 'Química', col6: 'Filosofia' },
+        { col1: '1ª AULA 7:30 AS 8:20', col2: 'Matemática', col3: '', col4: '', col5: 'Matemática', col6: '' },
+        { col1: '2ª AULA 8:20 AS 9:10', col2: 'Matemática', col3: 'Matemática', col4: '', col5: 'Matemática', col6: '' },
+        { col1: '3ª AULA 9:10 AS 10:00', col2: '', col3: '', col4: 'Matemática', col5: '', col6: '' },
         { col1: 'INTERVALO 10:00 AS 10:20', col2: 'INTERVALO', col3: 'INTERVALO', col4: 'INTERVALO', col5: 'INTERVALO', col6: 'INTERVALO' },
-        { col1: 'QUARTA AULA 10:20 AS 11:10', col2: 'Ciências', col3: 'Educação Física', col4: 'Português', col5: 'Física', col6: 'Sociologia' },
-        { col1: 'QUINTA AULA 11:10 AS 12:00', col2: 'História', col3: 'Matemática', col4: 'Inglês', col5: 'Geografia', col6: 'Arte' }
+        { col1: '4ª AULA 10:20 AS 11:10', col2: '', col3: 'Matemática', col4: '', col5: '', col6: 'Matemática' },
+        { col1: '5ª AULA 11:10 AS 12:00', col2: '', col3: 'Matemática', col4: '', col5: '', col6: 'Matemática' }
     ];
 
     const dialogFooterTemplate = () => {
@@ -42,13 +40,13 @@ function DisciplineDetails(onClose){
                     <div>
                         <Card>
                             <div>
-                                <p>Disciplina: Matemática</p>
-                                <p>Codigo de Disciplina: 1265</p>
+                                <h1 className={styles['dicsipline']}>Matemática - 1265</h1>
+                                <p>Professores: Marcia Almeida, Felipe Silva</p>
                                 <div  className={styles["table-container"]}>
                                     <table className={styles["table"]} border="1">
                                         <thead>
                                             <tr>
-                                                <th >Horarios</th>
+                                                <th className={styles["columns"]}>Horarios</th>
                                                 <th className={styles["columns"]}>Segunda-Feira</th>
                                                 <th className={styles["columns"]}>Terça-Feira</th>
                                                 <th className={styles["columns"]}>Quarta-Feira</th>
@@ -70,7 +68,7 @@ function DisciplineDetails(onClose){
                                         </tbody>
                                     </table>
                                 </div>
-                                    <p>Professores: Marcia Almeida, Felipe Silva</p>
+                                    
                                 {/* <DataTable value={edits}>
                                     {columns.map((col, i) => (
                                         <Column key={col.field} field={col.field} header={col.header} />
