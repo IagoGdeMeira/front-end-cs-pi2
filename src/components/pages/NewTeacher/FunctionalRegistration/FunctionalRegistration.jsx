@@ -3,11 +3,7 @@ import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 
-import {
-    cardConfig,
-    inputConfig,
-    labelConfig 
-} from '../../../../pages/NewTeacher/js/config';
+import { cardConfig, inputConfig, labelConfig } from '../../../../utils/visualConfigs/globalVisualConfigs';
 import FileUploader from '../FileUploader/FileUploader';
 import ptBR from '../../../../utils/locales/pt-br.json';
 

@@ -6,13 +6,13 @@ import React from 'react';
 
 import { handleFieldChange } from '../../../utils/handlers/globalHandlers';
 import { handlePhoneNumberChange } from '../js/handlers';
-import { inputConfig, labelConfig } from '../js/config';
+import { inputConfig, labelConfig } from '../../../utils/visualConfigs/globalVisualConfigs';
 import ptBR from '../../../utils/locales/pt-br.json';
 
 
 addLocale('pt-br', ptBR);
 
-const TeacherForm = ({ errors, teacher, setTeacher }) => {
+const TeacherForm = ({ teacher, setTeacher, errors }) => {
     const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
     const handlePhoneChange = (e, fieldName) => handlePhoneNumberChange(e, fieldName, teacher, setTeacher);
 

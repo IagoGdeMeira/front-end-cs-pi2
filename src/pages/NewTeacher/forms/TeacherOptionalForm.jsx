@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import DropdownCities from '../../../components/pages/NewTeacher/DropdownCities/DropdownCities';
 import DropdownStates from '../../../components/pages/NewTeacher/DropdownStates/DropdownStates';
 import { handleFieldChange } from '../../../utils/handlers/globalHandlers';
-import { inputConfig, labelConfig } from '../js/config';
+import { inputConfig, labelConfig } from '../../../utils/visualConfigs/globalVisualConfigs';
 
 
 const TeacherOptionalForm = ({ teacher, setTeacher }) => {

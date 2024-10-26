@@ -3,11 +3,7 @@ import React from "react";
 
 import Degree from "../../../components/pages/NewTeacher/Degree/Degree";
 
-import {
-    handleAddObject,
-    handleFieldChange,
-    handleRemoveObject
-} from "../../../utils/handlers/globalHandlers";
+import { handleAddObject, handleFieldChange, handleRemoveObject } from "../../../utils/handlers/globalHandlers";
 import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
 import { handleCEPChange } from "../js/handlers";
-import { inputConfig, labelConfig } from '../js/config';
+import { inputConfig, labelConfig } from '../../../utils/visualConfigs/globalVisualConfigs';
 
 
 const AddressForm = ({ address, setAddress }) => {

@@ -13,12 +13,13 @@ import SpecializationForm from './forms/SpecializationForm';
 import TeacherForm from './forms/TeacherForm'; 
 import TeacherOptionalForm from './forms/TeacherOptionalForm';
 
-import { areRequiredFieldsFilled, validateEmail, validateRG } from './js/validators';
+import { areRequiredFieldsFilled, validateEmail, validatePhoneNumber, validateRG } from './js/validators';
+import PathRoutes from "../../utils/PathRoutes";
 
 
 const NewTeacher = () => {
     const navigate = useNavigate();
-    const navigateHome = () => navigate('/');
+
     const cancelButtonConfig = "bg-red-400 border-red-400 hover:bg-red-600 hover:border-red-600 ";
     const saveButtonConfig = "bg-yellow-400 border-yellow-400 hover:bg-yellow-600 hover:border-yellow-600 ";
 
@@ -42,15 +43,15 @@ const NewTeacher = () => {
         const newErrors = {};
     
         if (!teacher.teacherName || teacher.teacherName.trim() === '')
-            newErrors.teacherName = "Nome é obrigatório.";
+            newErrors.teacherName = "Nome informado é inválido.";
         if (!teacher.teacherCPF || teacher.teacherCPF.trim() === '')
-            newErrors.teacherCPF = "CPF é obrigatório.";
-        if (!teacher.teacherRG || teacher.teacherRG.trim() === '' || !validateRG(teacher.teacherRG))
-            newErrors.teacherRG = "RG é obrigatório ou inválido.";
-        if (!teacher.teacherPhoneNumber || teacher.teacherPhoneNumber.trim() === '')
-            newErrors.teacherPhoneNumber = "Telefone é obrigatório.";
+            newErrors.teacherCPF = "CPF informado é inválido.";
+        if (!teacher.teacherRG || !validateRG(teacher.teacherRG))
+            newErrors.teacherRG = "RG informado é inválido.";
+        if (!teacher.teacherPhoneNumber || !validatePhoneNumber(teacher.teacherPhoneNumber))
+            newErrors.teacherPhoneNumber = "Telefone informado é inválido.";
         if (!teacher.teacherEmail || !validateEmail(teacher.teacherEmail))
-            newErrors.teacherEmail = "E-mail é obrigatório ou inválido.";
+            newErrors.teacherEmail = "E-mail informado é inválido.";
     
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -98,7 +99,7 @@ const NewTeacher = () => {
                     <Button
                         className={cancelButtonConfig + "w-9rem"}
                         label="Cancelar"
-                        onClick={navigateHome}
+                        onClick={() => navigate(PathRoutes.HOME)}
                     />
                     <Button
                         className={saveButtonConfig + "w-9rem"}
