@@ -4,7 +4,7 @@ import { FileUpload } from 'primereact/fileupload';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { labelConfig } from '../../../../utils/visualConfigs/globalVisualConfigs';
+import GlobalVisualConfig from '../../../../utils/configs/GlobalVisualConfig';
 
 
 const FileUploader = ({
@@ -18,7 +18,7 @@ const FileUploader = ({
     return (
         <div className="file-uploader align-items-center flex flex-column gap-2 justify-content-between p-2 surface-200">
             <label
-                className={labelConfig}
+                className={GlobalVisualConfig.LABEL}
                 htmlFor={`${id}-${index}`}
             >{label}</label>
             <FileUpload

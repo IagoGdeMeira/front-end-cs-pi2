@@ -3,8 +3,9 @@ import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 
-import { cardConfig, inputConfig, labelConfig } from '../../../../utils/visualConfigs/globalVisualConfigs';
 import FileUploader from '../FileUploader/FileUploader';
+
+import GlobalVisualConfig from '../../../../utils/configs/GlobalVisualConfig';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -19,7 +20,7 @@ const FunctionalRegistration = ({
     index
 }) => {
     return (
-        <section className={cardConfig}>
+        <section className={GlobalVisualConfig.FORM_WRAPPED}>
             <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
@@ -30,9 +31,9 @@ const FunctionalRegistration = ({
                 />
             </div>
             <div className="grid p-2">
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalLine"
                     >Linha Funcional:</label>
                     <InputNumber
@@ -45,9 +46,9 @@ const FunctionalRegistration = ({
                         value={functionalRegistration.functionalLine}
                     />
                 </div>
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalRegistrationLink"
                     >Vínculo:</label>
                     <InputText
@@ -59,9 +60,9 @@ const FunctionalRegistration = ({
                         value={functionalRegistration.functionalRegistrationLink}
                     />
                 </div>
-                <div className={"col-12" + inputConfig}>
+                <div className={"col-12" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalRegistrationDiscipline"
                     >Disciplina:</label>
                     <InputNumber

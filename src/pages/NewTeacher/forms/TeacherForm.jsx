@@ -6,7 +6,7 @@ import React from 'react';
 
 import { handleFieldChange } from '../../../utils/handlers/globalHandlers';
 import { handlePhoneNumberChange } from '../js/handlers';
-import { inputConfig, labelConfig } from '../../../utils/visualConfigs/globalVisualConfigs';
+import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
 import ptBR from '../../../utils/locales/pt-br.json';
 
 
@@ -18,9 +18,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
 
     return (
         <>
-            <div className={"col" + inputConfig}>
+            <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherName"
                 >Nome:</label>
                 <InputText
@@ -33,9 +33,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                 />
                 {errors.teacherName && <small className="p-error">{errors.teacherName}</small>}
             </div>
-            <div className={"col-12 sm:col-3" + inputConfig} style={{maxWidth: "180px", minWidth: "175px"}}>
+            <div className={"col-12 sm:col-3" + GlobalVisualConfig.INPUT} style={{maxWidth: "180px", minWidth: "175px"}}>
                 <label
-                    className={labelConfig + "text-overflow-ellipsis"}
+                    className={GlobalVisualConfig.LABEL + "text-overflow-ellipsis"}
                     htmlFor="teacherBirthDate"
                 >Nascido em:</label>
                 <Calendar
@@ -49,9 +49,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                     value={teacher?.teacherBirthDate || null}
                 />
             </div>
-            <div className={"col md:col-6" + inputConfig}>
+            <div className={"col md:col-6" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherCPF"
                 >CPF:</label>
                 <InputMask
@@ -65,9 +65,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                 />
                 {errors.teacherCPF && <small className="p-error">{errors.teacherCPF}</small>}
             </div>
-            <div className={"col md:col-6" + inputConfig}>
+            <div className={"col md:col-6" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherRG"
                 >RG:</label>
                 <InputText
@@ -80,9 +80,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                 />
                 {errors.teacherRG && <small className="p-error">{errors.teacherRG}</small>}
             </div>
-            <div className={"col md:col-6" + inputConfig}>
+            <div className={"col md:col-6" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherPhoneNumber"
                 >Telefone:</label>
                 <InputText
@@ -96,9 +96,9 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                 />
                 {errors.teacherPhoneNumber && <small className="p-error">{errors.teacherPhoneNumber}</small>}
             </div>
-            <div className={"col md:col-6" + inputConfig}>
+            <div className={"col md:col-6" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherEmail"
                 >E-mail:</label>
                 <InputText

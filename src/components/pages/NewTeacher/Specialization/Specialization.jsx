@@ -3,8 +3,9 @@ import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { InputText } from "primereact/inputtext";
 
-import { cardConfig, inputConfig, labelConfig } from '../../../../utils/visualConfigs/globalVisualConfigs';
 import FileUploader from '../FileUploader/FileUploader';
+
+import GlobalVisualConfig from '../../../../utils/configs/GlobalVisualConfig';
 import ptBR from '../../../../utils/locales/pt-br.json';
 
 
@@ -18,7 +19,7 @@ const Specialization = ({
     specialization
 }) => {
     return (
-        <section className={cardConfig}>
+        <section className={GlobalVisualConfig.FORM_WRAPPED}>
             <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
@@ -29,9 +30,9 @@ const Specialization = ({
                 />
             </div>
             <div className="grid p-2">
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="specializationCourseName"
                     >Nome do curso:</label>
                     <InputText
@@ -43,9 +44,9 @@ const Specialization = ({
                         value={specialization.specializationCourseName}
                     />
                 </div>
-                <div className={"col-3" + inputConfig} style={{maxWidth: "180px", minWidth: "175px"}}>
+                <div className={"col-3" + GlobalVisualConfig.INPUT} style={{maxWidth: "180px", minWidth: "175px"}}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="specializationConclusionDate"
                     >Conclusão:</label>
                     <Calendar
@@ -59,9 +60,9 @@ const Specialization = ({
                         value={specialization.specializationConclusionDate}
                     />
                 </div>
-                <div className={"col-12" + inputConfig}>
+                <div className={"col-12" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="specializationCourseLocation"
                     >Local da Especialização:</label>
                     <InputText

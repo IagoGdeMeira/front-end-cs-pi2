@@ -2,7 +2,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputText } from "primereact/inputtext";
 
 import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
-import { inputConfig, labelConfig } from "../../../utils/visualConfigs/globalVisualConfigs";
+import GlobalVisualConfig from "../../../utils/configs/GlobalVisualConfig";
 
 
 const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
@@ -10,9 +10,9 @@ const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
 
     return(
         <>
-            <div className={"col" + inputConfig}>
+            <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="disciplineName"
                 >Nome:</label>
                 <InputText
@@ -24,9 +24,9 @@ const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
                     value={discipline?.disciplineName || null}
                 />
             </div>
-            <div className={"col" + inputConfig}>
+            <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="disciplineCode"
                 >Código:</label>
                 <InputNumber
