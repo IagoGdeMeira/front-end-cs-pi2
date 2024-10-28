@@ -14,9 +14,9 @@ export const areRequiredFieldsFilled = (teacher) => {
 
 export const validateRG = (rg) => {
     const rgPatterns = [
-        /^[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9X]$/,
-        /^[A-Za-z]{1,2}-[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[0-9X]$/,
-        /^[0-9]{1,9}[A-Za-z0-9]*$/,
+        /\d{2}\.\d{3}\.\d{3}-\d{1}/,
+        /[A-Z]{2}-\d{2}\.\d{3}\.\d{3}/,
+        /\d{2}\/\d{6}-\d{1}/,
     ];
 
     return rgPatterns.some((pattern) => pattern.test(rg));
@@ -25,4 +25,10 @@ export const validateRG = (rg) => {
 export const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
+};
+
+export const validatePhoneNumber = (phoneNumber) => {
+    const phoneNumberPattern = /\(\d{2}\) \d{4,5}-\d{4}/;
+
+    return phoneNumberPattern.test(phoneNumber);
 };

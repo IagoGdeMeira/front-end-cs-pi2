@@ -1,6 +1,5 @@
 import axios from "axios";
 import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
-import { validateEmail, validateRG } from "./validators";
 
 
 export const handleCEPChange = async (e, setCEP, address, setAddress) => {

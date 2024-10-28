@@ -3,11 +3,7 @@ import React from "react";
 
 import FunctionalRegistration from '../../../components/pages/NewTeacher/FunctionalRegistration/FunctionalRegistration';
 
-import {
-    handleAddObject,
-    handleFieldChange,
-    handleRemoveObject
-} from "../../../utils/handlers/globalHandlers";
+import { handleAddObject, handleFieldChange, handleRemoveObject} from "../../../utils/handlers/globalHandlers";
 import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 

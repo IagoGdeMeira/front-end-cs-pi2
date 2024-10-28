@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
 import { handleCEPChange } from "../js/handlers";
-import { inputConfig, labelConfig } from '../js/config';
+import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
 
 
 const AddressForm = ({ address, setAddress }) => {
@@ -17,9 +17,9 @@ const AddressForm = ({ address, setAddress }) => {
         <section className="border-top-3 border-600 flex flex-column gap-5">
             <h2 className="text-gray-600">Endereço Residencial</h2>
             <div className="grid">
-                <div className={"col-12 sm:col-4" + inputConfig}>
+                <div className={"col-12 sm:col-4" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="addressCEP"
                     >CEP:</label>
                     <InputMask
@@ -34,9 +34,9 @@ const AddressForm = ({ address, setAddress }) => {
                         value={cep}
                     />
                 </div>
-                <div className={"col-12 sm:col-2" + inputConfig}>
+                <div className={"col-12 sm:col-2" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="addressNumber"
                     >Número:</label>
                     <InputNumber
@@ -48,9 +48,9 @@ const AddressForm = ({ address, setAddress }) => {
                         value={address.addressNumber}
                     />
                 </div>
-                <div className={"col-12 sm:col-6" + inputConfig}>
+                <div className={"col-12 sm:col-6" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="addressStreet"
                     >Rua:</label>
                     <InputText
@@ -62,9 +62,9 @@ const AddressForm = ({ address, setAddress }) => {
                         value={address.addressStreet}
                     />
                 </div>
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="addressNeighborhood"
                     >Bairro:</label>
                     <InputText
@@ -76,9 +76,9 @@ const AddressForm = ({ address, setAddress }) => {
                         value={address.addressNeighborhood}
                     />
                 </div>
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="addressCity"
                     >Município:</label>
                     <InputText
