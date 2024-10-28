@@ -1,23 +1,14 @@
-import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 
-import FileUploader from '../FileUploader/FileUploader';
-
 import GlobalVisualConfig from '../../../../utils/configs/GlobalVisualConfig';
-import ptBR from '../../../../utils/locales/pt-br.json';
-
-
-addLocale('pt-br', ptBR);
 
 
 const FunctionalRegistration = ({
     functionalRegistration,
-    handleFileUpload,
     handleFunctionalRegistrationChange,
-    handleRemoveFunctionalRegistration,
-    index
+    handleRemoveFunctionalRegistration
 }) => {
     return (
         <section className={GlobalVisualConfig.FORM_WRAPPED}>
@@ -65,25 +56,16 @@ const FunctionalRegistration = ({
                         className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalRegistrationDiscipline"
                     >Disciplina:</label>
-                    <InputNumber
+                    <InputText
                         className="w-full text-overflow-ellipsis"
                         id="functionalRegistrationDiscipline"
                         name="functionalRegistrationDiscipline"
                         onChange={(e) => handleFunctionalRegistrationChange(e, functionalRegistration.id)}
-                        useGrouping={false}
                         placeholder="Informe a disciplina da linha funcional"
-                        value={functionalRegistration.functionalLine}
+                        value={functionalRegistration.functionalRegistrationDiscipline}
                     />
                 </div>       
             </div>
-            <FileUploader
-                handleFileUpload={handleFileUpload}
-                id="fileUpload"
-                index={index}
-                label="Arquivos da Linha Funcional:"
-                name="certificate"
-                uploadedFiles={functionalRegistration.uploadedFiles}
-            />
         </section>
     );
 };
