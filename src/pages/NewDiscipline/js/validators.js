@@ -5,6 +5,10 @@ export const areRequiredFieldsFilled = (discipline) => {
     ];
 
     return requiredFields.every((field) => {
-        return discipline[field] && discipline[field].trim() !== '';
+        const value = discipline[field];
+        if (typeof value === 'string') return value.trim() !== '';
+        if (typeof value === 'number') return !isNaN(value);
+        
+        return false;
     });
 };
