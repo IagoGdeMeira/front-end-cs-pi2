@@ -1,23 +1,19 @@
 import React from 'react';
 import TeacherItem from "../../components/pages/TeacherList/TeacherItem/TeacherItem";
 
+
 const teachers = [
-    ["Rogério Carlos Bastos", "exemplar@gmail.com", "(44) 99999-9999"],
-    ["Américo Tomas de Souza", "americano@gmail.com", "(44) 98888-8888"],
-    ["Mateus Farias dos Anjos", "farias-matheus@gmail.com", "(44) 97777-7777"],
-    ["Rosangela Silveira Mattos", "rosangela-silveira-mattos@gmail.com", "(44) 96666-6666"]
+    { id: 1, name: "Rogério Carlos Bastos", email: "exemplar@gmail.com", phone: "(44) 99999-9999" },
+    { id: 2, name: "Américo Tomas de Souza", email: "americano@gmail.com", phone: "(44) 98888-8888" },
+    { id: 3, name: "Mateus Farias dos Anjos", email: "farias-matheus@gmail.com", phone: "(44) 97777-7777" },
+    { id: 4, name: "Rosangela Silveira Mattos", email: "rosangela-silveira-mattos@gmail.com", phone: "(44) 96666-6666" }
 ];
 
 const TeacherList = () => {
     return (
         <div className="flex flex-column gap-2">
-            {teachers.map((teacher, index) => (
-                <TeacherItem
-                    key={index}
-                    teacherName={teacher[0]}
-                    teacherEmail={teacher[1]}
-                    teacherPhone={teacher[2]}
-                />
+            {teachers.map((teacher) => (
+                <TeacherItem key={teacher.id} teacher={teacher}/>
             ))}
         </div>
     );
