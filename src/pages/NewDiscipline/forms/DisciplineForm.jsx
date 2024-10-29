@@ -23,6 +23,7 @@ const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
                     placeholder="Digite o nome da disciplina"
                     value={discipline?.disciplineName || null}
                 />
+                {errors.disciplineName && <small className="p-error">{errors.disciplineName}</small>}
             </div>
             <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
@@ -33,11 +34,12 @@ const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
                     className={`text-overflow-ellipsis ${errors.disciplineCode ? 'p-invalid' : ''}`}
                     id="disciplineCode"
                     name="disciplineCode"
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleChange({ ...e, name: "disciplineCode" })}
                     placeholder="Digite o código da disciplina"
                     useGrouping={false}
                     value={discipline?.disciplineCode || null}
                 />
+                {errors.disciplineCode && <small className="p-error">{errors.disciplineCode}</small>}
             </div>
         </>
     );

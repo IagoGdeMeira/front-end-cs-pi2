@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export const handleFieldChange = (e, ...args) => {
-    const { name, value } = e.target ? e.target : e;
+    const name = e.target ? e.target.name : e.name;
+    const value = e.target ? e.target.value : e.value;
 
     if (Array.isArray(args[1])) {
         const [id, objects, setObjects] = args;
