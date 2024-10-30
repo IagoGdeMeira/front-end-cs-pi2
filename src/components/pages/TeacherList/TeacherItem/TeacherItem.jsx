@@ -1,3 +1,7 @@
+import React, { useState } from "react";
+
+import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
+
 import {
     handleDeleteTeacher,
     handleEditTeacher,
@@ -26,7 +30,7 @@ const TeacherItem = ({ teacher }) => {
                 </div>
             </section>
 
-            <DeleteTeacherDialog
+            <DeleteTeacher
                 visible={deleteDialogVisible}
                 onHide={() => setDeleteDialogVisible(false)}
                 onConfirm={() => handleDeleteTeacher(id)}

@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
 
-const DeleteTeacherDialog = ({ visible, onHide, onConfirm, teacherName }) => {
+const DeleteTeacher = ({ visible, onHide, onConfirm, teacherName }) => {
     const [confirmationInput, setConfirmationInput] = React.useState("");
 
     const handleConfirm = () => {
@@ -42,4 +42,4 @@ const DeleteTeacherDialog = ({ visible, onHide, onConfirm, teacherName }) => {
     );
 };
 
-export default DeleteTeacherDialog;
+export default DeleteTeacher;

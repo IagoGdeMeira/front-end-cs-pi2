@@ -13,9 +13,10 @@ import SpecializationForm from './forms/SpecializationForm';
 import TeacherForm from './forms/TeacherForm'; 
 import TeacherOptionalForm from './forms/TeacherOptionalForm';
 
-import { areRequiredFieldsFilled, validateEmail, validatePhoneNumber, validateRG } from './js/validators';
+import { areRequiredFieldsFilled } from "../../utils/validators/globalValidators";
 import GlobalVisualConfig from "../../utils/configs/GlobalVisualConfig";
 import PathRoutes from "../../utils/PathRoutes";
+import { validateEmail, validatePhoneNumber, validateRG } from './js/validators';
 
 
 const NewTeacher = () => {
@@ -33,7 +34,15 @@ const NewTeacher = () => {
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
 
     useEffect(() => {
-        const allFieldsFilled = areRequiredFieldsFilled(teacher);
+        const requiredFields = [
+            'teacherName',
+            'teacherCPF',
+            'teacherRG',
+            'teacherPhoneNumber',
+            'teacherEmail'
+        ];
+
+        const allFieldsFilled = areRequiredFieldsFilled(teacher, requiredFields);
         setSaveButtonDisabled(!allFieldsFilled);
     }, [teacher]);
 

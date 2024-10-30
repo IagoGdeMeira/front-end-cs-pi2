@@ -8,7 +8,7 @@ import { Button } from "primereact/button";
 import DisciplineForm from "./forms/SubjectForm";
 import SimpleLayout from '../../components/layouts/SimpleLayout/SimpleLayout';
 
-import { areRequiredFieldsFilled } from "./js/validators";
+import { areRequiredFieldsFilled } from "../../utils/validators/globalValidators";
 import GlobalVisualConfig from "../../utils/configs/GlobalVisualConfig";
 import PathRoutes from "../../utils/PathRoutes";
 
@@ -21,7 +21,12 @@ const NewSubject = () => {
     const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
     useEffect(() => {
-        const allFieldsFilled = areRequiredFieldsFilled(subject);
+        const requiredFields = [
+            'subjectName',
+            'subjectCode'
+        ];
+
+        const allFieldsFilled = areRequiredFieldsFilled(subject, requiredFields);
         setSaveButtonDisabled(!allFieldsFilled);
     }, [subject]);
 
