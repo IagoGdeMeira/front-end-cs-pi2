@@ -1,7 +1,7 @@
 class PathRoutes {
     static HOME = '/';
     static NEW_TEACHER = '/new-teacher';
-    static NEW_DISCIPLINE = '/new-discipline';
+    static NEW_SUBJECT = '/new-subject';
 }
 
 export default PathRoutes;

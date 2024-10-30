@@ -1,11 +1,11 @@
-export const areRequiredFieldsFilled = (discipline) => {
+export const areRequiredFieldsFilled = (subject) => {
     const requiredFields = [
-        'disciplineName',
-        'disciplineCode'
+        'subjectName',
+        'subjectCode'
     ];
 
     return requiredFields.every((field) => {
-        const value = discipline[field];
+        const value = subject[field];
         if (typeof value === 'string') return value.trim() !== '';
         if (typeof value === 'number') return !isNaN(value);
         
