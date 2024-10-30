@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from "./pages/Home/Home";
-import NewDiscipline from "./pages/NewDiscipline/NewDiscipline.jsx";
+import NewSubject from "./pages/NewSubject/NewSubject";
 import NewTeacher from "./pages/NewTeacher/NewTeacher";
 import PathRoutes from "./utils/PathRoutes.js";
 import TeacherList from './pages/TeacherList/TeacherList.jsx';
@@ -17,8 +17,8 @@ function App() {
           <Route path={PathRoutes.HOME} element={
             <Home/>
           }/>
-          <Route path={PathRoutes.NEW_DISCIPLINE} element={
-            <NewDiscipline/>
+          <Route path={PathRoutes.NEW_SUBJECT} element={
+            <NewSubject/>
           }/>
           <Route path={PathRoutes.NEW_TEACHER} element={
             <NewTeacher/>

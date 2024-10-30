@@ -5,42 +5,44 @@ import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
 import GlobalVisualConfig from "../../../utils/configs/GlobalVisualConfig";
 
 
-const DisciplineForm = ({ discipline, setDiscipline, errors }) => {
-    const handleChange = (e) => handleFieldChange(e, discipline, setDiscipline);
+const SubjectForm = ({ subject, setSubject, errors }) => {
+    const handleChange = (e) => handleFieldChange(e, subject, setSubject);
 
     return(
         <>
             <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
                     className={GlobalVisualConfig.LABEL}
-                    htmlFor="disciplineName"
+                    htmlFor="subjectName"
                 >Nome:</label>
                 <InputText
-                    className={`text-overflow-ellipsis ${errors.disciplineName ? 'p-invalid' : ''}`}
-                    id="disciplineName"
-                    name="disciplineName"
+                    className={`text-overflow-ellipsis ${errors.subjectName? 'p-invalid': ''}`}
+                    id="subjectName"
+                    name="subjectName"
                     onChange={(e) => handleChange(e)}
                     placeholder="Digite o nome da disciplina"
-                    value={discipline?.disciplineName || null}
+                    value={subject?.subjectName || null}
                 />
+                {errors.subjectName && <small className="p-error">{errors.subjectName}</small>}
             </div>
             <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
                     className={GlobalVisualConfig.LABEL}
-                    htmlFor="disciplineCode"
+                    htmlFor="subjectCode"
                 >Código:</label>
                 <InputNumber
-                    className={`text-overflow-ellipsis ${errors.disciplineCode ? 'p-invalid' : ''}`}
-                    id="disciplineCode"
-                    name="disciplineCode"
-                    onChange={(e) => handleChange(e)}
+                    className={`text-overflow-ellipsis ${errors.subjectCode? 'p-invalid': ''}`}
+                    id="subjectCode"
+                    name="subjectCode"
+                    onChange={(e) => handleChange({ ...e, name: "subjectCode" })}
                     placeholder="Digite o código da disciplina"
                     useGrouping={false}
-                    value={discipline?.disciplineCode || null}
+                    value={subject?.subjectCode || null}
                 />
+                {errors.subjectCode && <small className="p-error">{errors.subjectCode}</small>}
             </div>
         </>
     );
 };
 
-export default DisciplineForm;
+export default SubjectForm;
