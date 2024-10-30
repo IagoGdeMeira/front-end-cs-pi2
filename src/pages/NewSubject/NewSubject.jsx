@@ -1,11 +1,11 @@
-import "./NewDiscipline.css";
+import "./NewSubject.css";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "primereact/button";
 
-import DisciplineForm from "./forms/DisciplineForm";
+import DisciplineForm from "./forms/SubjectForm";
 import SimpleLayout from '../../components/layouts/SimpleLayout/SimpleLayout';
 
 import { areRequiredFieldsFilled } from "./js/validators";
@@ -13,26 +13,25 @@ import GlobalVisualConfig from "../../utils/configs/GlobalVisualConfig";
 import PathRoutes from "../../utils/PathRoutes";
 
 
-const NewDiscipline = () => {
+const NewSubject = () => {
     const navigate = useNavigate();
 
-    const [discipline, setDiscipline] = useState({});
+    const [subject, setSubject] = useState({});
     const [errors, setErrors] = useState([]);
-
     const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
     useEffect(() => {
-        const allFieldsFilled = areRequiredFieldsFilled(discipline);
+        const allFieldsFilled = areRequiredFieldsFilled(subject);
         setSaveButtonDisabled(!allFieldsFilled);
-    }, [discipline]);
+    }, [subject]);
 
-    const handleDisciplineValidation = () => {
+    const handleSubjectValidation = () => {
         const newErrors = {};
 
-        if(!discipline.disciplineName)
-            newErrors.disciplineName = "Nome informado é inválido.";
-        if(!discipline.disciplineCode)
-            newErrors.disciplineCode = "Código informado é inválido";
+        if(!subject.subjectName)
+            newErrors.subjectName = "Nome informado é inválido.";
+        if(!subject.subjectCode)
+            newErrors.subjectCode = "Código informado é inválido";
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -41,15 +40,15 @@ const NewDiscipline = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(handleDisciplineValidation()) {
-            console.log("Form submitted:", discipline);
+        if(handleSubjectValidation()) {
+            console.log("Form submitted:", subject);
         }
     };
 
     return (
         <SimpleLayout>
             <form className={GlobalVisualConfig.FORM}>
-                <DisciplineForm errors={errors} discipline={discipline} setDiscipline={setDiscipline}/>
+                <DisciplineForm errors={errors} subject={subject} setSubject={setSubject}/>
                 <div className="col-12 flex gap-4 justify-content-center">
                     <Button
                         className={GlobalVisualConfig.CANCEL_BUTTON + "w-9rem"}
@@ -68,4 +67,4 @@ const NewDiscipline = () => {
     );
 };
 
-export default NewDiscipline;
+export default NewSubject;
