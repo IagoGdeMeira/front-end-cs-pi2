@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Button } from "primereact/button";
+
 import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
 
 import {
@@ -10,7 +12,7 @@ import {
 
 
 const TeacherItem = ({ teacher }) => {
-    const { id, name, email, phone } = teacher;
+    const { id, name, email, phone, cpf } = teacher;
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
     return (
@@ -25,8 +27,18 @@ const TeacherItem = ({ teacher }) => {
                     <span>{phone}</span>
                 </div>
                 <div className="flex flex-column gap-1">
-                    <i className="pi pi-pencil" onClick={() => handleEditTeacher(id)} />
-                    <i className="pi pi-trash text-red-400" onClick={() => setDeleteDialogVisible(true)} />
+                    <Button
+                        className="p-button-text"
+                        icon="pi pi-pencil"
+                        onClick={() => handleEditTeacher(id)}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <Button
+                        className="p-button-danger text-red-400"
+                        icon="pi pi-trash"
+                        onClick={() => setDeleteDialogVisible(true)}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </div>
             </section>
 
@@ -34,6 +46,7 @@ const TeacherItem = ({ teacher }) => {
                 visible={deleteDialogVisible}
                 onHide={() => setDeleteDialogVisible(false)}
                 onConfirm={() => handleDeleteTeacher(id)}
+                teacherCPF={cpf}
                 teacherName={name}
             />
         </div>

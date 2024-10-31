@@ -1,42 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
 
-const DeleteTeacher = ({ visible, onHide, onConfirm, teacherName }) => {
-    const [confirmationInput, setConfirmationInput] = React.useState("");
+const DeleteTeacher = ({ visible, onHide, onConfirm, teacherName, teacherCPF }) => {
+    const [confirmationInput, setConfirmationInput] = useState("");
 
     const handleConfirm = () => {
-        if (confirmationInput === `${teacherName}`) {
-            onConfirm();
-            setConfirmationInput("");
-        } else {
-            alert("Por favor, insira o nome correto.");
-        }
+        onConfirm();
+        setConfirmationInput("");
     };
 
     return (
         <Dialog
+            draggable={false}
             header="Confirmar Exclusão"
-            visible={visible}
-            style={{ width: '50vw' }}
             modal
             onHide={() => {
                 onHide();
                 setConfirmationInput("");
             }}
+            style={{
+                maxWidth: '30vw',
+                minWidth: '15vw'
+            }}
+            visible={visible}
         >
-            <p>Para excluir, digite o nome completo do professor.</p>
+            <p>Atenção, você está prestes a excluir o professor do sistema!</p>
+            <p>Caso prossiga, <strong>esse processo não poderá ser desfeito!</strong></p>
+            <p>
+                Para confirmar suas intenções, digite
+                <em> {`"${teacherName} - ${teacherCPF}"`} </em>
+                no campo de preenchimento abaixo. Ao fazer isso, você compreende
+                e concorda com as consequências da exclusão da disciplina.
+            </p>
             <InputText
                 value={confirmationInput}
                 onChange={(e) => setConfirmationInput(e.target.value)}
-                placeholder={`${teacherName}`}
+                placeholder="Digite o código de permissão."
                 className="w-full"
             />
             <div className="mt-3 flex justify-content-end">
-                <Button label="Cancelar" icon="pi pi-times" onClick={onHide} className="p-button-text" />
-                <Button label="Excluir" icon="pi pi-trash" className="p-button-danger" onClick={handleConfirm} />
+                <Button
+                    className="p-button-text"
+                    icon="pi pi-times"
+                    label="Cancelar"
+                    onClick={onHide}
+                />
+                <Button
+                    className="p-button-danger"
+                    disabled={confirmationInput !== `${teacherName} - ${teacherCPF}`}
+                    icon="pi pi-trash"
+                    label="Excluir"
+                    onClick={handleConfirm}
+                />
             </div>
         </Dialog>
     );
