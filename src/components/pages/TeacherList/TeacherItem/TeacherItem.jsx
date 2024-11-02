@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 
 import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
 
+import GlobalVisualConfig from "../../../../utils/configs/GlobalVisualConfig";
 import {
     handleDeleteTeacher,
     handleEditTeacher,
@@ -16,17 +17,17 @@ const TeacherItem = ({ teacher }) => {
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
 
     return (
-        <div className="border-round-lg p-2 surface-200 w-full">
+        <div className={GlobalVisualConfig.LIST_ITEM}>
             <h3 
                 className="cursor-pointer"
                 onClick={() => handleViewDetails(id)}
             >{name}</h3>
-            <section className="flex flex-row gap-4">
-                <div className="flex flex-column gap-1">
-                    <span>{email}</span>
-                    <span>{phone}</span>
+            <section className={GlobalVisualConfig.LIST_ITEM_CONTENT}>
+                <div className={GlobalVisualConfig.LIST_ITEM_INFO}>
+                    <span className="flex gap-3"><strong><i className="pi pi-envelope"/></strong>{email}</span>
+                    <span className="flex gap-3"><strong><i className="pi pi-phone"/></strong>{phone}</span>
                 </div>
-                <div className="flex flex-column gap-1">
+                <div className="flex flex-column gap-2 w-min">
                     <Button
                         className="p-button-text"
                         icon="pi pi-pencil"
@@ -34,7 +35,7 @@ const TeacherItem = ({ teacher }) => {
                         style={{ cursor: 'pointer' }}
                     />
                     <Button
-                        className="p-button-danger text-red-400"
+                        className="p-button-danger"
                         icon="pi pi-trash"
                         onClick={() => setDeleteDialogVisible(true)}
                         style={{ cursor: 'pointer' }}
@@ -43,11 +44,11 @@ const TeacherItem = ({ teacher }) => {
             </section>
 
             <DeleteTeacher
-                visible={deleteDialogVisible}
-                onHide={() => setDeleteDialogVisible(false)}
                 onConfirm={() => handleDeleteTeacher(id)}
+                onHide={() => setDeleteDialogVisible(false)}
                 teacherCPF={cpf}
                 teacherName={name}
+                visible={deleteDialogVisible}
             />
         </div>
     );

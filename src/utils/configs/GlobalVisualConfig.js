@@ -37,6 +37,31 @@ class GlobalVisualConfig {
         text-gray-600
     `;
 
+    static LIST_ITEM = `
+        border-round-xl
+        p-2
+        surface-200
+        text-gray-600
+        w-full
+    `;
+
+    static LIST_ITEM_CONTENT = `
+        flex
+        flex-row
+        gap-4
+        justify-content-between
+        w-full
+    `;
+
+    static LIST_ITEM_INFO = `
+        flex
+        flex-column
+        flex-wrap
+        justify-content-around
+        p-2
+        text-left
+    `;
+
     static SAVE_BUTTON = `
         bg-yellow-400
         border-yellow-400
