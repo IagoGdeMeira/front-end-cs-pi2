@@ -29,13 +29,13 @@ const TeacherItem = ({ teacher }) => {
                 </div>
                 <div className="flex flex-column gap-2 w-min">
                     <Button
-                        className="p-button-text hover:surface-50 surface-100 text-bluegray-900"
+                        className="hide-label-sm hover:surface-50 p-button-text surface-100 text-bluegray-900"
                         icon="pi pi-pencil"
                         onClick={() => handleEditTeacher(id)}
                         style={{ cursor: 'pointer' }}
                     />
                     <Button
-                        className="p-button-danger"
+                        className="hide-label-sm p-button-danger"
                         icon="pi pi-trash"
                         onClick={() => setDeleteDialogVisible(true)}
                         style={{ cursor: 'pointer' }}
