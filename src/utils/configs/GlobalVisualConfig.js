@@ -37,6 +37,14 @@ class GlobalVisualConfig {
         text-gray-600
     `;
 
+    static LIST_HEADER = `
+        align-items-center
+        flex
+        justify-content-between 
+        p-3
+        surface-100
+    `;
+
     static LIST_ITEM = `
         border-round-xl
         p-2
@@ -60,6 +68,11 @@ class GlobalVisualConfig {
         justify-content-around
         p-2
         text-left
+    `;
+
+    static MAIN = `
+        flex
+        justify-content-center
     `;
 
     static SAVE_BUTTON = `

@@ -1,8 +1,8 @@
 import './TeacherList.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 
-import SimpleLayout from "../../components/layouts/SimpleLayout/SimpleLayout";
+import ListLayout from "../../components/layouts/ListLayout/ListLayout";
 import TeacherItem from "../../components/pages/TeacherList/TeacherItem/TeacherItem";
 
 
@@ -15,16 +15,24 @@ const teachers = [
 ];
 
 const TeacherList = () => {
-    const sortedTeachers = [...teachers].sort((a, b) => a.name.localeCompare(b.name));
+    const [filterText, setFilterText] = useState("");
+    const sortedTeachers = [...teachers]
+        .filter(teacher => teacher.name.toLowerCase().includes(filterText.toLowerCase()))
+        .sort((a, b) => a.name.localeCompare(b.name));
 
     return (
-        <SimpleLayout>
+        <ListLayout
+            title="Lista de Professores"
+            filterText={filterText}
+            setFilterText={setFilterText}
+            placeholder="Buscar por nome"
+        >
             <div className="flex flex-column gap-2 teacher-list">
                 {sortedTeachers.map((teacher) => (
-                    <TeacherItem key={teacher.id} teacher={teacher}/>
+                    <TeacherItem key={teacher.id} teacher={teacher} />
                 ))}
             </div>
-        </SimpleLayout>
+        </ListLayout>
     );
 };
 

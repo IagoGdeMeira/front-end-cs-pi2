@@ -1,9 +1,9 @@
-import './SimpleLayout.css';
+import GlobalVisualConfig from "../../../utils/configs/GlobalVisualConfig";
 
 
 const SimpleLayout = ({ children }) => {
     return (
-        <main>
+        <main className={GlobalVisualConfig.MAIN + "main-padding"}>
             {children}
         </main>
     );
