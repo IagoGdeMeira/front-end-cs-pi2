@@ -6,6 +6,25 @@ class GlobalVisualConfig {
         hover:border-red-600
     `;
 
+    static EMPTY_LIST = `
+        align-items-center
+        flex
+        flex-column
+        gap-3
+        mt-5
+        text-gray-600
+    `;
+
+    static EMPTY_LIST_ICON = `
+        border-circle
+        p-4
+        pi
+        pi-sort-alt-slash
+        surface-800
+        text-8xl
+        text-red-600
+    `;
+
     static FORM = `
         bg-bluegray-100
         border-noround

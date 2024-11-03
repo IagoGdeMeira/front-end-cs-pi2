@@ -1,9 +1,15 @@
 import './TeacherList.css';
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { Button } from 'primereact/button';
 
 import ListLayout from "../../components/layouts/ListLayout/ListLayout";
 import TeacherItem from "../../components/pages/TeacherList/TeacherItem/TeacherItem";
+
+import PathRoutes from "../../utils/PathRoutes";
+import GlobalVisualConfig from '../../utils/configs/GlobalVisualConfig';
 
 
 const teachers = [
@@ -15,6 +21,7 @@ const teachers = [
 ];
 
 const TeacherList = () => {
+    const navigate = useNavigate();
     const [filterText, setFilterText] = useState("");
     
     const [filters, setFilters] = useState({
@@ -40,11 +47,28 @@ const TeacherList = () => {
             setFilterText={setFilterText}
             title="Lista de Professores"
         >
-            <div className="flex flex-column gap-2 teacher-list">
-                {sortedTeachers.map((teacher) => (
-                    <TeacherItem key={teacher.id} teacher={teacher} />
-                ))}
-            </div>
+            {sortedTeachers.length > 0 ? (
+                <div className="flex flex-column gap-2 teacher-list">
+                    {sortedTeachers.map((teacher) => (
+                        <TeacherItem key={teacher.id} teacher={teacher} />
+                    ))}
+                </div>
+            ) : (
+                <div className={GlobalVisualConfig.EMPTY_LIST + "teacher-list"}>
+                    <i className={GlobalVisualConfig.EMPTY_LIST_ICON}/>
+                    <section className="text-xl">
+                        <p>Infelizmente, não pudemos encontrar nenhum resultado correspondente ao que você está buscando.</p>
+                        <p>Caso queira, sinta-se livre para cadastrar um novo professor através do botão que está abaixo.</p>
+                    </section>
+                    <Button
+                        label="Cadastrar Novo Professor"
+                        icon="pi pi-user-plus"
+                        onClick={() => navigate(PathRoutes.NEW_TEACHER)}
+                        outlined
+                        severity="info"
+                    />
+                </div>
+            )}
         </ListLayout>
     );
 };
