@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 
 import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
+import TeacherDetails from "./pop-ups/TeacherDetails/TeacherDetails";
 
 import GlobalVisualConfig from "../../../../utils/configs/GlobalVisualConfig";
 import {
@@ -15,12 +16,16 @@ import {
 const TeacherItem = ({ teacher }) => {
     const { id, name, email, phone, cpf } = teacher;
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+    const [detailsDialogVisible, setDetailsDialogVisible] = useState(false);
 
     return (
         <div className={GlobalVisualConfig.LIST_ITEM}>
             <h3 
                 className="cursor-pointer"
-                onClick={() => handleViewDetails(id)}
+                onClick={() => {
+                    setDetailsDialogVisible(true);
+                    handleViewDetails(id);
+                }}
             >{name}</h3>
             <section className={GlobalVisualConfig.LIST_ITEM_CONTENT}>
                 <div className={GlobalVisualConfig.LIST_ITEM_INFO}>
@@ -49,6 +54,12 @@ const TeacherItem = ({ teacher }) => {
                 teacherCPF={cpf}
                 teacherName={name}
                 visible={deleteDialogVisible}
+            />
+
+            <TeacherDetails
+                onHide={() => setDetailsDialogVisible(false)}
+                teacher={teacher}
+                visible={detailsDialogVisible}
             />
         </div>
     );
