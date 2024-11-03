@@ -15,14 +15,6 @@ const ListHeader = ({
     placeholder="Buscar...",
     title
 }) => {
-    const handleFilterChange = (e) => {
-        const { name, checked } = e.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            [name]: { ...prevFilters[name], checked }
-        }));
-    };
-
     return (
         <header className={GlobalVisualConfig.LIST_HEADER}>
             <h2 className="text-gray-600">{title}</h2>
