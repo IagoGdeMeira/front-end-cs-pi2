@@ -9,7 +9,14 @@ export const teachers = [
         birthDate: "01/01/1960",
         birthState: "Paraná",
         birthCity: "Paranavaí",
-        workedHours: 4620
+        workedHours: 4620,
+        address: {
+            CEP: "87704-020",
+            number: 123,
+            street: "Rua Joaquim da Silva Pinto",
+            neighborhood: "Jardim Ouro Branco",
+            city: "Paranavaí - PR"
+        }
     },
     {
         id: 2,
@@ -21,7 +28,14 @@ export const teachers = [
         birthDate: "02/02/1970",
         birthState: "Ceará",
         birthCity: "Juazeiro do Norte",
-        workedHours: 320
+        workedHours: 320,
+        address: {
+            CEP: "87710-040",
+            number: 456,
+            street: "Rua General Andrade Neves",
+            neighborhood: "Jardim São Jorge",
+            city: "Paranavaí - PR"
+        }
     },
     {
         id: 3,
@@ -33,7 +47,14 @@ export const teachers = [
         birthDate: "03/03/1980",
         birthState: "Minas Gerais",
         birthCity: "Uberlândia",
-        workedHours: 120
+        workedHours: 120,
+        address: {
+            CEP: "87.706-070",
+            number: 789,
+            street: "Rua São Cristóvão",
+            neighborhood: "Jardim Santos Dumont",
+            city: "Paranavaí - PR"
+        }
     },
     {
         id: 4,
@@ -45,7 +66,14 @@ export const teachers = [
         birthDate: "04/04/1990",
         birthState: "Rio Grande do Sul",
         birthCity: "Pelotas",
-        workedHours: 3720
+        workedHours: 3720,
+        address: {
+            CEP: "87.709-230",
+            number: 101,
+            street: "Rua Professor Pedro Real",
+            neighborhood: "Jardim Paulista",
+            city: "Paranavaí - PR"
+        }
     },
     {
         id: 5,
@@ -57,6 +85,13 @@ export const teachers = [
         birthDate: "05/05/1955",
         birthState: "Alagoas",
         birthCity: "Maceió",
-        workedHours: 2290
+        workedHours: 2290,
+        address: {
+            CEP: "87705-360",
+            number: 202,
+            street: "Rua XV de Novembro",
+            neighborhood: "Jardim Iguaçu",
+            city: "Paranavaí - PR"
+        }
     }
 ];

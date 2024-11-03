@@ -21,6 +21,7 @@ const TeacherDetails = ({ visible, onHide, teacher }) => {
             onHide={() => onHide()}
             visible={visible}
         >
+            <h2>Dados Principais:</h2>
             <ul className="flex flex-column gap-2 list-none">
                 <li><strong>Data de Nascimento: </strong>{teacher.birthDate}</li>
                 <li><strong>E-mail: </strong>{teacher.email}</li>
@@ -29,6 +30,14 @@ const TeacherDetails = ({ visible, onHide, teacher }) => {
                 <li><strong>RG: </strong>{teacher.rg}</li>
                 <li><strong>Cidade Natal: </strong>{`${teacher.birthCity} - ${teacher.birthState}`}</li>
                 <li><strong>Horas Trabalhadas: </strong>{teacher.workedHours}</li>
+            </ul>
+            <h3>Endereço Residencial:</h3>
+            <ul className="flex flex-column gap-2 list-none">
+                <li><strong>CEP: </strong>{teacher.address.CEP}</li>
+                <li><strong>Número: </strong>{teacher.address.number}</li>
+                <li><strong>Rua: </strong>{teacher.address.street}</li>
+                <li><strong>Bairro: </strong>{teacher.address.neighborhood}</li>
+                <li><strong>Cidade: </strong>{teacher.address.city}</li>
             </ul>
         </Dialog>
     );

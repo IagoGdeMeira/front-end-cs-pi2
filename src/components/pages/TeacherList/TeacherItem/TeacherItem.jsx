@@ -29,8 +29,14 @@ const TeacherItem = ({ teacher }) => {
             >{name}</h3>
             <section className={GlobalVisualConfig.LIST_ITEM_CONTENT}>
                 <div className={GlobalVisualConfig.LIST_ITEM_INFO}>
-                    <span className="flex gap-3"><strong><i className="pi pi-envelope"/></strong>{email}</span>
-                    <span className="flex gap-3"><strong><i className="pi pi-phone"/></strong>{phone}</span>
+                    <span className="flex gap-3">
+                        <strong><i 
+                            className="pi pi-envelope text-xl vertical-align-middle"
+                        /></strong>{email}</span>
+                    <span className="flex gap-3">
+                        <strong><i
+                            className="pi pi-phone text-xl vertical-align-middle"
+                        /></strong>{phone}</span>
                 </div>
                 <div className="flex flex-column gap-2 w-min">
                     <Button
