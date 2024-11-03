@@ -16,16 +16,29 @@ const teachers = [
 
 const TeacherList = () => {
     const [filterText, setFilterText] = useState("");
+    
+    const [filters, setFilters] = useState({
+        nameFilter: {checked: true, checkName: "nameFilter", label: "Nome"},
+        emailFilter: {checked: false, checkName: "emailFilter", label: "E-mail"},
+        phoneFilter: {checked: false, checkName: "phoneFilter", label: "Telefone"}
+    });
+    
     const sortedTeachers = [...teachers]
-        .filter(teacher => teacher.name.toLowerCase().includes(filterText.toLowerCase()))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .filter((teacher) => {
+            const nameMatch = filters.nameFilter.checked && teacher.name.toLowerCase().includes(filterText.toLowerCase());
+            const emailMatch = filters.emailFilter.checked && teacher.email.toLowerCase().includes(filterText.toLowerCase());
+            const phoneMatch = filters.phoneFilter.checked && teacher.phone.includes(filterText);
+
+            return nameMatch || emailMatch || phoneMatch;
+        }).sort((a, b) => a.name.localeCompare(b.name));
 
     return (
         <ListLayout
-            title="Lista de Professores"
+            filters={filters}
+            setFilters={setFilters}
             filterText={filterText}
             setFilterText={setFilterText}
-            placeholder="Buscar por nome"
+            title="Lista de Professores"
         >
             <div className="flex flex-column gap-2 teacher-list">
                 {sortedTeachers.map((teacher) => (

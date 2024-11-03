@@ -1,0 +1,11 @@
+.no-placeholder .p-multiselect-label-container,
+.no-options-display .p-multiselect-panel .p-multiselect-header {
+    display: none;
+}
+
+.no-placeholder .p-multiselect-trigger {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

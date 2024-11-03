@@ -39,7 +39,6 @@ class GlobalVisualConfig {
 
     static LIST_HEADER = `
         align-items-center
-        flex
         justify-content-between 
         p-3
         surface-100

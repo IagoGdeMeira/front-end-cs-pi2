@@ -5,6 +5,8 @@ import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
 
 const ListLayout = ({
     children,
+    filters,
+    setFilters,
     filterText,
     setFilterText,
     placeholder,
@@ -13,6 +15,8 @@ const ListLayout = ({
     return (
         <>
             <ListHeader
+                filters={filters}
+                setFilters={setFilters}
                 filterText={filterText}
                 setFilterText={setFilterText}
                 placeholder={placeholder}
