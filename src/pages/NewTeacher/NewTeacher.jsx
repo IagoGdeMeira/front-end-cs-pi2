@@ -17,10 +17,12 @@ import { areRequiredFieldsFilled } from "../../utils/validators/globalValidators
 import GlobalVisualConfig from "../../utils/configs/GlobalVisualConfig";
 import PathRoutes from "../../utils/PathRoutes";
 import { validateEmail, validatePhoneNumber, validateRG } from './js/validators';
+import EmployeeService from "../../services/EmployeeService";
 
 
 const NewTeacher = () => {
     const navigate = useNavigate();
+    const employeeService = new EmployeeService();
 
     const [showOptionalFields, setShowOptionalFields] = useState(false);
     const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
@@ -64,9 +66,16 @@ const NewTeacher = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (handleTeacherValidation()) {
+            try {
+                const response = await employeeService.insert(teacher);
+                navigate("/");
+            } catch (err) {
+                console.log(err);
+                handleServerError(err);
+            }
             console.log("Form submitted:", teacher);
         }
     };
