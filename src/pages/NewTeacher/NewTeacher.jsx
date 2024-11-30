@@ -13,13 +13,16 @@ import SpecializationForm from './forms/SpecializationForm';
 import TeacherForm from './forms/TeacherForm'; 
 import TeacherOptionalForm from './forms/TeacherOptionalForm';
 
-import { areRequiredFieldsFilled, validateEmail, validatePhoneNumber, validateRG } from './js/validators';
+import { areRequiredFieldsFilled } from "../../utils/validators/globalValidators";
 import GlobalVisualConfig from "../../utils/configs/GlobalVisualConfig";
 import PathRoutes from "../../utils/PathRoutes";
+import { validateEmail, validatePhoneNumber, validateRG } from './js/validators';
+import EmployeeService from "../../services/EmployeeService";
 
 
 const NewTeacher = () => {
     const navigate = useNavigate();
+    const employeeService = new EmployeeService();
 
     const [showOptionalFields, setShowOptionalFields] = useState(false);
     const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
@@ -33,7 +36,15 @@ const NewTeacher = () => {
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
 
     useEffect(() => {
-        const allFieldsFilled = areRequiredFieldsFilled(teacher);
+        const requiredFields = [
+            'teacherName',
+            'teacherCPF',
+            'teacherRG',
+            'teacherPhoneNumber',
+            'teacherEmail'
+        ];
+
+        const allFieldsFilled = areRequiredFieldsFilled(teacher, requiredFields);
         setSaveButtonDisabled(!allFieldsFilled);
     }, [teacher]);
 
@@ -55,9 +66,16 @@ const NewTeacher = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (handleTeacherValidation()) {
+            try {
+                const response = await employeeService.insert(teacher);
+                navigate("/");
+            } catch (err) {
+                console.log(err);
+                handleServerError(err);
+            }
             console.log("Form submitted:", teacher);
         }
     };

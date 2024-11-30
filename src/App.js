@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import NewSubject from "./pages/NewSubject/NewSubject";
 import NewTeacher from "./pages/NewTeacher/NewTeacher";
 import PathRoutes from "./utils/PathRoutes.js";
+import TeacherList from './pages/TeacherList/TeacherList.jsx';
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
           }/>
           <Route path={PathRoutes.NEW_TEACHER} element={
             <NewTeacher/>
+          }/>
+          <Route path={PathRoutes.TEACHER_LIST} element={
+            <TeacherList/>
           }/>
         </Routes>
       </BrowserRouter>

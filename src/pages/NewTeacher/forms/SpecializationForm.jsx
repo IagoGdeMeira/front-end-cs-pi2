@@ -15,6 +15,7 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
         specializationCourseName: "",
         specializationCourseLocation: "",
         specializationConclusionDate: "",
+        specializationType: "",
         uploadedFiles: []
     });
 

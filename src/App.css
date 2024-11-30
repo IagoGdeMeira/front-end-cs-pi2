@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+main.main-padding {
+  padding: 3vh 3vw;
+}
+
+@media(max-width: 500px) {
+  .hide-label-sm .p-button-label {
+      display: none;
+      min-width: min-content;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

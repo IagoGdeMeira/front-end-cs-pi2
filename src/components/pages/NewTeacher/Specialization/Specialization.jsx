@@ -1,7 +1,10 @@
 import { addLocale } from 'primereact/api';
+import { useState } from 'react';
+
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { InputText } from "primereact/inputtext";
+import { RadioButton } from 'primereact/radiobutton';
 
 import FileUploader from '../FileUploader/FileUploader';
 
@@ -18,6 +21,14 @@ const Specialization = ({
     index,
     specialization
 }) => {
+    const specializationTypes = [
+        { name: "Pós-Graduação", key: 'POST_GRADUATE' },
+        { name: "Mestrado", key: 'MASTER' },
+        { name: "Doutorado", key: 'DOCTORADE' },
+    ];
+
+    const [selectedSpecializationType, setSelectedSpecializationType] = useState([]);
+
     return (
         <section className={GlobalVisualConfig.FORM_WRAPPED}>
             <div className="align-items-center flex justify-content-end p-2 surface-200">
@@ -73,6 +84,30 @@ const Specialization = ({
                         placeholder="Informe o local de realização da especialização"
                         value={specialization.specializationCourseLocation}
                     />
+                </div>
+                <div className="flex flex-column gap-3 p-4">
+                    <h2 className="text-gray-600">Tipo de Especialização</h2>
+                    {specializationTypes.map((specializationTypes) => {
+                        return (
+                            <div className="flex align-items-center" key={specializationTypes.key}>
+                                <RadioButton
+                                    checked={selectedSpecializationType.key === specializationTypes.key}
+                                    inputId={specializationTypes.key}
+                                    name="specializationType"
+                                    onChange={(e) => {
+                                        setSelectedSpecializationType(e.value)
+                                        specialization.specializationType = selectedSpecializationType;
+                                    }}
+                                    severity="info"
+                                    value={specializationTypes}
+                                />
+                                <label
+                                    className={GlobalVisualConfig.LABEL + "ml-2"}
+                                    htmlFor={specializationTypes.key}
+                                >{specializationTypes.name}</label>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
             <FileUploader

@@ -1,26 +1,55 @@
-const TeacherItem = ({
-    teacherName,
-    teacherEmail,
-    teacherPhone
-}) => {
+import React, { useState } from "react";
+
+import { Button } from "primereact/button";
+
+import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
+
+import GlobalVisualConfig from "../../../../utils/configs/GlobalVisualConfig";
+import {
+    handleDeleteTeacher,
+    handleEditTeacher,
+    handleViewDetails
+} from "./js/handlers";
+
+
+const TeacherItem = ({ teacher }) => {
+    const { id, name, email, phone, cpf } = teacher;
+    const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+
     return (
-        <div className="
-            border-round-lg
-            p-2
-            surface-300
-            w-full
-        ">
-            <h3>{teacherName}</h3>
-            <section className="flex flex-row gap-4">
-                <div className="flex flex-column gap-1">
-                    <span>{teacherEmail}</span>
-                    <span>{teacherPhone}</span>
+        <div className={GlobalVisualConfig.LIST_ITEM}>
+            <h3 
+                className="cursor-pointer"
+                onClick={() => handleViewDetails(id)}
+            >{name}</h3>
+            <section className={GlobalVisualConfig.LIST_ITEM_CONTENT}>
+                <div className={GlobalVisualConfig.LIST_ITEM_INFO}>
+                    <span className="flex gap-3"><strong><i className="pi pi-envelope"/></strong>{email}</span>
+                    <span className="flex gap-3"><strong><i className="pi pi-phone"/></strong>{phone}</span>
                 </div>
-                <div className="flex flex-column gap-1">
-                    <i className="pi pi-pencil"/>
-                    <i className="pi pi-trash text-red-400"/>
+                <div className="flex flex-column gap-2 w-min">
+                    <Button
+                        className="hide-label-sm hover:surface-50 p-button-text surface-100 text-bluegray-900"
+                        icon="pi pi-pencil"
+                        onClick={() => handleEditTeacher(id)}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <Button
+                        className="hide-label-sm p-button-danger"
+                        icon="pi pi-trash"
+                        onClick={() => setDeleteDialogVisible(true)}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </div>
             </section>
+
+            <DeleteTeacher
+                onConfirm={() => handleDeleteTeacher(id)}
+                onHide={() => setDeleteDialogVisible(false)}
+                teacherCPF={cpf}
+                teacherName={name}
+                visible={deleteDialogVisible}
+            />
         </div>
     );
 };
