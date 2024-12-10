@@ -1,6 +1,6 @@
 import './TeacherList.css';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'primereact/button';
@@ -11,18 +11,39 @@ import TeacherItem from "../../components/pages/TeacherList/TeacherItem/TeacherI
 import PathRoutes from "../../utils/PathRoutes";
 import GlobalVisualConfig from '../../utils/configs/GlobalVisualConfig';
 import { teachers } from './js/teacherData';
+import EmployeeService from '../../services/EmployeeService';
 
 
 const TeacherList = () => {
     const navigate = useNavigate();
     const [filterText, setFilterText] = useState("");
-    
+    const [teachers, setTeachers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const employeeService = new EmployeeService();
+
     const [filters, setFilters] = useState({
-        nameFilter: {checked: true, checkName: "nameFilter", label: "Nome"},
-        emailFilter: {checked: false, checkName: "emailFilter", label: "E-mail"},
-        phoneFilter: {checked: false, checkName: "phoneFilter", label: "Telefone"}
+        nameFilter: { checked: true, checkName: "nameFilter", label: "Nome" },
+        emailFilter: { checked: false, checkName: "emailFilter", label: "E-mail" },
+        phoneFilter: { checked: false, checkName: "phoneFilter", label: "Telefone" }
     });
-    
+
+    const fetchTeachers = async () => {
+        try {
+            setLoading(true); 
+            const data = await employeeService.list(); 
+            setTeachers(data); 
+        } catch (error) {
+            console.error("Erro ao buscar professores:", error);
+            setTeachers([]); 
+        } finally {
+            setLoading(false); 
+        }
+    };
+
+    useEffect(() => {
+        fetchTeachers();
+    }, []);
+
     const sortedTeachers = [...teachers]
         .filter((teacher) => {
             const nameMatch = filters.nameFilter.checked && teacher.name.toLowerCase().includes(filterText.toLowerCase());
@@ -40,7 +61,12 @@ const TeacherList = () => {
             setFilterText={setFilterText}
             title="Lista de Professores"
         >
-            {sortedTeachers.length > 0 ? (
+            {loading ? ( 
+                <div className="text-center">
+                    <i className="pi pi-spin pi-spinner text-4xl" />
+                    <p>Carregando professores...</p>
+                </div>
+            ) : sortedTeachers.length > 0 ? (
                 <div className="flex flex-column gap-2 teacher-list">
                     {sortedTeachers.map((teacher) => (
                         <TeacherItem key={teacher.id} teacher={teacher} />
@@ -48,7 +74,7 @@ const TeacherList = () => {
                 </div>
             ) : (
                 <div className={GlobalVisualConfig.EMPTY_LIST + "teacher-list"}>
-                    <i className={GlobalVisualConfig.EMPTY_LIST_ICON}/>
+                    <i className={GlobalVisualConfig.EMPTY_LIST_ICON} />
                     <section className="text-xl">
                         <p>Infelizmente, não pudemos encontrar nenhum resultado correspondente ao que você está buscando.</p>
                         <p>Caso queira, sinta-se livre para cadastrar um novo professor através do botão que está abaixo.</p>
