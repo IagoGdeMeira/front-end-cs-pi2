@@ -7,12 +7,14 @@ import NewSubject from "./pages/NewSubject/NewSubject";
 import NewTeacher from "./pages/NewTeacher/NewTeacher";
 import PathRoutes from "./utils/PathRoutes.js";
 import TeacherList from './pages/TeacherList/TeacherList.jsx';
+import SimpleLayout from './components/layouts/SimpleLayout/SimpleLayout.jsx';
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      {/* <SimpleLayout> */}
         <Routes>
           <Route path={PathRoutes.HOME} element={
             <Home/>
@@ -27,6 +29,7 @@ function App() {
             <TeacherList/>
           }/>
         </Routes>
+        {/* </SimpleLayout> */}
       </BrowserRouter>
     </div>
   );

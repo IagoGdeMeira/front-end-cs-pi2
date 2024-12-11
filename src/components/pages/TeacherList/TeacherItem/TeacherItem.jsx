@@ -12,11 +12,25 @@ import {
     handleViewDetails
 } from "./js/handlers";
 
+import PathRoutes from "../../../../utils/PathRoutes";
+import EmployeeService from "../../../../services/EmployeeService";
 
-const TeacherItem = ({ teacher }) => {
-    const { id, name, email, phone, cpf } = teacher;
+
+const TeacherItem = ({ teacher, onDelete }) => {
+    const { id, name, email, telephone, cpf } = teacher;
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
     const [detailsDialogVisible, setDetailsDialogVisible] = useState(false);
+    const employeeService = new EmployeeService();
+
+    const  handleDeleteTeacher = async (id) =>{
+        try {
+            const data = await employeeService.delete(id);
+            setDeleteDialogVisible(false);
+            if (onDelete) onDelete(id); 
+        } catch (error) {
+            console.error("Erro ao buscar professores:", error);
+        }
+    }
 
     return (
         <div className={GlobalVisualConfig.LIST_ITEM}>
@@ -36,7 +50,7 @@ const TeacherItem = ({ teacher }) => {
                     <span className="flex gap-3">
                         <strong><i
                             className="pi pi-phone text-xl vertical-align-middle"
-                        /></strong>{phone}</span>
+                        /></strong>{telephone}</span>
                 </div>
                 <div className="flex flex-column gap-2 w-min">
                     <Button

@@ -29,15 +29,19 @@ const TeacherList = () => {
 
     const fetchTeachers = async () => {
         try {
-            setLoading(true); 
-            const data = await employeeService.list(); 
-            setTeachers(data); 
+            setLoading(true);
+            const data = await employeeService.list();
+            setTeachers(data);
         } catch (error) {
             console.error("Erro ao buscar professores:", error);
-            setTeachers([]); 
+            setTeachers([]);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
+    };
+
+    const handleTeacherDeleted = (id) => {
+        setTeachers((prevTeachers) => prevTeachers.filter((teacher) => teacher.id !== id));
     };
 
     useEffect(() => {
@@ -46,9 +50,18 @@ const TeacherList = () => {
 
     const sortedTeachers = [...teachers]
         .filter((teacher) => {
-            const nameMatch = filters.nameFilter.checked && teacher.name.toLowerCase().includes(filterText.toLowerCase());
-            const emailMatch = filters.emailFilter.checked && teacher.email.toLowerCase().includes(filterText.toLowerCase());
-            const phoneMatch = filters.phoneFilter.checked && teacher.phone.includes(filterText);
+            let nameMatch = '';
+            if (teacher.name) {
+                nameMatch = filters.nameFilter.checked && teacher.name.toLowerCase().includes(filterText.toLowerCase());
+            }
+            let emailMatch = '';
+            if (teacher.email) {
+                emailMatch = filters.emailFilter.checked && teacher.email.toLowerCase().includes(filterText.toLowerCase());
+            }
+            let phoneMatch = '';
+            if (teacher.phone) {
+                phoneMatch = filters.phoneFilter.checked && teacher.phone.includes(filterText);
+            }
 
             return nameMatch || emailMatch || phoneMatch;
         }).sort((a, b) => a.name.localeCompare(b.name));
@@ -61,7 +74,7 @@ const TeacherList = () => {
             setFilterText={setFilterText}
             title="Lista de Professores"
         >
-            {loading ? ( 
+            {loading ? (
                 <div className="text-center">
                     <i className="pi pi-spin pi-spinner text-4xl" />
                     <p>Carregando professores...</p>
@@ -69,7 +82,7 @@ const TeacherList = () => {
             ) : sortedTeachers.length > 0 ? (
                 <div className="flex flex-column gap-2 teacher-list">
                     {sortedTeachers.map((teacher) => (
-                        <TeacherItem key={teacher.id} teacher={teacher} />
+                        <TeacherItem key={teacher.id} teacher={teacher} onDelete={handleTeacherDeleted} />
                     ))}
                 </div>
             ) : (
