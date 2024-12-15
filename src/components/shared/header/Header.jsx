@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import Logo_Enira from "../../../resources/images/Logo_Enira.jpeg"
+import Logo_Enira from "../../../resources/images/Logo_Enira.png"
 
 const Header = () => {
   const [languageMenuVisible, setLanguageMenuVisible] = useState(false);

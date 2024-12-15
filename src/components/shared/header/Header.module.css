@@ -2,7 +2,7 @@
     border: 1px solid #aaa9a9;
     border-radius: 5px;
     padding: 10px;
-    background-color: #121450;
+    background-color: #33333a;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .logo{
-    width: 3%;
+    width: 3.5%;
 }
 .header h2 {
     padding: 10px;

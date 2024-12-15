@@ -22,6 +22,7 @@ const Specialization = ({
     specialization
 }) => {
     const specializationTypes = [
+        { name: "Graduação", key: 'GRADUATION' },
         { name: "Pós-Graduação", key: 'POST_GRADUATE' },
         { name: "Mestrado", key: 'MASTER' },
         { name: "Doutorado", key: 'DOCTORADE' },

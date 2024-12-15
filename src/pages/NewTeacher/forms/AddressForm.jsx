@@ -1,7 +1,7 @@
 import { InputMask } from 'primereact/inputmask';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { handleFieldChange } from "../../../utils/handlers/globalHandlers";
 import { handleCEPChange } from "../js/handlers";
@@ -12,6 +12,14 @@ const AddressForm = ({ address, setAddress }) => {
     const [cep, setCEP] = useState('');
     const handleChange = (e) => handleFieldChange(e, address, setAddress);
     const handleCEPChanges = (e, setCEP) => handleCEPChange(e, setCEP, address, setAddress);
+
+    useEffect(() =>{
+        console.log(address.addressCEP);
+        
+        setCEP(address.addressCEP);
+        console.log('cep:', cep);
+        
+    }, [address])
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-5">

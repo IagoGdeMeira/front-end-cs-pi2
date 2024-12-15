@@ -14,13 +14,19 @@ import {
 
 import PathRoutes from "../../../../utils/PathRoutes";
 import EmployeeService from "../../../../services/EmployeeService";
+import { useNavigate } from "react-router-dom";
 
 
 const TeacherItem = ({ teacher, onDelete }) => {
+    const navigate = useNavigate();
     const { id, name, email, telephone, cpf } = teacher;
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
     const [detailsDialogVisible, setDetailsDialogVisible] = useState(false);
     const employeeService = new EmployeeService();
+
+    const handleEditTeacher = () => {
+        navigate(PathRoutes.NEW_TEACHER, { state: { teacher } });
+    }
 
     const  handleDeleteTeacher = async (id) =>{
         try {
