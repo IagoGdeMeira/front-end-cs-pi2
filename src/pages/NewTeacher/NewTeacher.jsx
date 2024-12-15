@@ -72,7 +72,6 @@ const NewTeacher = () => {
     };
 
     return (
-        <SimpleLayout>
             <form className={GlobalVisualConfig.FORM}>
                 <TeacherForm errors={errors} teacher={teacher} setTeacher={setTeacher} />
                 <section className="col-12">
@@ -108,7 +107,6 @@ const NewTeacher = () => {
                     />
                 </div> 
             </form>
-        </SimpleLayout>
     );
 }
 

@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* <SimpleLayout> */}
+       <SimpleLayout> 
         <Routes>
           <Route path={PathRoutes.HOME} element={
             <Home/>
@@ -29,7 +29,7 @@ function App() {
             <TeacherList/>
           }/>
         </Routes>
-        {/* </SimpleLayout> */}
+        </SimpleLayout> 
       </BrowserRouter>
     </div>
   );

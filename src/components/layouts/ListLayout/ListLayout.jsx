@@ -1,7 +1,7 @@
 import React from 'react';
 import ListHeader from '../../shared/headers/ListHeader/ListHeader';
 import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
-
+import styles from './ListLayout.module.css';
 
 const ListLayout = ({
     children,
@@ -13,7 +13,7 @@ const ListLayout = ({
     title
 }) => {
     return (
-        <>
+        <div className={styles.listContainer}>
             <ListHeader
                 filters={filters}
                 setFilters={setFilters}
@@ -22,10 +22,10 @@ const ListLayout = ({
                 placeholder={placeholder}
                 title={title}
             />
-            <main className={GlobalVisualConfig.MAIN + "main-padding"}>
+            <main className={styles.listContent}>
                 {children}
             </main>
-        </>
+        </div>
     );
 };
 
