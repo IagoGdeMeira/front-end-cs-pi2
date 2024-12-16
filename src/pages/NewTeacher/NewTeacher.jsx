@@ -33,8 +33,18 @@ const NewTeacher = () => {
 
     const [address, setAddress] = useState({});
     const [degrees, setDegrees] = useState([]);
+    const [dados, setDados] = useState({})
     const [specializations, setSpecializations] = useState([]);
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
+
+
+    const formatDate = (date) => {
+        if (!date) return null; // Se a data for inválida, retorna null.
+        const [year, month, day] = date.split('T')[0].split('-');
+        const parts = date.split('-'); // Assumindo o formato 'YYYY-MM-DD'.
+        return new Date(parts[0], parts[1] - 1, parts[2]); // `month - 1` porque o Date usa meses baseados em 0.
+    };
+
 
     useEffect(() => {
 
@@ -43,8 +53,9 @@ const NewTeacher = () => {
             console.log('DADOS: ', location.state.teacher);
             setTeacher((prevTeacher) => ({
                 ...prevTeacher,
+                id: location.state.teacher.id,
                 teacherName: location.state.teacher.name,
-                teacherBirthDate: location.state.teacher.birthDate,
+                teacherBirthDate: new Date(location.state.teacher.birthDate),
                 teacherEmail: location.state.teacher.email,
                 teacherCPF: location.state.teacher.cpf,
                 teacherPhoneNumber: location.state.teacher.telephone,
@@ -56,6 +67,7 @@ const NewTeacher = () => {
 
             setAddress((prevAdress) => ({
                 ...prevAdress,
+                id: location.state.teacher.address.id,
                 addressCEP: location.state.teacher.address.cep,
                 addressNumber: location.state.teacher.address.number,
                 addressStreet: location.state.teacher.address.street,
@@ -63,16 +75,15 @@ const NewTeacher = () => {
                 addressCity: location.state.teacher.address.municipality,
             }));
 
-            
-            setSpecializations(location.state.teacher.graduations?.map((registration) => ({
-                id: registration.id,
-                specializationCourseName: registration.name,
-                specializationConclusionDate: registration.type,
-                specializationCourseLocation: registration.location,
+
+            setSpecializations(location.state.teacher.graduations?.map((specialization) => ({
+                id: specialization.id,
+                specializationCourseName: specialization.name,
+                specializationType: specialization.type,
+                specializationConclusionDate: new Date(specialization.conclusionDate),
+                specializationCourseLocation: specialization.location,
             })) || []);
 
-
-            
 
             setFunctionalRegistrations(location.state.teacher.functionalLines?.map((registration) => ({
                 id: registration.id,
@@ -81,10 +92,13 @@ const NewTeacher = () => {
                 functionalRegistrationDiscipline: registration.subject,
             })) || []);
 
-            console.log('Functional line:',functionalRegistrations );
-            
 
-            console.log('Address:', address);
+            // console.log('Teacher:', teacher);
+
+            // console.log('Functional line:',functionalRegistrations );
+
+
+            // console.log('Address:', address);
 
         }
     }, [location.state]);
@@ -124,13 +138,61 @@ const NewTeacher = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (handleTeacherValidation()) {
+            const formattedGraduations = specializations.map((specialization) => ({
+                id: specialization.id || null,
+                name: specialization.specializationCourseName,
+                location: specialization.specializationCourseLocation,
+                conclusionDate: specialization.specializationConclusionDate.toISOString(), // Converte para string ISO
+                type: specialization.specializationType,
+            }));
+
+            const formattedFunctionalLines = functionalRegistrations.map((registration) => ({
+                id: registration.id || null,
+                lineNumber: registration.functionalLine,
+                tie: registration.functionalRegistrationLink,
+                subject: registration.functionalRegistrationDiscipline,
+            }));
+
+            setDados((prevDados) => ({
+                ...prevDados,
+                id: teacher.id ? teacher.id : null,
+                name: teacher.teacherName,
+                cpf: teacher.teacherCPF,
+                rg: teacher.teacherRG,
+                birthDate: teacher.teacherBirthDate,
+                email: teacher.teacherEmail,
+                telephone: teacher.teacherPhoneNumber,
+                birthCity: teacher.teacherBirthCity,
+                birthState: teacher.teacherBirthState,
+                workload: teacher.teacherWorkedHours,
+                address: {
+                    id: address.id ? address.id : null,
+                    number: address.addressNumber,
+                    neighborhood: address.addressNeighborhood,
+                    cep: address.addressCEP,
+                    municipality: address.addressCity,
+                    street: address.addressStreet,
+                },
+                graduations: formattedGraduations,
+                functionalLines: formattedFunctionalLines,
+            }));
+
             try {
-                const response = await employeeService.insert(teacher);
-                navigate(PathRoutes.TEACHER_LIST);
+
+
+                // if (teacher.id) {
+                //     const response = await employeeService.update(dados);
+                // } else {
+                //     const response = await employeeService.insert(dados);
+                // }
+                // navigate(PathRoutes.TEACHER_LIST);
             } catch (err) {
                 console.log(err);
             }
-            console.log("Form submitted:", teacher);
+            console.log("Data submitted:", dados)
+            // console.log("Teacher submitted:", teacher);
+            // console.log("Address submitted:", address);
+            // console.log("Specialization submitted:", specializations);
         }
     };
 

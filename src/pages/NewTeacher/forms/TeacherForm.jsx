@@ -15,8 +15,10 @@ addLocale('pt-br', ptBR);
 const TeacherForm = ({ teacher, setTeacher, errors }) => {
     const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
     const handlePhoneChange = (e, fieldName) => handlePhoneNumberChange(e, fieldName, teacher, setTeacher);
-
+    console.log('Teacher no Form: ', teacher);
+    
     return (
+
         <>
             <div className={"col" + GlobalVisualConfig.INPUT}>
                 <label
@@ -46,7 +48,7 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                     name="teacherBirthDate"
                     onChange={(e) => handleChange(e)}
                     showIcon
-                    value={teacher?.teacherBirthDate || null}
+                    value={teacher?.teacherBirthDate}
                 />
             </div>
             <div className={"col md:col-6" + GlobalVisualConfig.INPUT}>
@@ -61,7 +63,7 @@ const TeacherForm = ({ teacher, setTeacher, errors }) => {
                     name="teacherCPF"
                     onChange={(e) => handleChange(e)}
                     placeholder="Digite um CPF aqui"
-                    value={teacher?.teacherCPF || ''}
+                    value={teacher.teacherCPF}
                 />
                 {errors.teacherCPF && <small className="p-error">{errors.teacherCPF}</small>}
             </div>

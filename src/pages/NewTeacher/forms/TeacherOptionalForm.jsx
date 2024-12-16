@@ -1,5 +1,5 @@
 import { InputNumber } from 'primereact/inputnumber';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DropdownCities from '../../../components/pages/NewTeacher/DropdownCities/DropdownCities';
 import DropdownStates from '../../../components/pages/NewTeacher/DropdownStates/DropdownStates';
@@ -11,6 +11,12 @@ import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
 const TeacherOptionalForm = ({ teacher, setTeacher }) => {
     const [selectedState, setSelectedState] = useState(null);
     const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
+
+     useEffect(() => {
+         setSelectedState(teacher.teacherBirthState);
+         console.log(selectedState);
+         
+        }, [teacher]);
 
     return (
         <section className="grid">
