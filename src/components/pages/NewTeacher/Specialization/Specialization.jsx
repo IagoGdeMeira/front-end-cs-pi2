@@ -1,5 +1,5 @@
 import { addLocale } from 'primereact/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
@@ -22,12 +22,24 @@ const Specialization = ({
     specialization
 }) => {
     const specializationTypes = [
+        { name: "Graduação", key: 'GRADUATION' },
         { name: "Pós-Graduação", key: 'POST_GRADUATE' },
         { name: "Mestrado", key: 'MASTER' },
         { name: "Doutorado", key: 'DOCTORADE' },
     ];
 
     const [selectedSpecializationType, setSelectedSpecializationType] = useState([]);
+
+    useEffect(() => {
+        if (specialization.specializationType) {
+            const matchedType = specializationTypes.find(
+                (type) => type.key === specialization.specializationType
+            );
+            if (matchedType) {
+                setSelectedSpecializationType(matchedType);
+            }
+        }
+    }, [specialization.specializationType, specializationTypes]);
 
     return (
         <section className={GlobalVisualConfig.FORM_WRAPPED}>
@@ -55,7 +67,7 @@ const Specialization = ({
                         value={specialization.specializationCourseName}
                     />
                 </div>
-                <div className={"col-3" + GlobalVisualConfig.INPUT} style={{maxWidth: "180px", minWidth: "175px"}}>
+                <div className={"col-3" + GlobalVisualConfig.INPUT} style={{ maxWidth: "180px", minWidth: "175px" }}>
                     <label
                         className={GlobalVisualConfig.LABEL}
                         htmlFor="specializationConclusionDate"

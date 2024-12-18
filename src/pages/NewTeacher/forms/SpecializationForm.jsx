@@ -21,7 +21,7 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-3">
-            <h2 className="text-gray-600">Especializações do Professor</h2>
+            <h2 className="text-gray-600">Curso Superior do Professor</h2>
             {specializations.map((specialization) => (
                 <Specialization
                     handleSpecializationChange={(e) => handleChange(e, specialization.id)}

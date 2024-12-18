@@ -1,5 +1,3 @@
-import './DeleteTeacher.css';
-
 import React, { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
@@ -40,18 +38,11 @@ const DeleteTeacher = ({ visible, onHide, onConfirm, teacherName, teacherCPF }) 
                 placeholder="Digite o código de permissão."
                 className="w-full"
             />
-            <div className="mt-3 flex justify-content-between">
+            <div className="mt-3">
                 <Button
-                    className="hide-label-sm p-button-text text-bluegray-700"
-                    icon="pi pi-times"
-                    label="Cancelar"
-                    onClick={onHide}
-                />
-                <Button
-                    className="hide-label-sm p-button-danger"
+                    className="hide-label-sm p-button-danger w-full"
                     disabled={confirmationInput !== `${teacherName} - ${teacherCPF}`}
-                    icon="pi pi-trash"
-                    label="Excluir"
+                    label="Entendo e concordo com as consequências da decisão."
                     onClick={handleConfirm}
                 />
             </div>
@@ -63,7 +54,7 @@ export default DeleteTeacher;
 
 const dialogHeader = (
     <div className="align-items-center flex text-red-600">
-        <i className="mr-2 pi pi-exclamation-triangle"></i>
+        <i className="mr-2 pi pi-exclamation-triangle text-4xl"></i>
         <span>CONFIRMAR EXCLUSÃO</span>
     </div>
 );

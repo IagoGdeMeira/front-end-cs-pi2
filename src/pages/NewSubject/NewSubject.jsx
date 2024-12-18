@@ -51,7 +51,6 @@ const NewSubject = () => {
     };
 
     return (
-        <SimpleLayout>
             <form className={GlobalVisualConfig.FORM}>
                 <DisciplineForm errors={errors} subject={subject} setSubject={setSubject}/>
                 <div className="col-12 flex gap-4 justify-content-center">
@@ -68,7 +67,6 @@ const NewSubject = () => {
                     />
                 </div>
             </form>
-        </SimpleLayout>
     );
 };
 

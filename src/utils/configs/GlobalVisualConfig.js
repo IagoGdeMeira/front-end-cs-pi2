@@ -25,7 +25,7 @@ class GlobalVisualConfig {
         text-red-600
     `;
 
-    static FORM = `
+    static FORM = ` 
         bg-bluegray-100
         border-noround
         grid
@@ -57,6 +57,7 @@ class GlobalVisualConfig {
     `;
 
     static LIST_HEADER = `
+        w-full
         align-items-center
         justify-content-between 
         p-3
@@ -88,10 +89,8 @@ class GlobalVisualConfig {
         text-left
     `;
 
-    static MAIN = `
-        flex
-        justify-content-center
-    `;
+  
+
 
     static SAVE_BUTTON = `
         bg-yellow-400

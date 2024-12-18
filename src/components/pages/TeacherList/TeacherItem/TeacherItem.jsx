@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 
 import DeleteTeacher from "./pop-ups/DeleteTeacher/DeleteTeacher";
+import TeacherDetails from "./pop-ups/TeacherDetails/TeacherDetails";
 
 import GlobalVisualConfig from "../../../../utils/configs/GlobalVisualConfig";
 import {
@@ -11,21 +12,51 @@ import {
     handleViewDetails
 } from "./js/handlers";
 
+import PathRoutes from "../../../../utils/PathRoutes";
+import EmployeeService from "../../../../services/EmployeeService";
+import { useNavigate } from "react-router-dom";
 
-const TeacherItem = ({ teacher }) => {
-    const { id, name, email, phone, cpf } = teacher;
+
+const TeacherItem = ({ teacher, onDelete }) => {
+    const navigate = useNavigate();
+    const { id, name, email, telephone, cpf } = teacher;
     const [deleteDialogVisible, setDeleteDialogVisible] = useState(false);
+    const [detailsDialogVisible, setDetailsDialogVisible] = useState(false);
+    const employeeService = new EmployeeService();
+
+    const handleEditTeacher = () => {
+        navigate(PathRoutes.NEW_TEACHER, { state: { teacher } });
+    }
+
+    const  handleDeleteTeacher = async (id) =>{
+        try {
+            const data = await employeeService.delete(id);
+            setDeleteDialogVisible(false);
+            if (onDelete) onDelete(id); 
+        } catch (error) {
+            console.error("Erro ao buscar professores:", error);
+        }
+    }
 
     return (
         <div className={GlobalVisualConfig.LIST_ITEM}>
             <h3 
                 className="cursor-pointer"
-                onClick={() => handleViewDetails(id)}
+                onClick={() => {
+                    setDetailsDialogVisible(true);
+                    handleViewDetails(id);
+                }}
             >{name}</h3>
             <section className={GlobalVisualConfig.LIST_ITEM_CONTENT}>
                 <div className={GlobalVisualConfig.LIST_ITEM_INFO}>
-                    <span className="flex gap-3"><strong><i className="pi pi-envelope"/></strong>{email}</span>
-                    <span className="flex gap-3"><strong><i className="pi pi-phone"/></strong>{phone}</span>
+                    <span className="flex gap-3">
+                        <strong><i 
+                            className="pi pi-envelope text-xl vertical-align-middle"
+                        /></strong>{email}</span>
+                    <span className="flex gap-3">
+                        <strong><i
+                            className="pi pi-phone text-xl vertical-align-middle"
+                        /></strong>{telephone}</span>
                 </div>
                 <div className="flex flex-column gap-2 w-min">
                     <Button
@@ -49,6 +80,12 @@ const TeacherItem = ({ teacher }) => {
                 teacherCPF={cpf}
                 teacherName={name}
                 visible={deleteDialogVisible}
+            />
+
+            <TeacherDetails
+                onHide={() => setDetailsDialogVisible(false)}
+                teacher={teacher}
+                visible={detailsDialogVisible}
             />
         </div>
     );
