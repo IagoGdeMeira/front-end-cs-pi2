@@ -33,8 +33,6 @@ const NewTeacher = () => {
     const [errors, setErrors] = useState({});
 
     const [address, setAddress] = useState({});
-    const [degrees, setDegrees] = useState([]);
-    const [data, setData] = useState({})
     const [specializations, setSpecializations] = useState([]);
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
 
@@ -120,62 +118,63 @@ const NewTeacher = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (handleTeacherValidation()) {
-            const formattedGraduations = specializations.map((specialization) => ({
-                id: specialization.id || null,
-                name: specialization.specializationCourseName,
-                location: specialization.specializationCourseLocation,
-                conclusionDate: specialization.specializationConclusionDate.toISOString(),
-                type: specialization.specializationType,
-            }));
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-            const formattedFunctionalLines = functionalRegistrations.map((registration) => ({
-                id: registration.id || null,
-                lineNumber: registration.functionalLine,
-                tie: registration.functionalRegistrationLink,
-                subject: registration.functionalRegistrationDiscipline,
-            }));
+        const formattedGraduations = specializations.map(spec => ({
+            id: spec.id,
+            name: spec.specializationCourseName,
+            type: spec.specializationType,
+            conclusionDate: spec.specializationConclusionDate,
+            location: spec.specializationCourseLocation,
+        }));
 
-            setData((prevData) => ({
-                ...prevData,
-                id: teacher.id ? teacher.id : null,
-                name: teacher.teacherName,
-                cpf: teacher.teacherCPF,
-                rg: teacher.teacherRG,
-                birthDate: teacher.teacherBirthDate,
-                email: teacher.teacherEmail,
-                telephone: teacher.teacherPhoneNumber,
-                birthCity: teacher.teacherBirthCity,
-                birthState: teacher.teacherBirthState,
-                workload: teacher.teacherWorkedHours,
-                address: {
-                    id: address.id ? address.id : null,
-                    number: address.addressNumber,
-                    neighborhood: address.addressNeighborhood,
-                    cep: address.addressCEP,
-                    municipality: address.addressCity,
-                    street: address.addressStreet,
-                },
-                graduations: formattedGraduations,
-                functionalLines: formattedFunctionalLines,
-            }));
+        const formattedFunctionalLines = functionalRegistrations.map(reg => ({
+            id: reg.id,
+            lineNumber: reg.functionalLine,
+            tie: reg.functionalRegistrationLink,
+            subject: reg.functionalRegistrationDiscipline,
+        }));
 
-            try {
-              if (teacher.id != NULL) {
+        const data = {
+            teacher: {
+                id: teacher.id,
+                name: teacher.teacherName || null,
+                birthDate: teacher.teacherBirthDate ? teacher.teacherBirthDate.toISOString() : null,
+                email: teacher.teacherEmail || null,
+                cpf: teacher.teacherCPF || null,
+                telephone: teacher.teacherPhoneNumber || null,
+                rg: teacher.teacherRG || null,
+                birthCity: teacher.teacherBirthCity || null,
+                birthState: teacher.teacherBirthState || null,
+                workload: teacher.teacherWorkedHours || null,
+            },
+            address: {
+                id: address.id || null,
+                number: address.addressNumber || null,
+                neighborhood: address.addressNeighborhood || null,
+                cep: address.addressCEP || null,
+                municipality: address.addressCity || null,
+                street: address.addressStreet || null,
+            },
+            graduations: formattedGraduations,
+            functionalLines: formattedFunctionalLines,
+        };
+
+        console.log("Data to be submitted:", data);
+
+        try {
+            if (teacher.id != null) {
                 await employeeService.update(data);
-              } else {
+                console.log("Atualizado com sucesso: ", data);
+            } else {
                 await employeeService.insert(data);
-              }
-              
-              navigate(PathRoutes.TEACHER_LIST);
-            } catch (err) {
-              console.log(err);
-              handleServerError(err);
+                console.log("Inserido com sucesso: ", data);
             }
-          
-            console.log("Data submitted:", data);
+
+            navigate(PathRoutes.TEACHER_LIST);
+        } catch (err) {
+            console.log(err);
         }
     };
 
