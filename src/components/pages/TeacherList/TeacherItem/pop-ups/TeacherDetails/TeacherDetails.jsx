@@ -34,7 +34,7 @@ const TeacherDetails = ({ visible, onHide, teacher }) => {
                 <li><strong>CPF: </strong>{teacher.cpf}</li>
                 <li><strong>RG: </strong>{teacher.rg}</li>
                 <li><strong>Cidade Natal: </strong>{`${teacher.birthCity} - ${teacher.birthState}`}</li>
-                <li><strong>Horas Trabalhadas: </strong>{teacher.workedHours}</li>
+                <li><strong>Carga de Trabalho: </strong>{teacher.workload} horas</li>
             </ul>
             <h3>Endereço Residencial:</h3>
             <ul className="flex flex-column gap-2 list-none">
