@@ -1,29 +1,17 @@
-import { addLocale } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 
-import {
-    cardConfig,
-    inputConfig,
-    labelConfig 
-} from '../../../../pages/NewTeacher/js/config';
-import FileUploader from '../FileUploader/FileUploader';
-import ptBR from '../../../../utils/locales/pt-br.json';
-
-
-addLocale('pt-br', ptBR);
+import GlobalVisualConfig from '../../../../utils/configs/GlobalVisualConfig';
 
 
 const FunctionalRegistration = ({
     functionalRegistration,
-    handleFileUpload,
     handleFunctionalRegistrationChange,
-    handleRemoveFunctionalRegistration,
-    index
+    handleRemoveFunctionalRegistration
 }) => {
     return (
-        <section className={cardConfig}>
+        <section className={GlobalVisualConfig.FORM_WRAPPED}>
             <div className="align-items-center flex justify-content-end p-2 surface-200">
                 <Button
                     icon="pi pi-trash"
@@ -34,9 +22,9 @@ const FunctionalRegistration = ({
                 />
             </div>
             <div className="grid p-2">
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalLine"
                     >Linha Funcional:</label>
                     <InputNumber
@@ -49,9 +37,9 @@ const FunctionalRegistration = ({
                         value={functionalRegistration.functionalLine}
                     />
                 </div>
-                <div className={"col-12 sm:col" + inputConfig}>
+                <div className={"col-12 sm:col" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalRegistrationLink"
                     >Vínculo:</label>
                     <InputText
@@ -63,30 +51,21 @@ const FunctionalRegistration = ({
                         value={functionalRegistration.functionalRegistrationLink}
                     />
                 </div>
-                <div className={"col-12" + inputConfig}>
+                <div className={"col-12" + GlobalVisualConfig.INPUT}>
                     <label
-                        className={labelConfig}
+                        className={GlobalVisualConfig.LABEL}
                         htmlFor="functionalRegistrationDiscipline"
                     >Disciplina:</label>
-                    <InputNumber
+                    <InputText
                         className="w-full text-overflow-ellipsis"
                         id="functionalRegistrationDiscipline"
                         name="functionalRegistrationDiscipline"
                         onChange={(e) => handleFunctionalRegistrationChange(e, functionalRegistration.id)}
-                        useGrouping={false}
                         placeholder="Informe a disciplina da linha funcional"
-                        value={functionalRegistration.functionalLine}
+                        value={functionalRegistration.functionalRegistrationDiscipline}
                     />
                 </div>       
             </div>
-            <FileUploader
-                handleFileUpload={handleFileUpload}
-                id="fileUpload"
-                index={index}
-                label="Arquivos da Linha Funcional:"
-                name="certificate"
-                uploadedFiles={functionalRegistration.uploadedFiles}
-            />
         </section>
     );
 };

@@ -3,11 +3,7 @@ import React from "react";
 
 import Specialization from "../../../components/pages/NewTeacher/Specialization/Specialization";
 
-import {
-    handleAddObject,
-    handleFieldChange,
-    handleRemoveObject
-} from "../../../utils/handlers/globalHandlers";
+import { handleAddObject, handleFieldChange, handleRemoveObject } from "../../../utils/handlers/globalHandlers";
 import { handleFileUpload as uploadHandler } from '../js/handlers';
 
 
@@ -19,12 +15,13 @@ const SpecializationForm = ({ specializations, setSpecializations }) => {
         specializationCourseName: "",
         specializationCourseLocation: "",
         specializationConclusionDate: "",
+        specializationType: "",
         uploadedFiles: []
     });
 
     return (
         <section className="border-top-3 border-600 flex flex-column gap-3">
-            <h2 className="text-gray-600">Especializações do Professor</h2>
+            <h2 className="text-gray-600">Curso Superior do Professor</h2>
             {specializations.map((specialization) => (
                 <Specialization
                     handleSpecializationChange={(e) => handleChange(e, specialization.id)}

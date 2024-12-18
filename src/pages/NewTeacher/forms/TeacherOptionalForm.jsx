@@ -1,21 +1,28 @@
 import { InputNumber } from 'primereact/inputnumber';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DropdownCities from '../../../components/pages/NewTeacher/DropdownCities/DropdownCities';
 import DropdownStates from '../../../components/pages/NewTeacher/DropdownStates/DropdownStates';
+
 import { handleFieldChange } from '../../../utils/handlers/globalHandlers';
-import { inputConfig, labelConfig } from '../js/config';
+import GlobalVisualConfig from '../../../utils/configs/GlobalVisualConfig';
 
 
 const TeacherOptionalForm = ({ teacher, setTeacher }) => {
     const [selectedState, setSelectedState] = useState(null);
     const handleChange = (e) => handleFieldChange(e, teacher, setTeacher);
 
+     useEffect(() => {
+         setSelectedState(teacher.teacherBirthState);
+         console.log(selectedState);
+         
+        }, [teacher]);
+
     return (
         <section className="grid">
-            <div className={"col md:col-5" + inputConfig}>
+            <div className={"col md:col-5" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherBirthState"
                 >Estado Natal:</label>
                 <DropdownStates
@@ -29,9 +36,9 @@ const TeacherOptionalForm = ({ teacher, setTeacher }) => {
                     value={teacher.teacherBirthState}
                 />
             </div>
-            <div className={"col md:col-5" + inputConfig}>
+            <div className={"col md:col-5" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherBirthCity"
                 >Cidade Natal:</label>
                 <DropdownCities
@@ -43,9 +50,9 @@ const TeacherOptionalForm = ({ teacher, setTeacher }) => {
                     value={teacher.teacherBirthCity}
                 />
             </div>
-            <div className={"col md:col-2" + inputConfig}>
+            <div className={"col md:col-2" + GlobalVisualConfig.INPUT}>
                 <label
-                    className={labelConfig}
+                    className={GlobalVisualConfig.LABEL}
                     htmlFor="teacherWorkedHours"
                 >Horas/Aula:</label>
                 <InputNumber

@@ -3,16 +3,10 @@ import React from "react";
 
 import FunctionalRegistration from '../../../components/pages/NewTeacher/FunctionalRegistration/FunctionalRegistration';
 
-import {
-    handleAddObject,
-    handleFieldChange,
-    handleRemoveObject
-} from "../../../utils/handlers/globalHandlers";
-import { handleFileUpload as uploadHandler } from '../js/handlers';
+import { handleAddObject, handleFieldChange, handleRemoveObject} from "../../../utils/handlers/globalHandlers";
 
 
 const FunctionalRegistrationForm = ({ functionalRegistrations, setFunctionalRegistrations }) => {
-    const handleFileUpload = (e, id) => uploadHandler(e, id, functionalRegistrations, setFunctionalRegistrations);
     const handleChange = (e, id) => handleFieldChange(e, id, functionalRegistrations, setFunctionalRegistrations);
     const handleRemove = (id) => handleRemoveObject(id, functionalRegistrations, setFunctionalRegistrations);
     const handleAdd = () => handleAddObject(functionalRegistrations, setFunctionalRegistrations, {
@@ -29,10 +23,8 @@ const FunctionalRegistrationForm = ({ functionalRegistrations, setFunctionalRegi
                 <FunctionalRegistration
                     functionalRegistration={functionalRegistration}
                     key={functionalRegistration.id}
-                    handleFileUpload={handleFileUpload}
                     handleFunctionalRegistrationChange={(e) => handleChange(e, functionalRegistration.id)}
                     handleRemoveFunctionalRegistration={() => handleRemove(functionalRegistration.id)}
-                    index={functionalRegistration.id}
                 />
             ))}
             <Button

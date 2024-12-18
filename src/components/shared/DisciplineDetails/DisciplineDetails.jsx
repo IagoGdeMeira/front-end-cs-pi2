@@ -1,6 +1,7 @@
 import styles from "./DisciplineDetails.module.css"
 
 import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
 import { Card } from "primereact/card";
 import { Dialog } from "primereact/dialog";
 import React, { useState } from "react";
