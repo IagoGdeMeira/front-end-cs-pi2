@@ -23,6 +23,7 @@ import EmployeeService from "../../services/EmployeeService";
 const NewTeacher = () => {
     const navigate = useNavigate();
     const location = useLocation();
+
     const employeeService = new EmployeeService();
 
     const [showOptionalFields, setShowOptionalFields] = useState(false);
@@ -33,10 +34,9 @@ const NewTeacher = () => {
 
     const [address, setAddress] = useState({});
     const [degrees, setDegrees] = useState([]);
-    const [dados, setDados] = useState({})
+    const [data, setData] = useState({})
     const [specializations, setSpecializations] = useState([]);
     const [functionalRegistrations, setFunctionalRegistrations] = useState([]);
-
 
     const formatDate = (date) => {
         if (!date) return null; // Se a data for inválida, retorna null.
@@ -45,12 +45,9 @@ const NewTeacher = () => {
         return new Date(parts[0], parts[1] - 1, parts[2]); // `month - 1` porque o Date usa meses baseados em 0.
     };
 
-
     useEffect(() => {
-
         if (location.state?.teacher) {
-
-            console.log('DADOS: ', location.state.teacher);
+            console.log('DATA: ', location.state.teacher);
             setTeacher((prevTeacher) => ({
                 ...prevTeacher,
                 id: location.state.teacher.id,
@@ -75,7 +72,6 @@ const NewTeacher = () => {
                 addressCity: location.state.teacher.address.municipality,
             }));
 
-
             setSpecializations(location.state.teacher.graduations?.map((specialization) => ({
                 id: specialization.id,
                 specializationCourseName: specialization.name,
@@ -84,25 +80,14 @@ const NewTeacher = () => {
                 specializationCourseLocation: specialization.location,
             })) || []);
 
-
             setFunctionalRegistrations(location.state.teacher.functionalLines?.map((registration) => ({
                 id: registration.id,
                 functionalLine: registration.lineNumber,
                 functionalRegistrationLink: registration.tie,
                 functionalRegistrationDiscipline: registration.subject,
             })) || []);
-
-
-            // console.log('Teacher:', teacher);
-
-            // console.log('Functional line:',functionalRegistrations );
-
-
-            // console.log('Address:', address);
-
         }
     }, [location.state]);
-
 
     useEffect(() => {
         const requiredFields = [
@@ -142,7 +127,7 @@ const NewTeacher = () => {
                 id: specialization.id || null,
                 name: specialization.specializationCourseName,
                 location: specialization.specializationCourseLocation,
-                conclusionDate: specialization.specializationConclusionDate.toISOString(), // Converte para string ISO
+                conclusionDate: specialization.specializationConclusionDate.toISOString(),
                 type: specialization.specializationType,
             }));
 
@@ -153,8 +138,8 @@ const NewTeacher = () => {
                 subject: registration.functionalRegistrationDiscipline,
             }));
 
-            setDados((prevDados) => ({
-                ...prevDados,
+            setData((prevData) => ({
+                ...prevData,
                 id: teacher.id ? teacher.id : null,
                 name: teacher.teacherName,
                 cpf: teacher.teacherCPF,
@@ -178,21 +163,19 @@ const NewTeacher = () => {
             }));
 
             try {
-
-
-                // if (teacher.id) {
-                //     const response = await employeeService.update(dados);
-                // } else {
-                //     const response = await employeeService.insert(dados);
-                // }
-                // navigate(PathRoutes.TEACHER_LIST);
+              if (teacher.id != NULL) {
+                await employeeService.update(data);
+              } else {
+                await employeeService.insert(data);
+              }
+              
+              navigate(PathRoutes.TEACHER_LIST);
             } catch (err) {
-                console.log(err);
+              console.log(err);
+              handleServerError(err);
             }
-            console.log("Data submitted:", dados)
-            // console.log("Teacher submitted:", teacher);
-            // console.log("Address submitted:", address);
-            // console.log("Specialization submitted:", specializations);
+          
+            console.log("Data submitted:", data);
         }
     };
 
