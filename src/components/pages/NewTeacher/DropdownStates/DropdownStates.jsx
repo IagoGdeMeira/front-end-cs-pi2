@@ -15,7 +15,7 @@ const DropdownStates = ({
             .then(response => {
                 const statesData = response.data.map(state => ({
                     label: state.nome,
-                    value: state.id
+                    value: state.nome
                 }));
 
                 setStates(statesData);

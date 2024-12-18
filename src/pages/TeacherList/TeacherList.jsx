@@ -31,7 +31,9 @@ const TeacherList = () => {
         try {
             setLoading(true);
             const data = await employeeService.list();
-            setTeachers(data);
+            console.log(data);
+            
+            setTeachers(Array.isArray(data) ? data : []);
         } catch (error) {
             console.error("Erro ao buscar professores:", error);
             setTeachers([]);

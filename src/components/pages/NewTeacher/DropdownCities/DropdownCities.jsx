@@ -16,7 +16,7 @@ const DropdownCities = ({
                 .then(response => {
                     const citiesData = response.data.map(city => ({
                         label: city.nome,
-                        value: city.id
+                        value: city.nome
                     }));
 
                     setCities(citiesData);

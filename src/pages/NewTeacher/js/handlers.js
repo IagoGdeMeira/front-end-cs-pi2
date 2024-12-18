@@ -9,9 +9,11 @@ export const handleCEPChange = async (e, setCEP, address, setAddress) => {
         setCEP(cep);
         try {
             const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+            console.log(response);
             if (!response.data.erro) {
                 setAddress({
                     ...address,
+                    addressCEP: response.data.cep,
                     addressStreet: response.data.logradouro,
                     addressNeighborhood: response.data.bairro,
                     addressCity: `${response.data.localidade} - ${response.data.uf}`
